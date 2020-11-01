@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-01T07:29:01.416Z</updated>
+  <updated>2020-11-01T08:54:58.791Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之动态代理篇</title>
+    <link href="http://example.com/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/"/>
+    <id>http://example.com/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/</id>
+    <published>2020-11-01T08:31:21.555Z</published>
+    <updated>2020-11-01T08:54:58.791Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>编程语言分类角度：1.动态类型和静态类型2.强类型和弱类型<a id="more"></a>在这里我们复习一下JAVA的反射机制反射机制是赋予程序运行时自省（introspect）的能力能通过反射直接操作类和对象1.获取某个对象的类定义2.获取类声明的属性和方法，调用方法和构造方法运行时修改类定义<p>动态代理是一种方便运行时动态构建代理，动态处理代理方法调用的机制，很多场景都是利用类似机制机制做到的<br>用来包装RPC调用，面向切面的编程。</p><p>实现动态代理的方式：<br>1.JDK自身提供的动态代理，反射机制<br>2.更高性能的字节码操作机制，ASM,cglib,javassist</p><p>反射赋予了java语言活力，通过运行时操作元数据或对象，java可以灵活地操作运行时才能确定的信息。</p><p><strong>1.考察你对反射机制的了解及掌握程度？</strong><br>Class 、Field、Method、Constructor 就是操作类和对象的元数据对应，官方API文档：<a href="https://docs.oracle.com/javase/tutorial/reflect/index.html">https://docs.oracle.com/javase/tutorial/reflect/index.html</a><br>对于反射，AccessibleObject.setAccessible(boolean flag)<br>其子类也大多重写了这个方法，这个accessible可以修饰成员访问限制，这意味着程序运行时我们照样可以修改成员访问限制。<br>java9以后，加入一个open机制，只有当被反射操作的模块和指定的包对反射调用者Open，才能用setAccessible<br>比如：开发 、测试、依赖注入<br>O/R Mapping框架中，为java实体自动生成getter setter 方法<br>框架可以利用反射做这个事情，而不需要开发者手动写重复代码。<br>使用反射绕开限制，我们日常开发调用内部API去做事情，<br>例如： 自定义的高性能NIO框架显式地释放DirectBuffer<br><strong>2.动态代理解决了什么问题，你在业务系统中的应用场景是什么？</strong><br>代理是对调用目标的一个包装，这样我们对目标代码的调用不是直接发生的，而是通过代理完成<br>通过代理可以让调用者和实现者之间解耦，如：RPC调用，框架内部的寻址，序列化，反序列化</p><p><strong>3.JDK动态代理在设计和实现上与cglib等方式有什么不同？如何取舍？</strong><br>ciglib采用的时<strong>创建目标类的子类</strong>的方式，近似使用被调用者本身的效果，在Spring编程中，框架通常会处理这种情况</p><p><strong>JDK Proxy的优势</strong><br>最小化依赖关系<br>平滑进行JDK版本升级，而字节码类库通常还需进行更新<br>代码</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+编程语言分类角度：1.动态类型和静态类型
+2.强类型和弱类型</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之int和interger的区别（续）篇</title>
+    <link href="http://example.com/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/"/>
+    <id>http://example.com/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/</id>
+    <published>2020-11-01T08:29:13.202Z</published>
+    <updated>2020-11-01T08:57:56.969Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>原始数据类型为八大类我们先复习一下我们学过的int ：基本数据类型，不用声明直接使用interger：是int的封装类。需要声明，但是JAVA给其自动装箱开箱（抽象为类，new 一个对象）的功能，让其可以自由像int一样自由赋值interger的值缓存，java5提供了静态工厂方法valueof但是有valueof的限制，调用一个缓存机制，interger取值范围在-128—127之间，且只能在这个范围内比较<a id="more"></a><p><strong>问题1：编译阶段、运行时，自动装箱/自动拆箱是发生在什么阶段？</strong><br>自动装箱和开箱其实是一种语法糖，Java平台自动为我们进行了一些转换，保证在编译时生成的字节码是一致的。<br>javac自动把装箱转换成了Interger.valueOf(),把开箱转换成了Interger.intValue(),装箱的时候调用了方法，肯定也应用到了缓存机制<br><strong>问题2：使用静态工厂方法valueof会使用缓存机制，那么自动装箱的时候，缓存机制其作用吗？</strong><br>上一题已经回答了<br>这一种<strong>缓存机制</strong>并不是interger独有，同样存在其他基本类型的包装类：<br>如：1.Boolean,缓存了true/false对应实例，确切说，只会返回两个常量实例Boolean.TRUE/FALSE<br>2.Short,同样缓存了-128—127之间的数值<br>3.Byte 数值有限，所以全部被缓存<br>4.Character,缓存范围’\u0000’—‘\u007F’<br>自动装箱和开箱很酷，有什么需要注意的吗？<br>原则上尽量避免无意识的开箱装箱，尤其是性能敏感的场合，创建10万个java对象是相对于创建10万个整数的是高量级，不管是内存占用还是处理时速度都会变慢<br><strong>问题3：为什么我们需要原始数据类型，Java的对象似乎也很高效，应用中具体会产生哪些差异？</strong><br> 使用原始数据类型，数组甚至本地代码实现。在性能极度敏感的场景，用其替换掉包装类，动态数组<br><strong>问题4：阅读过Interger源码吗？分析下类或者某些方法的设计要点</strong><br>虽然interger的默认缓存值为-128-127，但是我们也可以根据需要调整，调整代码为：</p><p>-XX：AutoBoxCacheMax=N<br>这些都体现在java.lang.Interger的静态代码初始块里</p><p><strong>Interger等包装类，定义了SIZE或者BYTES这样的常量，</strong>这样的设计考虑是因为在32或者64位中JDK中，不需要移植工作。</p><p><strong>原始类型线程安全</strong><br><strong>java原始数据类型和引用类型局限性</strong><br>原始数据类型并不能和泛型一起使用<br>java的对象都是引用类型，如果一个原始数据类型数组，它在内存里是一段连续的内存，而对象数组则不然，往往分散于存储堆的不同位置，这种设计虽然带了极大的灵活性，也导致了数据操作的低效。</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+原始数据类型为八大类
+我们先复习一下我们学过的
+int ：基本数据类型，不用声明直接使用
+interger：是int的封装类。需要声明，但是JAVA给其自动装箱开箱（抽象为类，new 一个对象）的功能，让其可以自由像int一样自由赋值
+interger的值缓存，java5提供了静态工厂方法valueof
+但是有valueof的限制，调用一个缓存机制，interger取值范围在-128—127之间，且只能在这个范围内比较</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>RUOYI项目初级涉猎篇</title>
@@ -548,59 +606,6 @@ error（系统级的错误，我们处理不了，只能查错）</summary>
 
 
 &lt;h1 id=&quot;一、error-与exception的区别？&quot;&gt;&lt;a href=&quot;#一、error-与exception的区别？&quot; class=&quot;headerlink&quot; title=&quot;一、error 与exception的区别？&quot;&gt;&lt;/a&gt;一、error 与exception的区别？&lt;/h1&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>关于HEXO博客的开通</title>
-    <link href="http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/"/>
-    <id>http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/</id>
-    <published>2020-11-01T07:28:52.851Z</published>
-    <updated>2020-11-01T07:28:52.851Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA >1、 搭建 Java 开发环境2、 掌握 Java 基本语法3、 掌握条件语句4、 掌握循环语句<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">css<a id="more"></a># 学习时间：<font color=#999AAA >1、 周一至周五晚上 7 点—晚上9点2、 周六上午 9 点-上午 11 点3、 周日下午 3 点-下午 6 点<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习产出："><a href="#学习产出：" class="headerlink" title="学习产出："></a>学习产出：</h1><font color=#999AAA >1、 技术笔记 2 遍2、CSDN 技术博客 3 篇3、 学习的 vlog 视频 1 个你们好呀，我是一个见习程序员接下来我会解释一下Spring Ioc   Spring MVC 的类比解释Spring IOC 控制反转，在潜意识里，我们总是会以为我们创建了对象并在整个项目里和其数据链接，但是现在我们实现了控制反转，就相当于你想要什么对象，不用你自己创建，都可以通过spring创建出来。spring MVC   M代表数据层 V代表VIEW ,视觉层。 而C呢，就是controller层，简要来说就是将M层的数据动态的显示到视觉层，中间涉及处理，并发，以及一系列协议，锁的问题。都是在处理决策，创建智能化，模块化。<hr>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-1、 搭建 Java 开发环境
-2、 掌握 Java 基本语法
-3、 掌握条件语句
-4、 掌握循环语句
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-css</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之泛型篇</title>
-    <link href="http://example.com/2020/11/01/%E6%B3%9B%E5%9E%8B/"/>
-    <id>http://example.com/2020/11/01/%E6%B3%9B%E5%9E%8B/</id>
-    <published>2020-11-01T07:28:52.773Z</published>
-    <updated>2020-11-01T07:28:52.773Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >generics<a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">useStringList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List strList = createStringList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strList.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// TODO 必须强制类型转换，心好累，我明明知道里面只有String的呀</span></span><br><span class="line">            String str = (String) strList.get(i);</span><br><span class="line">            str = str.toUpperCase();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>明明往list里面放着String,但是java偏偏不识别，还得我强转我们可以给ArrayList弄一个String,但为每一种类型都定义就很烦 泛型，即：我想让这个list只有一种类型的元素，使用时不用强转<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">createStringListGenerics</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 泛型的语法就是在支持泛型的类型上，给出类型的定义</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; List接口是支持泛型的，类型就是List里允许的元素的类型</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 创建List实例和引用的时候，都可以（非必要）指定泛型对应的类型</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 不指定，那就是Object，所以我们之前用的List的元素就是Object类型</span></span><br><span class="line">        List&lt;String&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// TODO &gt;&gt; 如果尝试增加非String类型的元素进去，则会报错</span></span><br><span class="line">            ret.add(<span class="string">&quot;str&quot;</span> + (i % <span class="number">5</span>));</span><br><span class="line"><span class="comment">//            ret.add(new Object());</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        List causeError = ret;</span></span><br><span class="line"><span class="comment">//        causeError.add(new Object());</span></span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>这样用的时候就不会强转</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = strList.get(i).toUpperCase(); </span><br></pre></td></tr></table></figure><p><strong>泛型的协变和逆变</strong><br>为了支持更广的参数类型<br>引用类型<br>list<children> 不是list<parent>的子类<br>list&lt;?extends Parent&gt;协变 ，这就可以任何继承自parent的泛型list都可以</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  List&lt;Children&gt; g3List = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 这么传递参数不行，泛型类型不管继承关系，只管严格的匹配。</span></span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 换句话说，Children 是 Parent 的子类，但是 List&lt;Children&gt; 不是 List&lt;Parent&gt; 的子类</span></span><br><span class="line"><span class="comment">//         justG2Method(g3List);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 那么怎么办呢？要让接收方，也就是形参，声明为协变泛型</span></span><br><span class="line">        extMethod(g3List);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-
-&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
-&lt;/font&gt;
-
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;font color=#999AAA &gt;
-generics</summary>
     
     
     
