@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2020-11-01T07:29:01.416Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RUOYI项目初级涉猎篇</title>
+    <link href="http://example.com/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/"/>
+    <id>http://example.com/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/</id>
+    <published>2020-11-01T07:29:01.416Z</published>
+    <updated>2020-11-01T07:29:01.416Z</updated>
+    
+    <content type="html"><![CDATA[<p>@[cwxprogrammer</p><h1 id="项目场景：ruoyi-spring-boot项目打怪升级"><a href="#项目场景：ruoyi-spring-boot项目打怪升级" class="headerlink" title="项目场景：ruoyi spring boot项目打怪升级"></a>项目场景：ruoyi spring boot项目打怪升级</h1><h1 id="学习目标：掌握其中的一些知识，分享给一起努力的人"><a href="#学习目标：掌握其中的一些知识，分享给一起努力的人" class="headerlink" title="学习目标：掌握其中的一些知识，分享给一起努力的人"></a>学习目标：掌握其中的一些知识，分享给一起努力的人</h1><font color=#999AAA >两天把ruoyi部署起来，根据文档会打点理解其中模块的作用和实现原理<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习内容："><a href="#学习内容：" class="headerlink" title="学习内容："></a>学习内容：</h1><font color=#999AAA ><p>大家先理解一下Spring boot的意思，极大解放了广大程序员，利用maven依赖的繁琐，利用web.xml加载Spring,以及最终的tomcat部署，这是最令人绝望的，而Spring boot使xml -bean的历史彻底过去，使用了各种Starter,配置方面完全自动配置，自动注入，部署有内嵌tomcat,非常香。</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习时间："><a href="#学习时间：" class="headerlink" title="学习时间："></a>学习时间：</h1><font color=#999AAA ><p>1、 周一至周五晚上 7 点—晚上9点<br>2、 周六上午 9 点-上午 11 点<br>3、 周日下午 3 点-下午 6 点</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习产出："><a href="#学习产出：" class="headerlink" title="学习产出："></a>学习产出：</h1><p><font color=#999AAA >提示：这里统计学习计划的总量<br>例如：<br>1、 技术笔记 2 遍<br>2、个人 技术博客 1篇<br>3、 学习的 vlog 视频 1 个</p><font color=#999AAA >RuoYi是一款基于SpringBoot+Bootstrap的极速后台开发框架。</font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h1><p>1.<img src="https://img-blog.csdnimg.cn/20201008144322646.png#pic_center" alt="在这里插入图片描述"><br>2.<br>java.sql.SQLNonTransientConnectionException: CLIENT_PLUGIN_AUTH is required</p> </font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">css<a id="more"></a># 原因分析：<font color=#999AAA >第一个好解决，看以下截图</font><p><img src="https://img-blog.csdnimg.cn/2020101010413597.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201010104218397.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201010104252672.png#pic_center" alt="把这个勾子点去"><br><font color=#999AAA ><br>第二个问题本来不应该算问题，我的电脑MYSQL安装的是5.0，但我却误认为8.0.19，导致自己JAR包导错，导致数据库连接失败，给新手一个提示，虽然有可能你的内存中装着两个数据库，但一定要看哪个起作用，从navicat最右面中间位置，看截图<br></font><br><img src="https://img-blog.csdnimg.cn/20201010105041517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="项目场景："><a href="#项目场景：" class="headerlink" title="项目场景："></a>项目场景：</h1><font color=#999AAA >1.还有一个问题值得注意 ，就是大家一定要多看RUOYI文件包里面自带的文档，就那个DOC文件包。2.如果想要前后端分离的系统，那就得先准备虚拟机节点，在虚拟机上面装一个lunix系统，具体我也是看B站CodeSheep弄的，保姆级教程，前后端分离的RUOYI需要花费时间。</font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="结束语："><a href="#结束语：" class="headerlink" title="结束语："></a>结束语：</h1><font color=#999AAA >值得注意的是，大家都是普通人，如果一个软件在耗费你时间两个小时的基础上都装不好的话，那就试试借助外力，比如淘宝网，当然我鼓励大家自己装，但是要算对账。</font>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;@[cwxprogrammer&lt;/p&gt;
+&lt;h1 id=&quot;项目场景：ruoyi-spring-boot项目打怪升级&quot;&gt;&lt;a href=&quot;#项目场景：ruoyi-spring-boot项目打怪升级&quot; class=&quot;headerlink&quot; title=&quot;项目场景：ruoyi spring boot项目打怪升级&quot;&gt;&lt;/a&gt;项目场景：ruoyi spring boot项目打怪升级&lt;/h1&gt;&lt;h1 id=&quot;学习目标：掌握其中的一些知识，分享给一起努力的人&quot;&gt;&lt;a href=&quot;#学习目标：掌握其中的一些知识，分享给一起努力的人&quot; class=&quot;headerlink&quot; title=&quot;学习目标：掌握其中的一些知识，分享给一起努力的人&quot;&gt;&lt;/a&gt;学习目标：掌握其中的一些知识，分享给一起努力的人&lt;/h1&gt;&lt;font color=#999AAA &gt;
+两天把ruoyi部署起来，根据文档会打点理解其中模块的作用和实现原理
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;学习内容：&quot;&gt;&lt;a href=&quot;#学习内容：&quot; class=&quot;headerlink&quot; title=&quot;学习内容：&quot;&gt;&lt;/a&gt;学习内容：&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;大家先理解一下Spring boot的意思，极大解放了广大程序员，利用maven依赖的繁琐，利用web.xml加载Spring,以及最终的tomcat部署，这是最令人绝望的，而Spring boot使xml -bean的历史彻底过去，使用了各种Starter,配置方面完全自动配置，自动注入，部署有内嵌tomcat,非常香。&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;学习时间：&quot;&gt;&lt;a href=&quot;#学习时间：&quot; class=&quot;headerlink&quot; title=&quot;学习时间：&quot;&gt;&lt;/a&gt;学习时间：&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;1、 周一至周五晚上 7 点—晚上9点&lt;br&gt;2、 周六上午 9 点-上午 11 点&lt;br&gt;3、 周日下午 3 点-下午 6 点&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;学习产出：&quot;&gt;&lt;a href=&quot;#学习产出：&quot; class=&quot;headerlink&quot; title=&quot;学习产出：&quot;&gt;&lt;/a&gt;学习产出：&lt;/h1&gt;&lt;p&gt;&lt;font color=#999AAA &gt;提示：这里统计学习计划的总量&lt;br&gt;例如：&lt;br&gt;1、 技术笔记 2 遍&lt;br&gt;2、个人 技术博客 1篇&lt;br&gt;3、 学习的 vlog 视频 1 个&lt;/p&gt;
+&lt;font color=#999AAA &gt;
+RuoYi是一款基于SpringBoot+Bootstrap的极速后台开发框架。
+&lt;/font&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;问题描述：&quot;&gt;&lt;a href=&quot;#问题描述：&quot; class=&quot;headerlink&quot; title=&quot;问题描述：&quot;&gt;&lt;/a&gt;问题描述：&lt;/h1&gt;&lt;p&gt;1.&lt;img src=&quot;https://img-blog.csdnimg.cn/20201008144322646.png#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;br&gt;2.&lt;br&gt;java.sql.SQLNonTransientConnectionException: CLIENT_PLUGIN_AUTH is required&lt;/p&gt;
+ &lt;/font&gt;
+
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之反射篇</title>
+    <link href="http://example.com/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/"/>
+    <id>http://example.com/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/</id>
+    <published>2020-11-01T07:29:01.159Z</published>
+    <updated>2020-11-01T07:29:01.159Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><h1 id="本节的内容是反射（reflection）"><a href="#本节的内容是反射（reflection）" class="headerlink" title="本节的内容是反射（reflection）"></a>本节的内容是反射（reflection）</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><a id="more"></a><p>Class(注意大写)，是类的类<br>Class clazz =MerchandiseV2.class</p><p><img src="https://img-blog.csdnimg.cn/20201025155334840.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>此处string[ ]是一个变长函数，可以自定义变长。</p><p><strong>使用反射（reflection）访问属性</strong><br>          Field countField = clazz.getField(“count”);<br>          System.out.println(countField.get(m100));<br>          countField.set(m100,888);<br>          System.out.println(countField.get(m100));<br>          System.out.println(m100.count);<br>也许通过这段代码你可以理解Field 的意义，Field代表在Class clazz定义的那个类里的所有成员变量。<br>所以才会有这句<br> Field <strong>countField</strong> = clazz.getField(“<strong>count</strong>“);<br>下面我们可以通过遍历更加了解Field<br><img src="https://img-blog.csdnimg.cn/20201025164134960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这是另一种调用方法。<br>我们还可以调用静态变量<br>Field field =clazz.getField(name:”STATIC_MEMBER”);<br>System.out.println(field.get(null));</p><p>通过反射调用成员变量和静态变量</p><p>当然，我们需要清楚我们定义的clazz必须是这个类本类或者是这个类的父类才行。</p><p>接下来呢，我们要利用反射来调用clazz这个类中的方法：</p><p><img src="https://img-blog.csdnimg.cn/20201025172049961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201025172351230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>接下来<br>我们演示一下<br><strong>反射能做到，平常调用做不到的方法</strong><br>调用private 的方法和属性<br><img src="https://img-blog.csdnimg.cn/20201025172638221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201025173407495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="调入private的属性"><br><img src="https://img-blog.csdnimg.cn/20201025173454859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="调用private的方法"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>反射一个高级语言里的 通用功能，通过这样一种方式动态的来执行一些方法<br>比如：你不知道一个地方的经纬度，也能调用它的属性方法，不需要精确，但必须知道有这么个实例。<br>但是有一点就是反射比较慢，找的时候慢，执行方法速度一样。</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h1 id=&quot;本节的内容是反射（reflection）&quot;&gt;&lt;a href=&quot;#本节的内容是反射（reflection）&quot; class=&quot;headerlink&quot; title=&quot;本节的内容是反射（reflection）&quot;&gt;&lt;/a&gt;本节的内容是反射（reflection）&lt;/h1&gt;&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之Iterator篇</title>
+    <link href="http://example.com/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/"/>
+    <id>http://example.com/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/</id>
+    <published>2020-11-01T07:29:00.379Z</published>
+    <updated>2020-11-01T07:29:00.379Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >**Iterator接口**<a id="more"></a>点两下shfit 就可以查找class 类型  符号 从Java4以后就有了hasNext()next()Iterable接口，实现这个接口就可以支持forEach循环，只有一个方法Iterator()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Iterator&lt;&gt;() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> pointer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> pointer &lt; size();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> (T) elements[pointer++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Collection <span class="title">addElementsToCollection</span><span class="params">(Collection collection)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            collection.add(<span class="string">&quot;str&quot;</span> + (i % <span class="number">5</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> collection;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCollection</span><span class="params">(Collection collection)</span> </span>&#123;</span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(<span class="string">&quot;输出&quot;</span> + collection.getClass() + <span class="string">&quot;中的元素，共&quot;</span> + collection.size() + <span class="string">&quot;个&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (Object element : collection) &#123;</span><br><span class="line">                System.out.println(element);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>然后存入一个集合里头的元素，利用iterator将其输出出来</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+**Iterator接口**</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之java9大基础类型</title>
+    <link href="http://example.com/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://example.com/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/</id>
+    <published>2020-11-01T07:29:00.347Z</published>
+    <updated>2020-11-01T07:29:00.347Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？"><a href="#一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？" class="headerlink" title="一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？"></a>一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？</h1><a id="more"></a><p>我先说Java九大类型，byte(1)  short(2)  int(4)    long(8)<br>float(4)   double(8)  char(2)  boolean  void<br>对应的封装类： Byte  Short  interger  Long  Float<br>Double Character  Boolean Void</p><p>1.int是基本数据类型，interger 是封装类型<br>2.前者默认值是0,后者默认值为null。所以可以从侧面判断interger数值为0，还是没赋值<br>3.前者不用实例化，后者需要实例化，且有自动开箱功能。如：4.interger a =1;相当于 interger a =new interger(1);<br>5.前者可以和后者直接比较：两个数值相等就为相等<br>6.在-128 –127数值范围内，interger是可以比较的，越过这个范围，interger就会重新new.</p><font color=#999AAA ><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color=#999AAA ><p>以上就是今天要分享的内容，老生常谈，写出来也许看的人不会，但是你分享过后，你肯定会了！！</p><p>css<!--more--></p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+&lt;h1 id=&quot;一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？&quot;&gt;&lt;a href=&quot;#一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？&quot; class=&quot;headerlink&quot; title=&quot;一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？&quot;&gt;&lt;/a&gt;一、int和interger的区别？顺便说说java九大基本类型，以及他们的封装类？&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之jdk和GC篇</title>
+    <link href="http://example.com/2020/11/01/jrejdk%20gc/"/>
+    <id>http://example.com/2020/11/01/jrejdk%20gc/</id>
+    <published>2020-11-01T07:29:00.300Z</published>
+    <updated>2020-11-01T07:29:00.300Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、1-谈谈你对java平台的理解？"><a href="#一、1-谈谈你对java平台的理解？" class="headerlink" title="一、1.谈谈你对java平台的理解？"></a>一、1.谈谈你对java平台的理解？</h1><a id="more"></a><p>书写一次，到处执行。<br>JDK是Java Development Kit  ,是Java的开发套件<br>JRE是 Java Runtime Environment，是运行java的环境<br>JDK包含了JRE，而且还包含了很多和开发调试程序相关的工具<br>1.Javac编译成为字节码，再通过JVM内嵌的解释器将字节码转换为最终的机器码<br>2.JVM会通过类加载器（class -Loader）加载字节码，解释或者编译执行<br> Jsut in time 简称 JIT<br>Jdk9引入了AOT将字节码编译成机器代码</p><h1 id="二、垃圾收集（Garbage-Collection）"><a href="#二、垃圾收集（Garbage-Collection）" class="headerlink" title="二、垃圾收集（Garbage Collection）"></a>二、垃圾收集（Garbage Collection）</h1><p>Java通过垃圾收集器回收分配内存，大部分情况下，程序员不需要自己操心内存的分配和回收<br>最常用的垃圾收集：SerialGC  、Parallel GC 、CMS 、G1</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>都是些零碎的小知识，大家要见谅，也不要嘲笑，都是深耕。</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+
+&lt;h1 id=&quot;一、1-谈谈你对java平台的理解？&quot;&gt;&lt;a href=&quot;#一、1-谈谈你对java平台的理解？&quot; class=&quot;headerlink&quot; title=&quot;一、1.谈谈你对java平台的理解？&quot;&gt;&lt;/a&gt;一、1.谈谈你对java平台的理解？&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MYSQL MAP</title>
+    <link href="http://example.com/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"/>
+    <id>http://example.com/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</id>
+    <published>2020-11-01T07:29:00.262Z</published>
+    <updated>2020-11-01T07:29:00.262Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="学习目标："><a href="#学习目标：" class="headerlink" title="学习目标："></a>学习目标：</h1><font color=#999AAA ><p>学习时候用的思维导图<br>分享给大家</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习内容："><a href="#学习内容：" class="headerlink" title="学习内容："></a>学习内容：</h1><font color=#999AAA ><p>01丨了解SQL：一门半衰期很长的语言<br>02丨DBMS的前世今生<br>03丨学会用数据库的方式思考SQL是如何执行的<br>04丨使用DDL创建数据库&amp;数据表时需要注意什么？<br>05丨检索数据：你还在SELECT * 么？<br>06丨数据过滤：SQL数据过滤都有哪些方法？<br>07丨什么是SQL函数？为什么使用SQL函数可能会带来问题？<br>08丨什么是SQL的聚集函数，如何利用它们汇总表的数据？</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">css<a id="more"></a># 学习时间：<font color=#999AAA ><p>1、 周一至周五晚上 7 点—晚上9点<br>2、 周六上午 9 点-上午 11 点<br>3、 周日下午 3 点-下午 6 点</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习产出："><a href="#学习产出：" class="headerlink" title="学习产出："></a>学习产出：</h1><font color=#999AAA ><p>1、 技术笔记 1 篇<br>2、CSDN 技术博客 1篇<br>3、 学习的 vlog 视频 1 个</p><p>Markdown<br><img src="https://img-blog.csdnimg.cn/2020101109291567.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020101109291529.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914837.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914844.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914810.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914802.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914540.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092914439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092913956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092913939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201011092913785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;学习目标：&quot;&gt;&lt;a href=&quot;#学习目标：&quot; class=&quot;headerlink&quot; title=&quot;学习目标：&quot;&gt;&lt;/a&gt;学习目标：&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;学习时候用的思维导图&lt;br&gt;分享给大家&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;学习内容：&quot;&gt;&lt;a href=&quot;#学习内容：&quot; class=&quot;headerlink&quot; title=&quot;学习内容：&quot;&gt;&lt;/a&gt;学习内容：&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;01丨了解SQL：一门半衰期很长的语言&lt;br&gt;02丨DBMS的前世今生&lt;br&gt;03丨学会用数据库的方式思考SQL是如何执行的&lt;br&gt;04丨使用DDL创建数据库&amp;amp;数据表时需要注意什么？&lt;br&gt;05丨检索数据：你还在SELECT * 么？&lt;br&gt;06丨数据过滤：SQL数据过滤都有哪些方法？&lt;br&gt;07丨什么是SQL函数？为什么使用SQL函数可能会带来问题？&lt;br&gt;08丨什么是SQL的聚集函数，如何利用它们汇总表的数据？&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2020/11/01/hello-world/"/>
+    <id>http://example.com/2020/11/01/hello-world/</id>
+    <published>2020-11-01T07:28:59.214Z</published>
+    <updated>2020-11-01T07:28:59.215Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>css<a id="more"></a><br>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之HashMap篇</title>
+    <link href="http://example.com/2020/11/01/HashMap/"/>
+    <id>http://example.com/2020/11/01/HashMap/</id>
+    <published>2020-11-01T07:28:59.128Z</published>
+    <updated>2020-11-01T07:28:59.128Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >**HashMap**<a id="more"></a>数组  通过一个Key的hashcode （mod） 数组长一个值就叫索引数组+链表实现数据分布，数据结构创建Map<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title">createMap</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; ret = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="comment">// TODO put的第一个为key，第二个为value</span></span><br><span class="line">            ret.put(<span class="string">&quot;key&quot;</span> + i, String.valueOf(Math.random()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;--------------删除key--------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">       String keyToRemove = <span class="string">&quot;key9&quot;</span>;</span><br><span class="line">       System.out.println(keyToRemove + <span class="string">&quot;对应的值是：&quot;</span> + map.get(keyToRemove));</span><br><span class="line">       map.remove(keyToRemove);</span><br><span class="line">       System.out.println(<span class="string">&quot;执行删除操作后，&quot;</span> + keyToRemove + <span class="string">&quot;对应的值是：&quot;</span> + map.get(keyToRemove));</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;--------------遍历key和value--------------&quot;</span>);</span><br><span class="line">       <span class="comment">// TODO 通过Entry类遍历Map</span></span><br><span class="line">       <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;key为：&quot;</span> + entry.getKey() + <span class="string">&quot;，value为：&quot;</span> + entry.getValue());</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;--------------遍历value--------------&quot;</span>);</span><br><span class="line">       <span class="comment">// TODO 通过Entry类遍历Map</span></span><br><span class="line">       <span class="keyword">for</span> (String value : map.values()) &#123;</span><br><span class="line">           System.out.println(value);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;--------------遍历key--------------&quot;</span>);</span><br><span class="line">       <span class="comment">// TODO 通过Entry类遍历Map</span></span><br><span class="line">       <span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">           System.out.println(key);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure><p>遍历是没有顺序的 entrySet<br>大家记忆一下：<br> map.remove(keyToRemove);<br> Map.Entry&lt;String, String&gt; entry : map.entrySet()<br> entry.getKey() + “，value为：” + entry.getValue()<br>  map.values()<br>  map.keySet()<br>  为什么Hashmap可以实现Hashset呢？<br>  <strong>不管value，那么key不就是一个HashSet嘛！！</strong></p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+**HashMap**</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之Hashcode和equals篇</title>
+    <link href="http://example.com/2020/11/01/hashCode%E5%92%8Cequals/"/>
+    <id>http://example.com/2020/11/01/hashCode%E5%92%8Cequals/</id>
+    <published>2020-11-01T07:28:58.807Z</published>
+    <updated>2020-11-01T07:28:58.807Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><h1 id="HashCode-和equals方法"><a href="#HashCode-和equals方法" class="headerlink" title="HashCode 和equals方法"></a>HashCode 和equals方法</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><p>hashCode可以翻译为哈希码，或者散列码。应该是一个表示对象的特征值的int整数。</p><a id="more"></a><p>创建一个值以后，缓存中有个行有个列，行+列 =hash码<br>equals方法应该用来判断两个对象从<strong>逻辑</strong>上是否相等<br>ps:(引用的==就代表两个引用是否在指向同一个对象)<br>如果eauals是true ,hashCode就应该相等<br>如果hashCode 相等，equals不一定为true</p><p><strong>String下的equals方法</strong><br><img src="https://img-blog.csdnimg.cn/20201024175535483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>因为java的优化，就相当于“永久代”，固定的存储空间（不了解的可以翻看我前面那一篇关于String类的解读）<br>所以当s2运行后，就自动会将s2存入s1的位置，所以“==”就为true。<br>“==”只有当字符串足够长时，java不会优化，也不会放在同一个位置，就会为false.<br>而equals()则会一个一个字符的相比，所以就一定为true</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>第一次面试，对hashCode很是陌生，大家一定要对java基础有着一定的了解，一定要熟悉专属名词，“==”永远是比位置，看是否指向同一个对象，而equals在引用中是指逻辑上是否一致，在Sting中则是体现值是否相等！！</p><p>PEACE!!!!</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h1 id=&quot;HashCode-和equals方法&quot;&gt;&lt;a href=&quot;#HashCode-和equals方法&quot; class=&quot;headerlink&quot; title=&quot;HashCode 和equals方法&quot;&gt;&lt;/a&gt;HashCode 和equals方法&lt;/h1&gt;&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+&lt;p&gt;hashCode可以翻译为哈希码，或者散列码。应该是一个表示对象的特征值的int整数。&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在springmvc项目中CURD测试集分享</title>
+    <link href="http://example.com/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"/>
+    <id>http://example.com/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/</id>
+    <published>2020-11-01T07:28:58.484Z</published>
+    <updated>2020-11-01T07:28:58.484Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h1><h2 id="一-想要对service层进行测试用例"><a href="#一-想要对service层进行测试用例" class="headerlink" title="一.想要对service层进行测试用例"></a>一.想要对service层进行测试用例</h2><p>1.首先将service层中的interface 中的方法进行重写<br><img src="https://img-blog.csdnimg.cn/20201014180321955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>css<a id="more"></a><br>2.然后实现此接口的类就会要求你实现此方法。<br><img src="https://img-blog.csdnimg.cn/20201014180331850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>3.通过此类中的 entityDao方法进入DAO层，增加创建方法<br><img src="https://img-blog.csdnimg.cn/20201014180341608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>4.其中引用了application.xml中的自动匹配app-servlet中的mapper,进入编写增删查改SQL语句的底层。<br><img src="https://img-blog.csdnimg.cn/20201014180400924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>此刻基本已经编写完毕，基本上还是根据springMVC的基本原理进行<br>而后编写测试总类：<br><img src="https://img-blog.csdnimg.cn/20201014180412975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>通过运行application.xml，使用扫描注入所有@service 的类注入容器，搜寻authUserServiceImpl，开始创建对象，调用方法，按照刚刚上面写的示例走一遍业务，就可以实现创建对象。</p><p>PEACE！！！</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;测试用例&quot;&gt;&lt;a href=&quot;#测试用例&quot; class=&quot;headerlink&quot; title=&quot;测试用例&quot;&gt;&lt;/a&gt;测试用例&lt;/h1&gt;&lt;h2 id=&quot;一-想要对service层进行测试用例&quot;&gt;&lt;a href=&quot;#一-想要对service层进行测试用例&quot; class=&quot;headerlink&quot; title=&quot;一.想要对service层进行测试用例&quot;&gt;&lt;/a&gt;一.想要对service层进行测试用例&lt;/h2&gt;&lt;p&gt;1.首先将service层中的interface 中的方法进行重写&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201014180321955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;br&gt;css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于ruoyi前后端分离部署的所思所想</title>
+    <link href="http://example.com/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/"/>
+    <id>http://example.com/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/</id>
+    <published>2020-11-01T07:28:58.410Z</published>
+    <updated>2020-11-01T07:28:58.410Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>前后端分离对于你命令行的锻炼，对lunix系统长期适应有着非常重要的作用<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、为什么要挑战前后端分离？"><a href="#一、为什么要挑战前后端分离？" class="headerlink" title="一、为什么要挑战前后端分离？"></a>一、为什么要挑战前后端分离？</h1><font color=#999AAA ><p>只是为了一种成就感，虚无缥缈的东西，让我能一直学习下去，通过配置后端软件，学到了很多lunix命令。这是意外收获，不败不馁，控制脾气。lunix系统在CENTOS7上顺利运行的时候我是非常高兴的，每次都在装载软件中卡住，但渐渐也终于熟悉，熟练，很高兴通过命令部署了一个前后端在不同主机运行的项目，我想这是一个程序员必备的东西吧。</p><p>css<a id="more"></a></p><h1 id="二、使用步骤"><a href="#二、使用步骤" class="headerlink" title="二、使用步骤"></a>二、使用步骤</h1><h2 id="1-引入文章，引自CodeSheep"><a href="#1-引入文章，引自CodeSheep" class="headerlink" title="1.引入文章，引自CodeSheep"></a>1.引入文章，引自CodeSheep</h2><font color=#999AAA >!<p><img src="https://img-blog.csdnimg.cn/20201012172904949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201012172931325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><h2 id="2-来源"><a href="#2-来源" class="headerlink" title="2.来源"></a>2.来源</h2><font color=#999AAA >想要的可以去CodeSheep公众号去找<font color=#999AAA ><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color=#999AAA >我在这里想和大家说nginx这个软件一定要学会进入它的conf来配置，一次不成两次，学习DOS命令是一个很烦的过程，但是你熟练后悔对你未来有所帮助。mvn打包，jar包直接部署，确实是最简单的方式，前后端呼应的那一瞬间感觉真的很好。<p>感谢主！！！</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;/font&gt;
+
+
+
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;前后端分离对于你命令行的锻炼，对lunix系统长期适应有着非常重要的作用&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+&lt;h1 id=&quot;一、为什么要挑战前后端分离？&quot;&gt;&lt;a href=&quot;#一、为什么要挑战前后端分离？&quot; class=&quot;headerlink&quot; title=&quot;一、为什么要挑战前后端分离？&quot;&gt;&lt;/a&gt;一、为什么要挑战前后端分离？&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;只是为了一种成就感，虚无缥缈的东西，让我能一直学习下去，通过配置后端软件，学到了很多lunix命令。这是意外收获，不败不馁，控制脾气。lunix系统在CENTOS7上顺利运行的时候我是非常高兴的，每次都在装载软件中卡住，但渐渐也终于熟悉，熟练，很高兴通过命令部署了一个前后端在不同主机运行的项目，我想这是一个程序员必备的东西吧。&lt;/p&gt;
+&lt;p&gt;css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之引用篇</title>
+    <link href="http://example.com/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/"/>
+    <id>http://example.com/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/</id>
+    <published>2020-11-01T07:28:56.646Z</published>
+    <updated>2020-11-01T07:28:56.647Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font> **强引用、软引用、弱引用、幻象引用有什么区别？**在java语言中，除了原始数据类型的变量，其他所有都是常用的引用类型，指向各种不同的对象，理解引用对于掌握java对象生命周期和jvm内部机关机制有着重要的作用<a id="more"></a>不同的引用类型，主要区别是：对象不同的可达性状态和对垃圾收集的影响所谓**强引用**就是咱们普通的引用，只要还有强引用指向一个对象，就表明该对象还活着，垃圾收集器不会碰这样的对象，对于一个普通的引用，只要超过了引用的作用域且显式的将引用赋值为null,就可以被垃圾收集了**软引用**就是相对于强引用的弱化一些的 引用，可以让对象豁免一些 垃圾收集，只有Jvm认为内存不足时，才会试图回收软引用指向的对象。软引用指向的对象（或者实现的是）通常是些敏感的缓存，如果还有空闲内存，可以暂时保留缓存，如果系统快要抛出oom异常的时候，就要删除软引用来保证内存存在**弱引用** 并不能是对象豁免垃圾收集，，仅仅是提供一种访问在弱引用状态下对象的途径。维护一种非强制性的映射关系。如果试图获取的对象还在，就使用它，否则就重新实例。同样是许多缓存实现的选择**幻象引用** 虚引用，不能通过它访问对象。幻想引用仅仅是提供了一种确保对象被finalize以后，做某些事情的机制。比如：上一节的Post-Mortem清理机制，java平台自身Claeaner机制等利用幻想引用监控对象的创建和销毁<p>诊断MySql connector -j 驱动在特定模式下（useCompression =true）的内存泄露问题</p><p><strong>扩展</strong><br><strong>强可达</strong>：就是当一个对象可以有一个或多个线程可以不通过各种引用访问到的情况。比如:我们创建一个对象，创建它的线程对它就是强可达<br><strong>软可达</strong>：就是我们只能通过软引用才能访问到的对象的状态<br><strong>弱可达</strong>：无法通过强引用和软引用访问，只能通过弱引用访问到的状态，十分临进finalize状态的时机<br><strong>幻象可达</strong>：与上述三种引用均无关联，只是在finalize后，只有幻象可达指向这个对象<br><strong>不可达</strong>： 意味着对象可以被清除了</p><p><strong>判断对象可达性，是JVM垃圾收集器决定如何让处理对象的一部分考虑</strong></p><p>所有引用类型，都是抽象类java.lang.ref.Reference的子类，它提供了get方法：<br>除了幻象引用外，如果对象还没有被销毁，都可以通过get方法获取原有对象。这意味着，通过软引用和弱引用，我们都可以将访问到的对象，重新指向强引用。</p><p><strong>引用队列（ReferenceQueue）的使用</strong><br>我们创建各种引用并关联到相应对象时，我们可以选择是否需要关联到引用队列，JVM会在特定时机将引用enqueue到队列里，我们可以从队列里获取引用（remove）<br>尤其是幻想引用，get方法也获取不到，如果再不指定引用队列，那基本上是毫无用处了。处于幻象可达状态时，执行以下处理逻辑</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Object counter = <span class="keyword">new</span> Object();</span><br><span class="line">ReferenceQueue refQueue = <span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">PhantomReference&lt;Object&gt; p = <span class="keyword">new</span> PhantomReference&lt;&gt;(counter, refQueue);</span><br><span class="line">counter = <span class="keyword">null</span>;</span><br><span class="line">System.gc();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// Remove是一个阻塞方法，可以指定timeout，或者选择一直阻塞</span></span><br><span class="line">    Reference&lt;Object&gt; ref = refQueue.remove(<span class="number">1000L</span>);</span><br><span class="line">    <span class="keyword">if</span> (ref != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="comment">// Handle it</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>显式的影响软引用垃圾收集</strong><br>对于软引用，我们一直对其垃圾收集机制飘忽不定，我们可以用什么方法来影响垃圾收集？<br>软引用通常都会在最后一次引用后，还能保存一段时间，默认值是以剩余空间计算的。<br>我们可以以毫秒来单位设置：<br>-XX:SoftRefLRUPolicyMSPerMB=3000<br><strong>如果你怀疑引用（finalize）导致的回收问题</strong><br>可以通过PrintReferebceGC去获取相关信息<br>jdk8使用ParrllelGC日志，各种引用非常清晰可查</p><p><strong>Reachability Fence</strong><br>我们可以通过底层API来达到强引用的效果<br>考虑一下这样一种情况：<br>如果某一个引用不是强引用，就符合垃圾处理机制，但是某些属性还在被使用，这是就需要某个机制通知JVM这个对象是在被使用的，这就是Reachablity Fence的作用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span> </span>&#123;</span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">static</span> ExternalResource[] externalResourceArray = ...</span><br><span class="line"> <span class="keyword">int</span> myIndex; Resource(...) &#123;</span><br><span class="line">     myIndex = ...</span><br><span class="line">     externalResourceArray[myIndex] = ...;</span><br><span class="line">     ...</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     externalResourceArray[myIndex] = <span class="keyword">null</span>;</span><br><span class="line">     ...</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="comment">// 需要被保护的代码</span></span><br><span class="line">     <span class="keyword">int</span> i = myIndex;</span><br><span class="line">     Resource.update(externalResourceArray[i]);</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">     <span class="comment">// 调用reachbilityFence，明确保障对象strongly reachable</span></span><br><span class="line">     Reference.reachabilityFence(<span class="keyword">this</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(ExternalResource ext)</span> </span>&#123;</span><br><span class="line">    ext.status = ...;</span><br><span class="line"> &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure><p>通过finally明确表示对象强可达</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+ **强引用、软引用、弱引用、幻象引用有什么区别？**
+在java语言中，除了原始数据类型的变量，其他所有都是常用的引用类型，指向各种不同的对象，理解引用对于掌握java对象生命周期和jvm内部机关机制有着重要的作用</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之注解篇</title>
+    <link href="http://example.com/2020/11/01/%E6%B3%A8%E8%A7%A3/"/>
+    <id>http://example.com/2020/11/01/%E6%B3%A8%E8%A7%A3/</id>
+    <published>2020-11-01T07:28:56.639Z</published>
+    <updated>2020-11-01T07:28:56.639Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >annotation<p>@override（重写）<br>@Deprecated(过时)<br>告诉编译器<br>@service<br>@controller<br>都是Spring中必不可少的</p><a id="more"></a><p><strong>从现在开始我来教你们自定义注解</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TODO 注解可以被用在哪个/哪些元素上</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line">retention表明自己会保留到多久</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line">    <span class="comment">// TODO 给annotation里的属性赋值的方式</span></span><br><span class="line">    <span class="meta">@PrimaryProperty(defaultValue = &quot;testbggg&quot;, targetClass = TestUseAnnotation.class,</span></span><br><span class="line"><span class="meta">        abc = 9, defaultValues = &#123;&quot;aaa&quot;, &quot;bbb&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br></pre></td></tr></table></figure><p>比如在Spring中</p><p><img src="https://img-blog.csdnimg.cn/20201026165415852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>@contorller就是告诉 servlet 来遍历所有的contorller类<br>然后通过@RequestMapping找到那个  .html ，然后加载它<br>通过Spring容器自动注入这些bean</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+annotation
+
+&lt;p&gt;@override（重写）&lt;br&gt;@Deprecated(过时)&lt;br&gt;告诉编译器&lt;br&gt;@service&lt;br&gt;@controller&lt;br&gt;都是Spring中必不可少的&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之异常篇</title>
+    <link href="http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/"/>
+    <id>http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/</id>
+    <published>2020-11-01T07:28:56.633Z</published>
+    <updated>2020-11-01T07:28:56.633Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >error（系统级的错误，我们处理不了，只能查错）<a id="more"></a>Exception又分为两种：RuntimeException为UncheckedException另一类为CheckedException,如classNotFoundException,必须try ..catch 或者throw掉的异常抛出异常的语法throwsjava异常的传递在方法调用之间传递，直至被Catch解决掉程序是一层一层往里调用而异常则是一层层往外抛，直至抛到main方法还没有人解决就报错<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">          caller2.call3Exception();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (ClassNotFoundException ex) &#123;</span><br><span class="line">          System.out.println(<span class="string">&quot;got exception in Caller1: &quot;</span>+ex.getMessage());</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure><p><strong>自定义异常</strong><br>catch语句是根据异常类型匹配来捕捉相应类型的异常的</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">         Class.forName(<span class="string">&quot;com.neverland.Rabbit&quot;</span>);</span><br><span class="line">     &#125; <span class="keyword">catch</span> (ClassNotFoundException ex) &#123;</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">&quot;&quot;</span>, ex);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure><p>这就是checkedException<br>如果catch一个并没有被抛出的checked Exception，Java就会报错。因为java明确知道这个异常不会发生。<br>catch一个uncheckedException,不会报错<br>而且thorow谁（并没有被抛出的）都不会报错</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+error（系统级的错误，我们处理不了，只能查错）</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之数据结构预先篇</title>
+    <link href="http://example.com/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/"/>
+    <id>http://example.com/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/</id>
+    <published>2020-11-01T07:28:56.627Z</published>
+    <updated>2020-11-01T07:28:56.627Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>**1.**总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。如果用堆，两个堆就可以非常高效的解决这个问题<a id="more"></a>**2.**35岁之殇业务堆砌做事情没长远规划**3.**需要项目经验<p>downloads</p><p>未完待续<br><strong>数据结构</strong><br>数组，链表，栈，队列，散列表，二叉树，堆，跳表，图，Trie树<br><strong>算法：</strong><br>递归，排序，二分查找，搜索，哈希算法，贪心算法，分治算法，回溯算法，动态规划，字符串匹配</p><p><strong>在这里说一下我的计划：接下来我都会接触算法类的知识，通过老师给我的项目，来挑选着学习其中算法以达到快速适应老师的开发目的</strong><br>就比如python智能疏散演示，可以采用<strong>44.最短路径：地图软件是如何计算出最优出行路径的</strong>这节课的知识</p><p>我们看时间复杂度，都是看这个程序执行的最有量级的那段代码<br>只要算法中不存在循环语句，递归语句，即使有成千上万行的代码，其复杂度也是O（1）<br>等比数列就是O（logn）<br>归并排序 快速排序O（nlogn）<br>有一种O（m+n）无法判断谁的量级大<br>渐进空间复杂度：<br>如果只是申请了一个空间的话，我们就可以确认其空间复杂度了<br>·</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+**1.**
+总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。
+如果用堆，两个堆就可以非常高效的解决这个问题</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之继承篇</title>
+    <link href="http://example.com/2020/11/01/%E7%BB%A7%E6%89%BF/"/>
+    <id>http://example.com/2020/11/01/%E7%BB%A7%E6%89%BF/</id>
+    <published>2020-11-01T07:28:56.487Z</published>
+    <updated>2020-11-01T07:28:56.487Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、继承！！！重视"><a href="#一、继承！！！重视" class="headerlink" title="一、继承！！！重视"></a>一、继承！！！重视</h1><p>继承是展现父类有明确的共同方法和属性对于某一个物品而言<br>子类除了继承父类的共同方法和属性之外，还有些自己独有的方法和属性。<br>继承表现的是“is-a”的关系！！</p><a id="more"></a><p>组合表现的是“手机到底是手电筒的一种，还是组合了一个可以当手电的闪光灯。”</p><p>就比如我们有些爆款手机为了防止有人抢购当黄牛<br>就会限制购买数量。<br>而父类中的buy()方法并没有限定购买数量，并且父类是所有人的公共类，不能也不允许修改，所以现在就需要我们做儿子的既要听话继承其方法，又要在某些地方重写（override）或者叫做覆盖。不多说，上代码！！！<br><img src="https://img-blog.csdnimg.cn/20201023122020716.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="这是父类的buy()方法"><br><img src="https://img-blog.csdnimg.cn/20201023122156379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="这是子类重写的buy()方法"><br>覆盖或者重写了父类的方法，同一个方法，不同的行为<br>这，就是多态。顾名思义，就是多种状态的意思。</p><p><strong>第二个问题</strong><br><img src="https://img-blog.csdnimg.cn/20201023123804226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="父类的describe()方法在子类中改了名，且在子类中被覆盖了，还能在子类方法中调用了父类的discribe()"><br><img src="https://img-blog.csdnimg.cn/20201023124007123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="其实我们也知道子类的describe（）方法有苦衷，如果你不改名，就会造成死循环"><br>那么究竟是为什么呢？<br>我们用super（）关键字解决！！！<br>1.我们首先解决的就是冗余代码的问题，大家回去翻看一下buy()的代码，子类中除了限制购买数量，其余代码几乎与父类一模一样，所以我们应该这样写：<br><img src="https://img-blog.csdnimg.cn/20201023124746516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="此时只需要写个限制语句，剩下直接调用父类方法处理"><br>接上面那个问题：<br>怎么解决discribe问题，就是在重写父类discribe()方法时，保证重写方法名，返回值不变的情况下，调用父类discribe()方法写成这种形式（super.discribe()）就ok<br>上代码！<br><img src="https://img-blog.csdnimg.cn/20201023130417799.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center"></p><p><strong>第三个问题</strong><br>使用super()调用父类的构造方法，必须时子类构造方法的第一个语句。<br>如果父类只有有参构造方法，那么子类必须在构造方法的第一行利用super()调用那个有参构造方法，把参数给它传进去</p><p><strong>父类和子类引用赋值关系</strong></p><p><strong>子类的引用可以给父类引用赋值，所以父类的引用可以直接指向子类的对象</strong></p><p><img src="https://img-blog.csdnimg.cn/202010231516179.png#pic_center"><br><strong>但是不能让子类的引用指向父类的对象，因为父类没有子类的属性和方法</strong><br>比如： Merchandise m =new  Merchandise ();<br>phone ph = m   这是错误的<br>“名”的类型决定了你可以执行哪些方法！！！<br>所以我们可以直接 Merchandise m2 = new phone();这是不会错的</p><p>下面讨论的问题是<br>虽然m2 与 Phone ph =new Phone()中的ph都指向同一个对象(phone)，但通过m2就不可以调用getBrand方法，因为m的类型还是 Merchandise，所以如果你想让m2调用,就要强制转换<br>如: Phone aPhone =(Phone) m2;  这样就可以了</p><p>总结一句话：父类凌驾于子类之上，子类不能</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+
+&lt;h1 id=&quot;一、继承！！！重视&quot;&gt;&lt;a href=&quot;#一、继承！！！重视&quot; class=&quot;headerlink&quot; title=&quot;一、继承！！！重视&quot;&gt;&lt;/a&gt;一、继承！！！重视&lt;/h1&gt;&lt;p&gt;继承是展现父类有明确的共同方法和属性对于某一个物品而言&lt;br&gt;子类除了继承父类的共同方法和属性之外，还有些自己独有的方法和属性。&lt;br&gt;继承表现的是“is-a”的关系！！&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之final,finally,finalize篇</title>
+    <link href="http://example.com/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/"/>
+    <id>http://example.com/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/</id>
+    <published>2020-11-01T07:28:53.142Z</published>
+    <updated>2020-11-01T07:28:53.142Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>**谈谈final、finally、 finalize有什么不同？****final**是用来修饰类，方法，变量，并具有不同的涵义修饰类：   代表此类不可以继承扩展修饰方法：代表此方法不可以重写修饰变量：变量不可以修改**fianlly**则是保证Java代码必须被执行的一种机制我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作**finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，<a id="more"></a>**性能、并发、对象生命周期或垃圾收集基本过程等方面的理解****final:**只读，不能修改，防止某些使用者更改API，这是保证功能的必要手段 。final修饰的变量，也可以有效防止错误赋值引起的错误<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">  System.exit(<span class="number">1</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span>&#123;</span><br><span class="line">  System.out.println(“Print from <span class="keyword">finally</span>”);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此代码段的finally{}不会被执行，这是特例（也有原因，是因为try方法分明能够执行）</p><p>更进一步，final并不等于immutable</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">final</span> List&lt;String&gt; strList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">strList.add(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">strList.add(<span class="string">&quot;world&quot;</span>);  </span><br><span class="line">List&lt;String&gt; unmodifiableStrList = List.of(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">unmodifiableStrList.add(<span class="string">&quot;again&quot;</span>);</span><br></pre></td></tr></table></figure><p>在这里final只是约束strList这个引用不能被赋值，而它的对象行为毫无影响。<br>如果要定义某个类变为immutable类<br>需要以下几点：<br>1.需要将class定义final类<br>2.将所有成员变量定义为final和private，并且不要实现setter方法<br>3.通常构造对象时，成员变量使用深度拷贝来初始化，而不是直接赋值，这是防御措施，因为你不知道赋值会不会被人修改<br>4.如果确定需要实现getter方法，或者其他会返回内部的方法，使用copy-on-write原则，创建私有的copy<br>在并发中经常使用<br><strong>我们可以用java.lang.ref.Cleaner 来替换掉原有的 finalize 实现</strong><br>常用的幻象引用，post-mortem的清理机制<br>每个cleaner都是独立的，有自己独有的清理路线,不会造成死锁的问题<br>mysql jdbc  driver中的jdbc connecter-j,利用了幻象引用机制。<br>幻象引用也可以进行类似链条式依赖关系的动作，进行总量控制的场景，保证只有<strong>连接被关闭，相应资源被回收</strong>，连接池才能创建新的连接。</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+**谈谈final、finally、 finalize有什么不同？**
+**final**是用来修饰类，方法，变量，并具有不同的涵义
+修饰类：   代表此类不可以继承扩展
+修饰方法：代表此方法不可以重写
+修饰变量：变量不可以修改
+**fianlly**则是保证Java代码必须被执行的一种机制
+我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作
+**finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之异常（续）篇</title>
+    <link href="http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8/"/>
+    <id>http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8/</id>
+    <published>2020-11-01T07:28:53.065Z</published>
+    <updated>2020-11-01T07:28:53.066Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、error-与exception的区别？"><a href="#一、error-与exception的区别？" class="headerlink" title="一、error 与exception的区别？"></a>一、error 与exception的区别？</h1><a id="more"></a><p>首先两个都是继承于Throwable父类<br>error 发生在jvm编译或者classforLoad时，发现的错误，不要捕捉，抛出，因为这是必须要解决的问题。</p><p>exception 是发生在程序运行时所发生的异常，分为 unchecked和checked两种，前者是非必须检查的，<br>后者是必须检查的：如 IOException<br><img src="https://img-blog.csdnimg.cn/20201022195121885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201022195247976.png#pic_center" alt="在这里插入图片描述"><br>就是越界异常，很好处理</p><h1 id="二、NoClassDefFoundError和-ClassNotFoundException-有什么区别？"><a href="#二、NoClassDefFoundError和-ClassNotFoundException-有什么区别？" class="headerlink" title="二、NoClassDefFoundError和 ClassNotFoundException 有什么区别？"></a>二、NoClassDefFoundError和 ClassNotFoundException 有什么区别？</h1><p>NoClassDefFoundError是指在classLoader下并没有发现这个类的实例，所以产生了错误<br>解决办法：找那些开发期间在类路径下，但在运行期间不在类路径下的。<br>ClassNotFoundException是指在当程序使用三种常规方法装入类时，没有找到指定名称的类<br>（ps:小知识。常规的三种方法：</p><ol><li>java语言中任何一个java对象都有getClass()方法，getClass()返回运行类<br>T t = new T();<br>Class c1 = t.getClass();</li><li>每个类中都有默认的Class方法，示例：Class c1 = T.class</li><li>Class.forName() 方法<br>Class c1 = Class.forName(“T”);实例化一个c1来承接另一个具体的对象）<br>如：示例:编译了一个B，在A中调用，而后在编译结束后删除了B，接下来运行A的时候就会出错<br>解决办法：其中之一的原因就是当类在运行的时候就依赖于其他的一个jar包，而这个jar包被改名或者没有导入classpath中，将这个jar包导入就ok</li></ol><font color=#999AAA ><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color=#999AAA ><p>在这里  我想说一下，我对异常的理解还属于理论层面，很浅薄的阶段，那个在java中获取它的类那个大家需要仔细看看，很有用，然后，大家找工作时可以经常去APP论坛里面逛逛，可以集思广益，而且都是市场里常见的问题，大家要去看看，我也会看！！</p>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+
+
+&lt;h1 id=&quot;一、error-与exception的区别？&quot;&gt;&lt;a href=&quot;#一、error-与exception的区别？&quot; class=&quot;headerlink&quot; title=&quot;一、error 与exception的区别？&quot;&gt;&lt;/a&gt;一、error 与exception的区别？&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于HEXO博客的开通</title>
+    <link href="http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/"/>
+    <id>http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/</id>
+    <published>2020-11-01T07:28:52.851Z</published>
+    <updated>2020-11-01T07:28:52.851Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA >1、 搭建 Java 开发环境2、 掌握 Java 基本语法3、 掌握条件语句4、 掌握循环语句<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">css<a id="more"></a># 学习时间：<font color=#999AAA >1、 周一至周五晚上 7 点—晚上9点2、 周六上午 9 点-上午 11 点3、 周日下午 3 点-下午 6 点<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="学习产出："><a href="#学习产出：" class="headerlink" title="学习产出："></a>学习产出：</h1><font color=#999AAA >1、 技术笔记 2 遍2、CSDN 技术博客 3 篇3、 学习的 vlog 视频 1 个你们好呀，我是一个见习程序员接下来我会解释一下Spring Ioc   Spring MVC 的类比解释Spring IOC 控制反转，在潜意识里，我们总是会以为我们创建了对象并在整个项目里和其数据链接，但是现在我们实现了控制反转，就相当于你想要什么对象，不用你自己创建，都可以通过spring创建出来。spring MVC   M代表数据层 V代表VIEW ,视觉层。 而C呢，就是controller层，简要来说就是将M层的数据动态的显示到视觉层，中间涉及处理，并发，以及一系列协议，锁的问题。都是在处理决策，创建智能化，模块化。<hr>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+1、 搭建 Java 开发环境
+2、 掌握 Java 基本语法
+3、 掌握条件语句
+4、 掌握循环语句
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+css</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之泛型篇</title>
+    <link href="http://example.com/2020/11/01/%E6%B3%9B%E5%9E%8B/"/>
+    <id>http://example.com/2020/11/01/%E6%B3%9B%E5%9E%8B/</id>
+    <published>2020-11-01T07:28:52.773Z</published>
+    <updated>2020-11-01T07:28:52.773Z</updated>
+    
+    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA >generics<a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">useStringList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List strList = createStringList();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strList.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// TODO 必须强制类型转换，心好累，我明明知道里面只有String的呀</span></span><br><span class="line">            String str = (String) strList.get(i);</span><br><span class="line">            str = str.toUpperCase();</span><br><span class="line">            System.out.println(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>明明往list里面放着String,但是java偏偏不识别，还得我强转我们可以给ArrayList弄一个String,但为每一种类型都定义就很烦 泛型，即：我想让这个list只有一种类型的元素，使用时不用强转<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">createStringListGenerics</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 泛型的语法就是在支持泛型的类型上，给出类型的定义</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; List接口是支持泛型的，类型就是List里允许的元素的类型</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 创建List实例和引用的时候，都可以（非必要）指定泛型对应的类型</span></span><br><span class="line">        <span class="comment">// TODO &gt;&gt; 不指定，那就是Object，所以我们之前用的List的元素就是Object类型</span></span><br><span class="line">        List&lt;String&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// TODO &gt;&gt; 如果尝试增加非String类型的元素进去，则会报错</span></span><br><span class="line">            ret.add(<span class="string">&quot;str&quot;</span> + (i % <span class="number">5</span>));</span><br><span class="line"><span class="comment">//            ret.add(new Object());</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        List causeError = ret;</span></span><br><span class="line"><span class="comment">//        causeError.add(new Object());</span></span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>这样用的时候就不会强转</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = strList.get(i).toUpperCase(); </span><br></pre></td></tr></table></figure><p><strong>泛型的协变和逆变</strong><br>为了支持更广的参数类型<br>引用类型<br>list<children> 不是list<parent>的子类<br>list&lt;?extends Parent&gt;协变 ，这就可以任何继承自parent的泛型list都可以</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  List&lt;Children&gt; g3List = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 这么传递参数不行，泛型类型不管继承关系，只管严格的匹配。</span></span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 换句话说，Children 是 Parent 的子类，但是 List&lt;Children&gt; 不是 List&lt;Parent&gt; 的子类</span></span><br><span class="line"><span class="comment">//         justG2Method(g3List);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// &gt;&gt; TODO 那么怎么办呢？要让接收方，也就是形参，声明为协变泛型</span></span><br><span class="line">        extMethod(g3List);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;font color=#999AAA &gt;
+
+&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
+
+&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
+&lt;/font&gt;
+
+&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
+
+&lt;font color=#999AAA &gt;
+generics</summary>
+    
+    
+    
+    
+  </entry>
+  
+</feed>
