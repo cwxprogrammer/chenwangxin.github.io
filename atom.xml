@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-01T08:54:58.791Z</updated>
+  <updated>2020-11-02T11:43:39.213Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之sql子查询</title>
+    <link href="http://example.com/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/"/>
+    <id>http://example.com/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/</id>
+    <published>2020-11-02T11:40:50.925Z</published>
+    <updated>2020-11-02T11:43:39.213Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a><br>查询结果集<br><strong>关联子查询:</strong> 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部</p><a id="more"></a><p>我们想要查找球队中大于平均身高的球员有哪些？并显示他们的球员姓名身高和所在球队ID</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_name,height,team_id</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height)</span><br><span class="line"><span class="keyword">FROM</span> player  <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">WHERE</span> a.team_id =b.team_id)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>每次查询都得执行一次子语句</p><p>通常关联子查询也会和EXISTS一起使用<br>比如我们想看出场过的球员有哪些？并且显示他们的姓名，id，球队ID</p><p>是否出场可以通过player_score此表来查询，因为在player_score有出场记录</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,team_id</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span></span><br><span class="line">(<span class="keyword">SELECT</span> player_id  <span class="keyword">FROM</span> player_score</span><br><span class="line"><span class="keyword">WHERE</span> player.player_id =player_score.player_id)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>IN和EXISTS虽然查询结果一样，但是效率确不一样，<br>如果A表比B表小，EXISTS效率高，因为查询时可以使用A表对于play_id的索引，反之，则IN效率更高(小表驱动大表更有效率)</p><p>ANY ,ALL<br>举例：<br>想要查询球员表中，比印第安纳步行者team_id=002那只队中任意一个球员身高高的所有球员信息</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line"><span class="keyword">ANY</span> (<span class="keyword">SELECT</span> height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> team_id =<span class="number">1002</span>)</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line"><span class="keyword">ALL</span> (<span class="keyword">SELECT</span> height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> team_id =<span class="number">1002</span>)</span><br></pre></td></tr></table></figure><p><strong>将子查询作为主查询的计算字段（把子查询的结果当做主查询的列）</strong><br>比如我想查询每个球队的球员数，也就是对应那个team_id ,相同的team_id在player这张表中球员数量是多少</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> team_name,(<span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">FROM</span> player <span class="keyword">WHERE</span> player.team_id=team.team_id)</span><br><span class="line"><span class="keyword">AS</span> player_num</span><br><span class="line"><span class="keyword">FROM</span> team</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS player_num</span><br></pre></td></tr></table></figure><p>是给</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">FROM</span> player <span class="keyword">WHERE</span> player.team_id=team.team_id</span><br></pre></td></tr></table></figure><p>起了个别名，方便我们使用</p><p>最后出个题：<br>编写SQL语句，得到场均得分大于20的球员（场均得分从player_score表中获取，同时你需要输出球员的ID，球员姓名及所在球队的ID信息）<br>我的理解是：<br>1.场均得分大于20，第一场得了40分，第二场得了2分，场均为21分照样满足条件<br>2.一场比赛中，球员可以出现多次<br>解析思路：先得出球员在每场比赛中的总分数，然后对球员按比赛分组，计算球员在所参加比赛中的平均分数</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> t2.player_id,t2.player_name,t2.team_id,t3.v</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> t2</span><br><span class="line"><span class="keyword">JOIN</span>(<span class="keyword">SELECT</span> t1.player_id,<span class="keyword">avg</span>(t1.total) <span class="keyword">AS</span> v</span><br><span class="line">     <span class="keyword">FROM</span> </span><br><span class="line">       (<span class="keyword">SELECT</span> player_id,<span class="keyword">SUM</span>(score) <span class="keyword">AS</span> total   <span class="keyword">FROM</span> player_score   <span class="keyword">WHERE</span> game_id <span class="keyword">IN</span>  (<span class="keyword">SELECT</span> game_id <span class="keyword">FROM</span> player_score <span class="keyword">GROUP</span> <span class="keyword">BY</span> game_id) </span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> player_id <span class="comment">#对球员进行分组，计算在每场比赛的总分数</span></span><br><span class="line">        )<span class="keyword">AS</span> t1</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> t1.player_id <span class="comment">#对球员分组，计算每场比赛的均分</span></span><br><span class="line"><span class="keyword">HAVING</span> v&gt;<span class="number">20</span> <span class="comment">#对分组进行筛选</span></span><br><span class="line">)<span class="keyword">AS</span> t3 <span class="keyword">ON</span> t2.player_id =t3.player_id</span><br></pre></td></tr></table></figure><p>本题有点难度！！！！<br>要经常回来复盘！！<br>答案贴在这<br><img src="https://img-blog.csdnimg.cn/20201102193901622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>**非关联子查询:**只作为主查询的条件语句执行一次</p><p>我们想要找nba球员中谁最高？<br>且输出他的姓名</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height=(<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(height) <span class="keyword">FROM</span> player)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;本文应用sql数据均从github上下载&lt;br&gt;需要的小伙伴自取&lt;a href=&quot;https://github.com/cystanford/sql_nba_data.git&quot;&gt;https://github.com/cystanford/sql_nba_data.git&lt;/a&gt;&lt;br&gt;查询结果集&lt;br&gt;&lt;strong&gt;关联子查询:&lt;/strong&gt; 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之动态代理篇</title>
@@ -574,38 +591,6 @@ error（系统级的错误，我们处理不了，只能查错）</summary>
 **fianlly**则是保证Java代码必须被执行的一种机制
 我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作
 **finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之异常（续）篇</title>
-    <link href="http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8/"/>
-    <id>http://example.com/2020/11/01/%E5%BC%82%E5%B8%B8/</id>
-    <published>2020-11-01T07:28:53.065Z</published>
-    <updated>2020-11-01T07:28:53.066Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、error-与exception的区别？"><a href="#一、error-与exception的区别？" class="headerlink" title="一、error 与exception的区别？"></a>一、error 与exception的区别？</h1><a id="more"></a><p>首先两个都是继承于Throwable父类<br>error 发生在jvm编译或者classforLoad时，发现的错误，不要捕捉，抛出，因为这是必须要解决的问题。</p><p>exception 是发生在程序运行时所发生的异常，分为 unchecked和checked两种，前者是非必须检查的，<br>后者是必须检查的：如 IOException<br><img src="https://img-blog.csdnimg.cn/20201022195121885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201022195247976.png#pic_center" alt="在这里插入图片描述"><br>就是越界异常，很好处理</p><h1 id="二、NoClassDefFoundError和-ClassNotFoundException-有什么区别？"><a href="#二、NoClassDefFoundError和-ClassNotFoundException-有什么区别？" class="headerlink" title="二、NoClassDefFoundError和 ClassNotFoundException 有什么区别？"></a>二、NoClassDefFoundError和 ClassNotFoundException 有什么区别？</h1><p>NoClassDefFoundError是指在classLoader下并没有发现这个类的实例，所以产生了错误<br>解决办法：找那些开发期间在类路径下，但在运行期间不在类路径下的。<br>ClassNotFoundException是指在当程序使用三种常规方法装入类时，没有找到指定名称的类<br>（ps:小知识。常规的三种方法：</p><ol><li>java语言中任何一个java对象都有getClass()方法，getClass()返回运行类<br>T t = new T();<br>Class c1 = t.getClass();</li><li>每个类中都有默认的Class方法，示例：Class c1 = T.class</li><li>Class.forName() 方法<br>Class c1 = Class.forName(“T”);实例化一个c1来承接另一个具体的对象）<br>如：示例:编译了一个B，在A中调用，而后在编译结束后删除了B，接下来运行A的时候就会出错<br>解决办法：其中之一的原因就是当类在运行的时候就依赖于其他的一个jar包，而这个jar包被改名或者没有导入classpath中，将这个jar包导入就ok</li></ol><font color=#999AAA ><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color=#999AAA ><p>在这里  我想说一下，我对异常的理解还属于理论层面，很浅薄的阶段，那个在java中获取它的类那个大家需要仔细看看，很有用，然后，大家找工作时可以经常去APP论坛里面逛逛，可以集思广益，而且都是市场里常见的问题，大家要去看看，我也会看！！</p>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-
-&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
-&lt;/font&gt;
-
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;font color=#999AAA &gt;
-
-
-&lt;h1 id=&quot;一、error-与exception的区别？&quot;&gt;&lt;a href=&quot;#一、error-与exception的区别？&quot; class=&quot;headerlink&quot; title=&quot;一、error 与exception的区别？&quot;&gt;&lt;/a&gt;一、error 与exception的区别？&lt;/h1&gt;</summary>
     
     
     

@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>每日深耕，勤练不缀之sql子查询 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git查询结果集关联子查询: 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之sql子查询">
+<meta property="og:url" content="http://example.com/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git查询结果集关联子查询: 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201102193901622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-02T11:40:50.925Z">
+<meta property="article:modified_time" content="2020-11-02T11:43:39.213Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201102193901622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,295 +156,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-sql子查询" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之sql子查询
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+
+        
+        <a href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
   	<time datetime="2020-11-02T11:40:50.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之sql子查询</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a><br>查询结果集<br><strong>关联子查询:</strong> 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部</p>
+<a id="more"></a>
+<p>我们想要查找球队中大于平均身高的球员有哪些？并显示他们的球员姓名身高和所在球队ID</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_name,height,team_id</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height)</span><br><span class="line"><span class="keyword">FROM</span> player  <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">WHERE</span> a.team_id =b.team_id)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>每次查询都得执行一次子语句</p>
+<p>通常关联子查询也会和EXISTS一起使用<br>比如我们想看出场过的球员有哪些？并且显示他们的姓名，id，球队ID</p>
+<p>是否出场可以通过player_score此表来查询，因为在player_score有出场记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,team_id</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span></span><br><span class="line">(<span class="keyword">SELECT</span> player_id  <span class="keyword">FROM</span> player_score</span><br><span class="line"><span class="keyword">WHERE</span> player.player_id =player_score.player_id)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>IN和EXISTS虽然查询结果一样，但是效率确不一样，<br>如果A表比B表小，EXISTS效率高，因为查询时可以使用A表对于play_id的索引，反之，则IN效率更高(小表驱动大表更有效率)</p>
+<p>ANY ,ALL<br>举例：<br>想要查询球员表中，比印第安纳步行者team_id=002那只队中任意一个球员身高高的所有球员信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line"><span class="keyword">ANY</span> (<span class="keyword">SELECT</span> height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> team_id =<span class="number">1002</span>)</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt;</span><br><span class="line"><span class="keyword">ALL</span> (<span class="keyword">SELECT</span> height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> team_id =<span class="number">1002</span>)</span><br></pre></td></tr></table></figure>
 
+<p><strong>将子查询作为主查询的计算字段（把子查询的结果当做主查询的列）</strong><br>比如我想查询每个球队的球员数，也就是对应那个team_id ,相同的team_id在player这张表中球员数量是多少</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> team_name,(<span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">FROM</span> player <span class="keyword">WHERE</span> player.team_id=team.team_id)</span><br><span class="line"><span class="keyword">AS</span> player_num</span><br><span class="line"><span class="keyword">FROM</span> team</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS player_num</span><br></pre></td></tr></table></figure>
+<p>是给</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">FROM</span> player <span class="keyword">WHERE</span> player.team_id=team.team_id</span><br></pre></td></tr></table></figure>
+<p>起了个别名，方便我们使用</p>
+<p>最后出个题：<br>编写SQL语句，得到场均得分大于20的球员（场均得分从player_score表中获取，同时你需要输出球员的ID，球员姓名及所在球队的ID信息）<br>我的理解是：<br>1.场均得分大于20，第一场得了40分，第二场得了2分，场均为21分照样满足条件<br>2.一场比赛中，球员可以出现多次<br>解析思路：先得出球员在每场比赛中的总分数，然后对球员按比赛分组，计算球员在所参加比赛中的平均分数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> t2.player_id,t2.player_name,t2.team_id,t3.v</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> t2</span><br><span class="line"><span class="keyword">JOIN</span>(<span class="keyword">SELECT</span> t1.player_id,<span class="keyword">avg</span>(t1.total) <span class="keyword">AS</span> v</span><br><span class="line">     <span class="keyword">FROM</span> </span><br><span class="line">       (<span class="keyword">SELECT</span> player_id,<span class="keyword">SUM</span>(score) <span class="keyword">AS</span> total   <span class="keyword">FROM</span> player_score   <span class="keyword">WHERE</span> game_id <span class="keyword">IN</span>  (<span class="keyword">SELECT</span> game_id <span class="keyword">FROM</span> player_score <span class="keyword">GROUP</span> <span class="keyword">BY</span> game_id) </span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> player_id <span class="comment">#对球员进行分组，计算在每场比赛的总分数</span></span><br><span class="line">        )<span class="keyword">AS</span> t1</span><br><span class="line">				<span class="keyword">GROUP</span> <span class="keyword">BY</span> t1.player_id <span class="comment">#对球员分组，计算每场比赛的均分</span></span><br><span class="line">				<span class="keyword">HAVING</span> v&gt;<span class="number">20</span> <span class="comment">#对分组进行筛选</span></span><br><span class="line">				)<span class="keyword">AS</span> t3 <span class="keyword">ON</span> t2.player_id =t3.player_id</span><br></pre></td></tr></table></figure>
+
+<p>本题有点难度！！！！<br>要经常回来复盘！！<br>答案贴在这<br><img src="https://img-blog.csdnimg.cn/20201102193901622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>**非关联子查询:**只作为主查询的条件语句执行一次</p>
+<p>我们想要找nba球员中谁最高？<br>且输出他的姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_name,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height=(<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(height) <span class="keyword">FROM</span> player)</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:31:21.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之动态代理篇</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/">每日深耕，勤练不缀之动态代理篇</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:29:13.202Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/">每日深耕，勤练不缀之int和interger的区别（续）篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:01.416Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/">RUOYI项目初级涉猎篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:01.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/">每日深耕，勤练不缀之反射篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.379Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/">每日深耕，勤练不缀之Iterator篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.347Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/">每日深耕，勤练不缀之java9大基础类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/jrejdk%20gc/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.300Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/jrejdk%20gc/">每日深耕，勤练不缀之jdk和GC篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.262Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">MYSQL MAP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +356,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
