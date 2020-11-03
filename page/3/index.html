@@ -152,6 +152,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-谈谈final、finally、 finalize有什么不同？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">每日深耕，勤练不缀之final,finally,finalize篇</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
+  	<time datetime="2020-11-01T07:28:53.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font color=#999AAA >
+
+<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
+
+<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
+</font>
+**谈谈final、finally、 finalize有什么不同？**
+**final**是用来修饰类，方法，变量，并具有不同的涵义
+修饰类：   代表此类不可以继承扩展
+修饰方法：代表此方法不可以重写
+修饰变量：变量不可以修改
+**fianlly**则是保证Java代码必须被执行的一种机制
+我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作
+**finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，
+        
+          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
