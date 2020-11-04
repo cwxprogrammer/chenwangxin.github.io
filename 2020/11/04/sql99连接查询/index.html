@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>每日深耕，勤练不缀之sql99连接查询 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/3/index.html">
+  <meta name="description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 交叉连接（92中的笛卡尔积）在这里我们使用的是CROSS JOIN代码如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之sql99连接查询">
+<meta property="og:url" content="http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 交叉连接（92中的笛卡尔积）在这里我们使用的是CROSS JOIN代码如下">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201104203514926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-04T12:37:47.709Z">
+<meta property="article:modified_time" content="2020-11-04T12:40:48.423Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,44 +157,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-强引用、软引用、弱引用、幻象引用有什么区别？ (1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-sql99连接查询" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/">每日深耕，勤练不缀之引用篇</a>
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之sql99连接查询
     </h1>
   
 
         
-        <a href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+        <a href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+  	<time datetime="2020-11-04T12:37:47.709Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font color=#999AAA >
+        <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p>
+<p><strong>交叉连接</strong>（92中的笛卡尔积）<br>在这里我们使用的是CROSS JOIN<br>代码如下</p>
+<a id="more"></a>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure>
+<p>三张表的交叉连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team_score</span><br></pre></td></tr></table></figure>
 
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<p><img src="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><strong>自然连接</strong>（相当于92的等值连接）<br>在92中我们得自己判定两张表相同的属性是什么，而在99中利用 NATURAL JOIN 替代了 WHERE player.team_id=team.team_id<br>会帮你自动查询两张表中所有相同的字段，然后进行等值连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id, team_id ,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player </span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure>
+<p><strong>ON连接</strong>（用来指定我们想要的连接条件）<br>进行等值连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player.team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team</span><br><span class="line"><span class="keyword">ON</span> player.team_id =team.team_id</span><br></pre></td></tr></table></figure>
+<p>进行非等值连接<br>想要查询球员的身高等级</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.player_id,a.player_name,a.height,b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> a.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br></pre></td></tr></table></figure>
+<p><strong>using连接</strong><br>因为自然连接会自动查询相同字段进行连接，我们我们想指定相同字段连接时就得用using</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team <span class="keyword">USING</span>(team_id)</span><br></pre></td></tr></table></figure>
+<p><strong>外连接</strong></p>
+<p>左外链接<br>右外连接<br>全外连接在mysql中不支持</p>
+<p>内连接：等值连接（自然连接，using连接，ON连接），非等值连接（ON连接）<br>外连接：会返回一个表中的所有记录，以及另一个表中匹配的行，左外连接，右外连接</p>
+<p><strong>SQL99与SQL92的区别</strong><br>SQL92会在from后面放所有表<br>SQL99会放在join后面，每次连接一张表，可以多次使用join连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> table1</span><br><span class="line">    <span class="keyword">JOIN</span> table2 <span class="keyword">ON</span> table1和table2的连接条件</span><br><span class="line">        <span class="keyword">JOIN</span> table3 <span class="keyword">ON</span> table2和table3的连接条件</span><br></pre></td></tr></table></figure>
+<p>查询不同身高级别（对应height_grades）对应的球员数量（对应player表）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(player.player_id),b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> player.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> b.height_level</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201104203514926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
- **强引用、软引用、弱引用、幻象引用有什么区别？**
-在java语言中，除了原始数据类型的变量，其他所有都是常用的引用类型，指向各种不同的对象，理解引用对于掌握java对象生命周期和jvm内部机关机制有着重要的作用
-        
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/#more">more >></a>
-        
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -196,16 +233,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之如何保证集合是线程安全的？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -225,714 +321,14 @@
 
 
 
-
-  
-    <article id="post-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%B3%A8%E8%A7%A3/">每日深耕，勤练不缀之注解篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.639Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-annotation
-
-<p>@override（重写）<br>@Deprecated(过时)<br>告诉编译器<br>@service<br>@controller<br>都是Spring中必不可少的</p>
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%A8%E8%A7%A3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%A8%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-异常（补充）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/">每日深耕，勤练不缀之异常篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.633Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-error（系统级的错误，我们处理不了，只能查错）
-        
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构与算法之美" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">每日深耕，勤练不缀之数据结构预先篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-**1.**
-总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。
-如果用堆，两个堆就可以非常高效的解决这个问题
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">每日深耕，勤练不缀之继承篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.487Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-
-
-<h1 id="一、继承！！！重视"><a href="#一、继承！！！重视" class="headerlink" title="一、继承！！！重视"></a>一、继承！！！重视</h1><p>继承是展现父类有明确的共同方法和属性对于某一个物品而言<br>子类除了继承父类的共同方法和属性之外，还有些自己独有的方法和属性。<br>继承表现的是“is-a”的关系！！</p>
-        
-          <a class="article-more-a" href="/2020/11/01/%E7%BB%A7%E6%89%BF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈final、finally、 finalize有什么不同？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">每日深耕，勤练不缀之final,finally,finalize篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:53.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-**谈谈final、finally、 finalize有什么不同？**
-**final**是用来修饰类，方法，变量，并具有不同的涵义
-修饰类：   代表此类不可以继承扩展
-修饰方法：代表此方法不可以重写
-修饰变量：变量不可以修改
-**fianlly**则是保证Java代码必须被执行的一种机制
-我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作
-**finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，
-        
-          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E5%BC%82%E5%B8%B8/">每日深耕，勤练不缀之异常（续）篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E5%BC%82%E5%B8%B8/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:53.065Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-
-
-<h1 id="一、error-与exception的区别？"><a href="#一、error-与exception的区别？" class="headerlink" title="一、error 与exception的区别？"></a>一、error 与exception的区别？</h1>
-        
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇文章 " class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/">关于HEXO博客的开通</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:52.851Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-1、 搭建 Java 开发环境
-2、 掌握 Java 基本语法
-3、 掌握条件语句
-4、 掌握循环语句
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-css
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/">每日深耕，勤练不缀之泛型篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:52.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-generics
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-枚举" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/">每日深耕，勤练不缀之枚举篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%9E%9A%E4%B8%BE/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:51.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-# java枚举  enum
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -955,8 +351,8 @@ generics
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
