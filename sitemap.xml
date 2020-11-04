@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2020-11-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
     
     <lastmod>2020-11-03</lastmod>
@@ -193,7 +200,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2020-11-03</lastmod>
+    <lastmod>2020-11-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

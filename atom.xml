@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-03T10:58:14.820Z</updated>
+  <updated>2020-11-04T01:35:30.915Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之SQL连接表的操作</title>
+    <link href="http://example.com/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/"/>
+    <id>http://example.com/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/</id>
+    <published>2020-11-03T14:02:24.260Z</published>
+    <updated>2020-11-04T01:35:30.915Z</updated>
+    
+    <content type="html"><![CDATA[<p>SQL92<br>很强大的功能就是在各个数据表之间连接查询<br>JOIN在SQL中的作用<br>五种连接<br><strong>1.笛卡尔积</strong><br>笛卡尔积是个数学运算。假设我有两个集合X和Y ，那么X和Y的笛卡尔积就是X和Y的所有可能组合，也就是第一个对象来自于X，第二个对象来自于Y的所有可能<br>我们假定player表的数据是集合X，先进行SQL查询</p><a id="more"></a><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player </span><br></pre></td></tr></table></figure><p>再假定team表的数据为集合Y，同样进行SQL验证</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span>  team</span><br></pre></td></tr></table></figure><p>接下来是笛卡尔积的调用方式</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player,team</span><br></pre></td></tr></table></figure><p>执行结果<img src="https://img-blog.csdnimg.cn/20201103195856723.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>2.等值连接<br>两张表的等值连接就是用两张表都存在的列进行连接。我们也可以对多张表进行等值连接<br>而经过我们分析，两张表的等值就是队的ID,因为都存在，我们代码中必须＋表名加以区分<br>所以代码</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player.team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player,team </span><br><span class="line"><span class="keyword">WHERE</span> player.team_id = team.team_id</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201103201731217.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>3.非等值连接<br>我们在进行多表查询的时候，如果连接多个表的条件是等号时，就是等值连接，其他的运算符都是非等值连接<br>PS：我们知道player表中有身高height字段，如果想要知道每个球员的身高的级别，可以采用非等值连接查询</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> p.player_id,p.player_name,p.height,h.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> p,height_grades <span class="keyword">AS</span> h</span><br><span class="line"><span class="keyword">WHERE</span> p.height <span class="keyword">BETWEEN</span> h.height_lowest <span class="keyword">AND</span> h.height_highest</span><br></pre></td></tr></table></figure><p>运行结果<br><img src="https://img-blog.csdnimg.cn/20201103202701344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>4.外连接（左连接，右连接）<br><strong>左外连接</strong>就是指左边的表是主表，需要显示左边表的全部行，而右侧的表是从表，（+）表示哪个是从表<br>相当于SQL99的left join</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *  </span><br><span class="line"><span class="keyword">FROM</span> player team </span><br><span class="line"><span class="keyword">WHERE</span> player.team_id = team.team_id(+)</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *  </span><br><span class="line"><span class="keyword">FROM</span> player  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> team  <span class="comment">#显示主表的所有行</span></span><br><span class="line"><span class="keyword">ON</span> player.team_id = team.team_id</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201103212346387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p><strong>右外连接</strong>，当然指的是右边的表为主表，显示右表的所有行，左侧的表为从表</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> team</span><br><span class="line"><span class="keyword">ON</span> player.team_id =team.team_id <span class="comment"># 显示右表的所有行</span></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201103212915704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>4.自连接<br>自连接可以对多个表进行操作，也可以对同一个表进行操作。也就是说查询条件使用了当前表的字段<br>我们想要查看比，布雷克 ·格里芬身高，高的球员都有谁？以及他们的对应身高</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> b.player_name ,b.height</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a ,player <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">WHERE</span> a.player_name =<span class="string">&#x27;布雷克-格里芬&#x27;</span> <span class="keyword">and</span> a.height &lt; b.height</span><br></pre></td></tr></table></figure><p>这段自连接有点怪，搜出那个名字后，直接可以拿他的身高比就可以了<br>执行结果</p><p><img src="https://img-blog.csdnimg.cn/20201103214329297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>试着做一道题？<br>表格中一共有三支球队，那么现在3支球队需要进行比赛，请用SQL语句写出所有可能的比赛组合<br>分析：根据我的理解，我觉得是笛卡尔积，但是不可能。自己和自己不能比赛<br>那么是不是能笛卡尔积+左连接<br>事实证明我上面的分析都是错的！！！！</p><p>分主客队</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(kedui.team_name,<span class="string">&#x27;VS&#x27;</span>,zhudui.team_name) <span class="keyword">AS</span> <span class="string">&#x27;客队vs主队&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> team <span class="keyword">AS</span> zhudui <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> team <span class="keyword">AS</span> kedui</span><br><span class="line"><span class="keyword">ON</span> zhudui.team_id&lt;&gt;kedui.team_id</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/2020110322020619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>不分主客队</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.team_name ,b.team_name</span><br><span class="line"><span class="keyword">FROM</span> team <span class="keyword">AS</span> a,team <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">WHERE</span> a.team_id&lt;b.team_id</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201103220216610.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;SQL92&lt;br&gt;很强大的功能就是在各个数据表之间连接查询&lt;br&gt;JOIN在SQL中的作用&lt;br&gt;五种连接&lt;br&gt;&lt;strong&gt;1.笛卡尔积&lt;/strong&gt;&lt;br&gt;笛卡尔积是个数学运算。假设我有两个集合X和Y ，那么X和Y的笛卡尔积就是X和Y的所有可能组合，也就是第一个对象来自于X，第二个对象来自于Y的所有可能&lt;br&gt;我们假定player表的数据是集合X，先进行SQL查询&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之equals的基本特性，及自己对wait,notify的理解、join的理解</title>
@@ -533,34 +550,6 @@ annotation
 
 &lt;font color=#999AAA &gt;
 error（系统级的错误，我们处理不了，只能查错）</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之数据结构预先篇</title>
-    <link href="http://example.com/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/"/>
-    <id>http://example.com/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/</id>
-    <published>2020-11-01T07:28:56.627Z</published>
-    <updated>2020-11-01T07:28:56.627Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>**1.**总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。如果用堆，两个堆就可以非常高效的解决这个问题<a id="more"></a>**2.**35岁之殇业务堆砌做事情没长远规划**3.**需要项目经验<p>downloads</p><p>未完待续<br><strong>数据结构</strong><br>数组，链表，栈，队列，散列表，二叉树，堆，跳表，图，Trie树<br><strong>算法：</strong><br>递归，排序，二分查找，搜索，哈希算法，贪心算法，分治算法，回溯算法，动态规划，字符串匹配</p><p><strong>在这里说一下我的计划：接下来我都会接触算法类的知识，通过老师给我的项目，来挑选着学习其中算法以达到快速适应老师的开发目的</strong><br>就比如python智能疏散演示，可以采用<strong>44.最短路径：地图软件是如何计算出最优出行路径的</strong>这节课的知识</p><p>我们看时间复杂度，都是看这个程序执行的最有量级的那段代码<br>只要算法中不存在循环语句，递归语句，即使有成千上万行的代码，其复杂度也是O（1）<br>等比数列就是O（logn）<br>归并排序 快速排序O（nlogn）<br>有一种O（m+n）无法判断谁的量级大<br>渐进空间复杂度：<br>如果只是申请了一个空间的话，我们就可以确认其空间复杂度了<br>·</p>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-
-&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
-&lt;/font&gt;
-**1.**
-总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。
-如果用堆，两个堆就可以非常高效的解决这个问题</summary>
     
     
     
