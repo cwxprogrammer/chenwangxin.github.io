@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>每日深耕，勤练不缀之sql99连接查询 | Hexo</title>
+  <title>每日深耕，勤练不缀之SQL对视图的查询及应用 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 交叉连接（92中的笛卡尔积）在这里我们使用的是CROSS JOIN代码如下">
+  <meta name="description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 虚拟表，本身是不具备数据的只是为了体现安全性，封装性，以及权限性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每日深耕，勤练不缀之sql99连接查询">
-<meta property="og:url" content="http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:title" content="每日深耕，勤练不缀之SQL对视图的查询及应用">
+<meta property="og:url" content="http://example.com/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 交叉连接（92中的笛卡尔积）在这里我们使用的是CROSS JOIN代码如下">
+<meta property="og:description" content="本文应用sql数据均从github上下载需要的小伙伴自取https:&#x2F;&#x2F;github.com&#x2F;cystanford&#x2F;sql_nba_data.git 虚拟表，本身是不具备数据的只是为了体现安全性，封装性，以及权限性">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201104203514926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2020-11-04T12:37:47.709Z">
-<meta property="article:modified_time" content="2020-11-04T12:40:48.423Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110517222349.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105184311556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-05T10:47:16.000Z">
+<meta property="article:modified_time" content="2020-11-05T10:50:07.283Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020110517222349.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,20 +157,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sql99连接查询" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SQL对视图的查询" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      每日深耕，勤练不缀之sql99连接查询
+      每日深耕，勤练不缀之SQL对视图的查询及应用
     </h1>
   
 
         
-        <a href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-04T12:37:47.709Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
+        <a href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+  	<time datetime="2020-11-05T10:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-05</time>
 </a>
         
       </header>
@@ -178,29 +178,36 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p>
-<p><strong>交叉连接</strong>（92中的笛卡尔积）<br>在这里我们使用的是CROSS JOIN<br>代码如下</p>
+<p>虚拟表，本身是不具备数据的<br>只是为了体现安全性，封装性，以及权限性</p>
 <a id="more"></a>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure>
-<p>三张表的交叉连接</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team_score</span><br></pre></td></tr></table></figure>
+<p>下面是一个图，很好的诠释了这个关系<br><img src="https://img-blog.csdnimg.cn/2020110517222349.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>帮助我们使用表的一部分，另一方面也可以针对不同的用户制定不同的查询视图。</p>
+<p>视图作为一张虚拟表，帮我们封装了底层和数据表的接口。它相当于一张表或者多张表的数据结果集，编写视图后，我们可以不断重用他，这个和JAVA的接口很像</p>
+<p>创建视图<br>CREATE VIEW </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">WHERE</span> condition</span><br></pre></td></tr></table></figure>
+<p>只是添加了一句而已，就可以将查询语句封装</p>
+<p>我们以NBA球员为例<br>我们要查询比NBA球员平均身高高的球员有哪些？并显示他们的球员ID和身高。我们给这个视图起名字player_above _avg_height</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height&gt;(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height) <span class="keyword">FROM</span> player)</span><br></pre></td></tr></table></figure>
+<p>我们在navicat里创建了视图<br>然后我们再查询视图，得到的是同样的结果</p>
+<p>接下来<strong>嵌套视图</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_above_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height&gt;(<span class="keyword">SELECT</span> <span class="keyword">avg</span>(height) <span class="keyword">FROM</span> player_above_avg_height)</span><br></pre></td></tr></table></figure>
+<p>修改视图<br>ALTER VIEW<br>比如我们想更新视图player_above_avg_height</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">VIEW</span> player_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id, player_name, height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt; (<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height) <span class="keyword">from</span> player)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p><strong>自然连接</strong>（相当于92的等值连接）<br>在92中我们得自己判定两张表相同的属性是什么，而在99中利用 NATURAL JOIN 替代了 WHERE player.team_id=team.team_id<br>会帮你自动查询两张表中所有相同的字段，然后进行等值连接</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id, team_id ,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player </span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure>
-<p><strong>ON连接</strong>（用来指定我们想要的连接条件）<br>进行等值连接</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player.team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team</span><br><span class="line"><span class="keyword">ON</span> player.team_id =team.team_id</span><br></pre></td></tr></table></figure>
-<p>进行非等值连接<br>想要查询球员的身高等级</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.player_id,a.player_name,a.height,b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> a.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br></pre></td></tr></table></figure>
-<p><strong>using连接</strong><br>因为自然连接会自动查询相同字段进行连接，我们我们想指定相同字段连接时就得用using</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team <span class="keyword">USING</span>(team_id)</span><br></pre></td></tr></table></figure>
-<p><strong>外连接</strong></p>
-<p>左外链接<br>右外连接<br>全外连接在mysql中不支持</p>
-<p>内连接：等值连接（自然连接，using连接，ON连接），非等值连接（ON连接）<br>外连接：会返回一个表中的所有记录，以及另一个表中匹配的行，左外连接，右外连接</p>
-<p><strong>SQL99与SQL92的区别</strong><br>SQL92会在from后面放所有表<br>SQL99会放在join后面，每次连接一张表，可以多次使用join连接</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> table1</span><br><span class="line">    <span class="keyword">JOIN</span> table2 <span class="keyword">ON</span> table1和table2的连接条件</span><br><span class="line">        <span class="keyword">JOIN</span> table3 <span class="keyword">ON</span> table2和table3的连接条件</span><br></pre></td></tr></table></figure>
-<p>查询不同身高级别（对应height_grades）对应的球员数量（对应player表）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(player.player_id),b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> player.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> b.height_level</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/20201104203514926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>删除视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name</span><br></pre></td></tr></table></figure>
+
+<p>利用视图完成复杂的连接</p>
+<p>我们对player表和height_grades表进行连接，关联条件是球员的身高（在身高等级表中），然后把取得的查询结果放到视图player_height_grades</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_height_grades <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> a.height, a.player_id,a.player_name,b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> a.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br></pre></td></tr></table></figure>
+<p>采用ON连接，毫无疑问</p>
+<p>而我们接下来用视图查询更简单、、</p>
+<p><strong>利用视图对数据进行格式化</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_team <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(player_name,<span class="string">&#x27;(&#x27;</span>,team.team_name,<span class="string">&#x27;)&#x27;</span>) <span class="keyword">AS</span> player_team</span><br><span class="line"><span class="keyword">FROM</span> player</span><br></pre></td></tr></table></figure>
+<p>正确的使用视图可以帮我们简化复杂的数据处理<br>我们以球员比赛成绩表为例<br>对应的是player_score表，这张表中一共19个字段，我们可以通过视图将其分析<br>比如：我们想要每个球员在每场比赛这种的二分球，三分球和罚球的得分</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">VIEW</span> game_player_score <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> game_id,player_id,(shoot_hits-shoot_3_hits)*<span class="number">2</span> <span class="keyword">AS</span> shoot_2_points,</span><br><span class="line">shoot_3_hits *<span class="number">3</span> <span class="keyword">AS</span> shoot_3_points,</span><br><span class="line">shoot_p_hits <span class="keyword">AS</span> shoot_p_points,score</span><br><span class="line"><span class="keyword">FROM</span> player_score</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201105184311556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>一个视图其实是SELECT语句的集合，执行时会提前编译好，可以反复使用。在底层执行顺序的时候和SELECT语句是一样：<br>1、FROM子句组装数据<br>2、WHERE子句进行条件筛选<br>3、GROUP BY分组<br>4、使用聚集函数进行计算；<br>5、HAVING筛选分组；<br>6、计算所有的表达式；<br>7、SELECT 的字段；<br>8、ORDER BY排序<br>9、LIMIT筛选</p>
 
       
 
@@ -280,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +301,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          每日深耕，勤练不缀之SQL对视图的查询及应用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">每日深耕，勤练不缀之如何保证集合是线程安全的？</div>
+    <a href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之sql99连接查询</div>
       <i class="icon-circle-right"></i>
     </a>
   

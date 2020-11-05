@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-04T12:40:48.423Z</updated>
+  <updated>2020-11-05T10:50:07.283Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之SQL对视图的查询及应用</title>
+    <link href="http://example.com/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/"/>
+    <id>http://example.com/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/</id>
+    <published>2020-11-05T10:47:16.000Z</published>
+    <updated>2020-11-05T10:50:07.283Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p><p>虚拟表，本身是不具备数据的<br>只是为了体现安全性，封装性，以及权限性</p><a id="more"></a><p>下面是一个图，很好的诠释了这个关系<br><img src="https://img-blog.csdnimg.cn/2020110517222349.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>帮助我们使用表的一部分，另一方面也可以针对不同的用户制定不同的查询视图。</p><p>视图作为一张虚拟表，帮我们封装了底层和数据表的接口。它相当于一张表或者多张表的数据结果集，编写视图后，我们可以不断重用他，这个和JAVA的接口很像</p><p>创建视图<br>CREATE VIEW </p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">WHERE</span> condition</span><br></pre></td></tr></table></figure><p>只是添加了一句而已，就可以将查询语句封装</p><p>我们以NBA球员为例<br>我们要查询比NBA球员平均身高高的球员有哪些？并显示他们的球员ID和身高。我们给这个视图起名字player_above _avg_height</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height&gt;(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height) <span class="keyword">FROM</span> player)</span><br></pre></td></tr></table></figure><p>我们在navicat里创建了视图<br>然后我们再查询视图，得到的是同样的结果</p><p>接下来<strong>嵌套视图</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_above_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id,height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height&gt;(<span class="keyword">SELECT</span> <span class="keyword">avg</span>(height) <span class="keyword">FROM</span> player_above_avg_height)</span><br></pre></td></tr></table></figure><p>修改视图<br>ALTER VIEW<br>比如我们想更新视图player_above_avg_height</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">VIEW</span> player_above_avg_height <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> player_id, player_name, height</span><br><span class="line"><span class="keyword">FROM</span> player</span><br><span class="line"><span class="keyword">WHERE</span> height &gt; (<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(height) <span class="keyword">from</span> player)</span><br></pre></td></tr></table></figure><p>删除视图</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name</span><br></pre></td></tr></table></figure><p>利用视图完成复杂的连接</p><p>我们对player表和height_grades表进行连接，关联条件是球员的身高（在身高等级表中），然后把取得的查询结果放到视图player_height_grades</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_height_grades <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> a.height, a.player_id,a.player_name,b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> a.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br></pre></td></tr></table></figure><p>采用ON连接，毫无疑问</p><p>而我们接下来用视图查询更简单、、</p><p><strong>利用视图对数据进行格式化</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> player_team <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CONCAT</span>(player_name,<span class="string">&#x27;(&#x27;</span>,team.team_name,<span class="string">&#x27;)&#x27;</span>) <span class="keyword">AS</span> player_team</span><br><span class="line"><span class="keyword">FROM</span> player</span><br></pre></td></tr></table></figure><p>正确的使用视图可以帮我们简化复杂的数据处理<br>我们以球员比赛成绩表为例<br>对应的是player_score表，这张表中一共19个字段，我们可以通过视图将其分析<br>比如：我们想要每个球员在每场比赛这种的二分球，三分球和罚球的得分</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span>  <span class="keyword">VIEW</span> game_player_score <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> game_id,player_id,(shoot_hits-shoot_3_hits)*<span class="number">2</span> <span class="keyword">AS</span> shoot_2_points,</span><br><span class="line">shoot_3_hits *<span class="number">3</span> <span class="keyword">AS</span> shoot_3_points,</span><br><span class="line">shoot_p_hits <span class="keyword">AS</span> shoot_p_points,score</span><br><span class="line"><span class="keyword">FROM</span> player_score</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201105184311556.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>一个视图其实是SELECT语句的集合，执行时会提前编译好，可以反复使用。在底层执行顺序的时候和SELECT语句是一样：<br>1、FROM子句组装数据<br>2、WHERE子句进行条件筛选<br>3、GROUP BY分组<br>4、使用聚集函数进行计算；<br>5、HAVING筛选分组；<br>6、计算所有的表达式；<br>7、SELECT 的字段；<br>8、ORDER BY排序<br>9、LIMIT筛选</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;本文应用sql数据均从github上下载&lt;br&gt;需要的小伙伴自取&lt;a href=&quot;https://github.com/cystanford/sql_nba_data.git&quot;&gt;https://github.com/cystanford/sql_nba_data.git&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;虚拟表，本身是不具备数据的&lt;br&gt;只是为了体现安全性，封装性，以及权限性&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之sql99连接查询</title>
@@ -483,42 +501,6 @@ css</summary>
     
     
     <summary type="html">&lt;h1 id=&quot;测试用例&quot;&gt;&lt;a href=&quot;#测试用例&quot; class=&quot;headerlink&quot; title=&quot;测试用例&quot;&gt;&lt;/a&gt;测试用例&lt;/h1&gt;&lt;h2 id=&quot;一-想要对service层进行测试用例&quot;&gt;&lt;a href=&quot;#一-想要对service层进行测试用例&quot; class=&quot;headerlink&quot; title=&quot;一.想要对service层进行测试用例&quot;&gt;&lt;/a&gt;一.想要对service层进行测试用例&lt;/h2&gt;&lt;p&gt;1.首先将service层中的interface 中的方法进行重写&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201014180321955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;br&gt;css</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>关于ruoyi前后端分离部署的所思所想</title>
-    <link href="http://example.com/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/"/>
-    <id>http://example.com/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/</id>
-    <published>2020-11-01T07:28:58.410Z</published>
-    <updated>2020-11-01T07:28:58.410Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA ></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>前后端分离对于你命令行的锻炼，对lunix系统长期适应有着非常重要的作用<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><font color=#999AAA ><h1 id="一、为什么要挑战前后端分离？"><a href="#一、为什么要挑战前后端分离？" class="headerlink" title="一、为什么要挑战前后端分离？"></a>一、为什么要挑战前后端分离？</h1><font color=#999AAA ><p>只是为了一种成就感，虚无缥缈的东西，让我能一直学习下去，通过配置后端软件，学到了很多lunix命令。这是意外收获，不败不馁，控制脾气。lunix系统在CENTOS7上顺利运行的时候我是非常高兴的，每次都在装载软件中卡住，但渐渐也终于熟悉，熟练，很高兴通过命令部署了一个前后端在不同主机运行的项目，我想这是一个程序员必备的东西吧。</p><p>css<a id="more"></a></p><h1 id="二、使用步骤"><a href="#二、使用步骤" class="headerlink" title="二、使用步骤"></a>二、使用步骤</h1><h2 id="1-引入文章，引自CodeSheep"><a href="#1-引入文章，引自CodeSheep" class="headerlink" title="1.引入文章，引自CodeSheep"></a>1.引入文章，引自CodeSheep</h2><font color=#999AAA >!<p><img src="https://img-blog.csdnimg.cn/20201012172904949.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201012172931325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><h2 id="2-来源"><a href="#2-来源" class="headerlink" title="2.来源"></a>2.来源</h2><font color=#999AAA >想要的可以去CodeSheep公众号去找<font color=#999AAA ><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><font color=#999AAA >我在这里想和大家说nginx这个软件一定要学会进入它的conf来配置，一次不成两次，学习DOS命令是一个很烦的过程，但是你熟练后悔对你未来有所帮助。mvn打包，jar包直接部署，确实是最简单的方式，前后端呼应的那一瞬间感觉真的很好。<p>感谢主！！！</p>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-
-&lt;/font&gt;
-
-
-
-
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;前后端分离对于你命令行的锻炼，对lunix系统长期适应有着非常重要的作用&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;font color=#999AAA &gt;
-
-&lt;h1 id=&quot;一、为什么要挑战前后端分离？&quot;&gt;&lt;a href=&quot;#一、为什么要挑战前后端分离？&quot; class=&quot;headerlink&quot; title=&quot;一、为什么要挑战前后端分离？&quot;&gt;&lt;/a&gt;一、为什么要挑战前后端分离？&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;只是为了一种成就感，虚无缥缈的东西，让我能一直学习下去，通过配置后端软件，学到了很多lunix命令。这是意外收获，不败不馁，控制脾气。lunix系统在CENTOS7上顺利运行的时候我是非常高兴的，每次都在装载软件中卡住，但渐渐也终于熟悉，熟练，很高兴通过命令部署了一个前后端在不同主机运行的项目，我想这是一个程序员必备的东西吧。&lt;/p&gt;
-&lt;p&gt;css</summary>
     
     
     
