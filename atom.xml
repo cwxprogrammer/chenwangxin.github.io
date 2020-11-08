@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-05T10:50:07.283Z</updated>
+  <updated>2020-11-08T09:08:35.664Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之SQL存储过程</title>
+    <link href="http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"/>
+    <id>http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-11-08T09:08:35.663Z</published>
+    <updated>2020-11-08T09:08:35.664Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>SQL存储过程</strong><br>本次应用数据库<a href="https://github.com/cystanford/sql_heros_data.git">https://github.com/cystanford/sql_heros_data.git</a><br>就是面向过程的编程语句<br> 里面加入了流语句<br> 有 begin end<br> 赋值 封装<br> <a id="more"></a><br> 但是因为可移植性太差的原因，所以国内很少有人指出存储过程<br> 开发维护，版本迭代太困难<br>更重要的是不符合高并发的数据库管理，高并发要减轻数据库的压力，采用分库分表的形式，而且对可扩展性要求很高。<br><strong>练习</strong><br>针对王者荣耀的英雄数据表heros表，请编写存储过程<br>get_sum_score,用来得到某一类型英雄的最大生命值的总和</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="string">`get_sum_score`</span>(</span><br><span class="line">  <span class="keyword">OUT</span> sum_max_hp <span class="built_in">FLOAT</span>,</span><br><span class="line">  <span class="keyword">IN</span> s <span class="built_in">VARCHAR</span>(<span class="number">255</span>)</span><br><span class="line">   )</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">SUM</span>(hp_max)</span><br><span class="line"><span class="keyword">FROM</span> heros </span><br><span class="line">  <span class="keyword">WHERE</span> role_main =s</span><br><span class="line">  <span class="keyword">INTO</span> sum_max_hp;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108165502261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>查询代码</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#记得加分号</span></span><br><span class="line"><span class="keyword">CALL</span> get_sum_score(@sum_max_hp,<span class="string">&#x27;战士&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> @sum_max_hp;</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108170655498.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20201108160702910.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;SQL存储过程&lt;/strong&gt;&lt;br&gt;本次应用数据库&lt;a href=&quot;https://github.com/cystanford/sql_heros_data.git&quot;&gt;https://github.com/cystanford/sql_heros_data.git&lt;/a&gt;&lt;br&gt;就是面向过程的编程语句&lt;br&gt; 里面加入了流语句&lt;br&gt; 有 begin end&lt;br&gt; 赋值 封装&lt;br&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之SQL对视图的查询及应用</title>
@@ -484,23 +501,6 @@ css</summary>
 &lt;font color=#999AAA &gt;
 
 &lt;p&gt;hashCode可以翻译为哈希码，或者散列码。应该是一个表示对象的特征值的int整数。&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在springmvc项目中CURD测试集分享</title>
-    <link href="http://example.com/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/"/>
-    <id>http://example.com/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/</id>
-    <published>2020-11-01T07:28:58.484Z</published>
-    <updated>2020-11-01T07:28:58.484Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h1><h2 id="一-想要对service层进行测试用例"><a href="#一-想要对service层进行测试用例" class="headerlink" title="一.想要对service层进行测试用例"></a>一.想要对service层进行测试用例</h2><p>1.首先将service层中的interface 中的方法进行重写<br><img src="https://img-blog.csdnimg.cn/20201014180321955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>css<a id="more"></a><br>2.然后实现此接口的类就会要求你实现此方法。<br><img src="https://img-blog.csdnimg.cn/20201014180331850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>3.通过此类中的 entityDao方法进入DAO层，增加创建方法<br><img src="https://img-blog.csdnimg.cn/20201014180341608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>4.其中引用了application.xml中的自动匹配app-servlet中的mapper,进入编写增删查改SQL语句的底层。<br><img src="https://img-blog.csdnimg.cn/20201014180400924.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>此刻基本已经编写完毕，基本上还是根据springMVC的基本原理进行<br>而后编写测试总类：<br><img src="https://img-blog.csdnimg.cn/20201014180412975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>通过运行application.xml，使用扫描注入所有@service 的类注入容器，搜寻authUserServiceImpl，开始创建对象，调用方法，按照刚刚上面写的示例走一遍业务，就可以实现创建对象。</p><p>PEACE！！！</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;测试用例&quot;&gt;&lt;a href=&quot;#测试用例&quot; class=&quot;headerlink&quot; title=&quot;测试用例&quot;&gt;&lt;/a&gt;测试用例&lt;/h1&gt;&lt;h2 id=&quot;一-想要对service层进行测试用例&quot;&gt;&lt;a href=&quot;#一-想要对service层进行测试用例&quot; class=&quot;headerlink&quot; title=&quot;一.想要对service层进行测试用例&quot;&gt;&lt;/a&gt;一.想要对service层进行测试用例&lt;/h2&gt;&lt;p&gt;1.首先将service层中的interface 中的方法进行重写&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201014180321955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;br&gt;css</summary>
     
     
     
