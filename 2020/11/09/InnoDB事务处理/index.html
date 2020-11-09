@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>每日深耕，勤练不缀之InnoDB事务处理 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/page/3/index.html">
+  <meta name="description" content="InnoDB支持事务，取代MyISAM事务英文名称：transaction进行一次处理的基本单元，要么完全执行，要么都不执行保证了数据处理的完整性，保证了数据库的数据一致性高级处理数据方式允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之InnoDB事务处理">
+<meta property="og:url" content="http://example.com/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="InnoDB支持事务，取代MyISAM事务英文名称：transaction进行一次处理的基本单元，要么完全执行，要么都不执行保证了数据处理的完整性，保证了数据库的数据一致性高级处理数据方式允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201109140442348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-09T07:04:55.420Z">
+<meta property="article:modified_time" content="2020-11-09T08:36:05.165Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201109140442348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,295 +156,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-InnoDB事务处理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之InnoDB事务处理
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-11-09T07:04:55.420Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>InnoDB支持事务，取代MyISAM<br>事务英文名称：transaction<br><strong>进行一次处理的基本单元，要么完全执行，要么都不执行</strong><br>保证了数据处理的完整性，保证了数据库的数据一致性<br>高级处理数据方式<br>允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）</p>
+<a id="more"></a>
+<p><strong>事务特性</strong><br>ACID<br>A：原子性（Atomicity）<br>不可分割，进行数据处理的基本单位<br>C：一致性(Consistency)<br>数据库进行事务操作时，会有原来一直的状态变为另一种一致的状态，也就是说当事务提交后，回滚也不会破坏数据库的完整性约束<br>I：隔离性(Isolation)<br>每个事务都是彼此独立的，不会受到其他事务的执行影响<br>一个事务在提交之前，对其他事务是不可见的<br>D：持久性(Durability)<br>事务提交之后对数据的修改时持久性的，即使在系统出故障的情况下，数据修改依旧有效。当事务完成，这时可以通过日志，让系统恢复到最后一次成功的更新状态</p>
+<p>原子性是基础，隔离性是手段，一致性是约束条件，持久性是我们的目的<br>补充：约束性条件：DDL全称：Data Definition Language<br>数据定义语言。定义了数据库的结构和数据表的结构<br>在DDL中，我们使用对应的命令：<br>CREATE DROP ALTER<br>不需要COMMIT,就可以完成执行任务</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> nba;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> nba;</span><br><span class="line"><span class="comment">#对数据表进行定义</span></span><br><span class="line">CTEATE TABLE [table_name](字段名 数据类型，....)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> player(</span><br><span class="line">  player_id <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  player_name <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>需要注意逗号，和分号的位置<br>其实我们可以通过可视化工具将其创建出来</p>
+<p><img src="https://img-blog.csdnimg.cn/20201109140442348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>一致性的七大约束<br>1.主键约束<br>主键唯一标识一条记录，不能重复，不能为空<br>一个数据表的主键只能有一个。主键可以是一个字段，也可以由多个字段复合而成。我们将player_id 设置成了主键<br>2.外键约束<br>外键确保了表和表之间引用的完整性。一个表中的外键对应另一张表的主键。<br>外键可以是重复的，也可以为空<br>例如：球员比分表player_score的外键就是player_id,关联到player表中<br>3.字段约束<br>4.唯一性约束<br>我们已经设置了主键，但是有时也需要在其他字段中进行唯一性约束，比如给player_name设置唯一性约束，就保证了每个球员的名字不能相同<br>5.NOT NULL约束<br>6.DEFAULT<br>字段默认值约束，字段没有取值，就设置为默认值，DEFAULT  0.00<br>7.CHECK约束<br>我们可以实行检查约束。对身高height的数值进行CHECK约束，必须&gt;=0且&lt;3。<br><strong>设计数据表的原则</strong><br>三少一多<br>1.数据表的个数越少越好<br>2.数据表中的字段越少越好<br>3.数据表中联合主键的字段个数越少越好<br>4.使用主键和外键越多越好<br><strong>事务的控制</strong><br>事务常用控制语句<br>1.START TRANSCTION或者BEGIN：显式开启一个事务<br>2.COMMIT:提交事务。当提交事务后，对数据库的修改是永久性的<br>3.ROLLBACK或者ROLLBACK TO [SAVEPOINT],意为回滚事务<br>4.SAVEPOINT:在事务中创建保存点，方便后续对保存点进行回滚<br>5.SET TRANSACTION:设置事务的隔离级别</p>
+<p>需要注意的是：隐式事务实际上在MYSQL中是自动提交</p>
+<p>一个BEGIN 一个显式事务，回滚全覆盖</p>
+<p>completion_type参数作用<br>0：默认情况，执行commit会提交事务，执行下一个显式事务时，还需要使用START TRANSACTION或者BEGIN来开启，不然就是隐式事务<br>1：开启一个链式任务，commit提交任务后，下一阶段会开启一个相同级别的事务<br>2：提交后，会自动与服务器断开</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/HashMap/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.128Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/09/%E6%B7%B1%E5%85%A5%E8%AE%B2%E8%A7%A3SQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日深耕，勤练不缀之深入讲解SQL事务隔离级别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之SQL存储过程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/HashMap/">每日深耕，勤练不缀之HashMap篇</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hashCode%E5%92%8Cequals/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.807Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hashCode%E5%92%8Cequals/">每日深耕，勤练不缀之Hashcode和equals篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.484Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">在springmvc项目中CURD测试集分享</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.410Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/">关于ruoyi前后端分离部署的所思所想</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/">每日深耕，勤练不缀之引用篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.639Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E6%B3%A8%E8%A7%A3/">每日深耕，勤练不缀之注解篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.633Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/">每日深耕，勤练不缀之异常篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">每日深耕，勤练不缀之数据结构预先篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.487Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">每日深耕，勤练不缀之继承篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +349,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

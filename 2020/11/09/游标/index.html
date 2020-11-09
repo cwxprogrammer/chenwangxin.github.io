@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>每日深耕，勤练不缀之游标 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/page/3/index.html">
+  <meta name="description" content="面向集合集合思维更像是从整体的角度来考虑然后把整个数据集不同的树形进行划分，形成不同的子集合游标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之游标">
+<meta property="og:url" content="http://example.com/2020/11/09/%E6%B8%B8%E6%A0%87/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向集合集合思维更像是从整体的角度来考虑然后把整个数据集不同的树形进行划分，形成不同的子集合游标">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201109192421572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201109192633232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201109194723622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-09T14:26:58.691Z">
+<meta property="article:modified_time" content="2020-11-09T14:26:58.691Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201109192421572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,295 +158,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-游标" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之游标
+    </h1>
+  
+
+        
+        <a href="/2020/11/09/%E6%B8%B8%E6%A0%87/" class="archive-article-date">
+  	<time datetime="2020-11-09T14:26:58.691Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面向集合<br>集合思维更像是从整体的角度来考虑<br>然后把整个数据集不同的树形进行划分，形成不同的子集合<br><strong>游标</strong><br>  <a id="more"></a><br>定义游标</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> cursor_name <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> select_statement</span><br></pre></td></tr></table></figure>
+<p>打开游标</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPEN cursor_name</span><br></pre></td></tr></table></figure>
+<p>从游标中获得数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FETCH cursor_name INTO var_name</span><br></pre></td></tr></table></figure>
+<p>关闭游标</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE cursor_name</span><br></pre></td></tr></table></figure>
+<p>释放游标</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DEALLOCATE</span> cousor_namec</span><br></pre></td></tr></table></figure>
+<p>实战例子<br>我想用游标来扫描heros数据表中的数据行，然后累计最大生命值<br>创建一个存储过程 calc_hp_max,然后在存储过程中定义游标cur_gero,使用FETCH获取每一行的具体数值，然后赋给变量hp，再用变量hp_sum做累加求和，最后再输出hp_sum（对于工程师来说简单的累加而已）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="string">`calc_hp_max`</span>()</span><br><span class="line"><span class="keyword">BEGIN</span> </span><br><span class="line"> </span><br><span class="line"> <span class="keyword">DECLARE</span> hp <span class="built_in">INT</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">DECLARE</span> hp_sum <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">DECLARE</span> done <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">DECLARE</span> cur_hero <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> hp_max <span class="keyword">from</span> heros;</span><br><span class="line"> </span><br><span class="line"> OPEN cur_hero;</span><br><span class="line"> read_loop:LOOP</span><br><span class="line"> FETCH cur_hero INTO hp;</span><br><span class="line"> <span class="keyword">SET</span> hp_sum =hp_sum + hp;</span><br><span class="line"> <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"> CLOSE cur_hero;</span><br><span class="line"> <span class="keyword">SELECT</span> hp_sum;</span><br><span class="line"> <span class="keyword">END</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当使用call calc_hp_max()时，会出现1329错误</p>
+<p>我们判断游标溢出<br>当游标溢出时，我们可以制定一个continue事件，这个事件发生后会改变done的值，以此来判断是否溢出</p>
+<p>所以我们要在循环中加上对done的判断，如果游标的循环已经结束，就需要跳出read_loop的循环，意思说只要done的值已经变为false,就可以跳出read_loop的循环了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> calc_hp_max()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201109192421572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201109192633232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>我们遇到这种问题时，可以用游标来进行转换</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="string">`alter_attack_growth`</span>()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">       <span class="comment">-- 创建接收游标的变量</span></span><br><span class="line">       <span class="keyword">DECLARE</span> temp_id <span class="built_in">INT</span>;  </span><br><span class="line">       <span class="keyword">DECLARE</span> temp_growth, temp_max, temp_start, temp_diff <span class="built_in">FLOAT</span>;  </span><br><span class="line"></span><br><span class="line">       <span class="comment">-- 创建结束标志变量  </span></span><br><span class="line">       <span class="keyword">DECLARE</span> done <span class="built_in">INT</span> <span class="keyword">DEFAULT</span> <span class="literal">false</span>;</span><br><span class="line">       <span class="comment">-- 定义游标     </span></span><br><span class="line">       <span class="keyword">DECLARE</span> cur_hero <span class="keyword">CURSOR</span> <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="keyword">id</span>, attack_growth, attack_max, attack_start <span class="keyword">FROM</span> heros;</span><br><span class="line">       <span class="comment">-- 指定游标循环结束时的返回值  </span></span><br><span class="line">       <span class="keyword">DECLARE</span> CONTINUE <span class="keyword">HANDLER</span> <span class="keyword">FOR</span> <span class="keyword">NOT</span> <span class="keyword">FOUND</span> <span class="keyword">SET</span> done = <span class="literal">true</span>;  </span><br><span class="line">       </span><br><span class="line">       OPEN cur_hero;  </span><br><span class="line">       FETCH cur_hero INTO temp_id, temp_growth, temp_max, temp_start;</span><br><span class="line">       REPEAT</span><br><span class="line">                     IF NOT done THEN</span><br><span class="line">                            <span class="keyword">SET</span> temp_diff = temp_max - temp_start;</span><br><span class="line">                            IF temp_growth &lt; 5 THEN</span><br><span class="line">                                   IF temp_diff &gt; 200 THEN</span><br><span class="line">                                          <span class="keyword">SET</span> temp_growth = temp_growth * <span class="number">1.1</span>;</span><br><span class="line">                                   ELSEIF temp_diff &gt;= 150 AND temp_diff &lt;=200 THEN</span><br><span class="line">                                          <span class="keyword">SET</span> temp_growth = temp_growth * <span class="number">1.08</span>;</span><br><span class="line">                                   ELSEIF temp_diff &lt; 150 THEN</span><br><span class="line">                                          <span class="keyword">SET</span> temp_growth = temp_growth * <span class="number">1.07</span>;</span><br><span class="line">                                   <span class="keyword">END</span> <span class="keyword">IF</span>;                       </span><br><span class="line">                            ELSEIF temp_growth &gt;=5 AND temp_growth &lt;=10 THEN</span><br><span class="line">                                   <span class="keyword">SET</span> temp_growth = temp_growth * <span class="number">1.05</span>;</span><br><span class="line">                            <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">                            <span class="keyword">UPDATE</span> heros <span class="keyword">SET</span> attack_growth = <span class="keyword">ROUND</span>(temp_growth,<span class="number">3</span>) <span class="keyword">WHERE</span> <span class="keyword">id</span> = temp_id;</span><br><span class="line">                     <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line">       FETCH cur_hero INTO temp_id, temp_growth, temp_max, temp_start;</span><br><span class="line">       UNTIL done = true <span class="keyword">END</span> <span class="keyword">REPEAT</span>;</span><br><span class="line">       </span><br><span class="line">       CLOSE cur_hero;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> heros.id, heros.attack_growth</span><br><span class="line"><span class="keyword">FROM</span> heros  </span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201109194723622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hello-world/">Hello World</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/09/%E6%B8%B8%E6%A0%87/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/HashMap/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.128Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/09/%E6%B7%B1%E5%85%A5%E8%AE%B2%E8%A7%A3SQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之深入讲解SQL事务隔离级别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/HashMap/">每日深耕，勤练不缀之HashMap篇</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hashCode%E5%92%8Cequals/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.807Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hashCode%E5%92%8Cequals/">每日深耕，勤练不缀之Hashcode和equals篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.484Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">在springmvc项目中CURD测试集分享</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.410Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%85%B3%E4%BA%8Eruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2%E7%9A%84%E6%89%80%E6%80%9D%E6%89%80%E6%83%B3%20(1)/">关于ruoyi前后端分离部署的所思所想</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%20(1)/">每日深耕，勤练不缀之引用篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.639Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E6%B3%A8%E8%A7%A3/">每日深耕，勤练不缀之注解篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.633Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%BC%82%E5%B8%B8%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89/">每日深耕，勤练不缀之异常篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">每日深耕，勤练不缀之数据结构预先篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.487Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">每日深耕，勤练不缀之继承篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +352,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
