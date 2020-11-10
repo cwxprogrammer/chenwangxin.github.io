@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>每日深耕，勤练不缀之python控制SQL | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/4/index.html">
+  <meta name="description" content="python的DB API的规范是什么？python程序 总步骤1.引入API模块2.与数据库建立连接3.执行SQL语句4.关闭数据库连接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之python控制SQL">
+<meta property="og:url" content="http://example.com/2020/11/10/python%E6%8E%A7%E5%88%B6SQL/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="python的DB API的规范是什么？python程序 总步骤1.引入API模块2.与数据库建立连接3.执行SQL语句4.关闭数据库连接">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110104319568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110110228284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110132328417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110151948210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110152407934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201110104937888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-10T07:39:16.286Z">
+<meta property="article:modified_time" content="2020-11-10T11:57:56.174Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201110104319568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,45 +161,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-数据结构与算法之美" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-python控制SQL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">每日深耕，勤练不缀之数据结构预先篇</a>
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之python控制SQL
     </h1>
   
 
         
-        <a href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+        <a href="/2020/11/10/python%E6%8E%A7%E5%88%B6SQL/" class="archive-article-date">
+  	<time datetime="2020-11-10T07:39:16.286Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font color=#999AAA >
+        <p>python的DB API的规范是什么？<br>python程序<br><img src="https://img-blog.csdnimg.cn/20201110104319568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>总步骤<br>1.引入API模块<br>2.与数据库建立连接<br>3.执行SQL语句<br>4.关闭数据库连接</p>
+<a id="more"></a>
+<p>首先安装 connector<br>在终端写的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mysql-connector</span><br></pre></td></tr></table></figure>
 
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+<p><img src="https://img-blog.csdnimg.cn/20201110110228284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>大家有用mac的同学，直接在anaconda中下载myql-connector就可<br>不用pip</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mysql.connector</span><br><span class="line"></span><br><span class="line">db= mysql.connector.connect(</span><br><span class="line">    host=<span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">    user =<span class="string">&quot;root&quot;</span>,</span><br><span class="line">    passwd =<span class="string">&quot;&quot;</span>,</span><br><span class="line">    database =<span class="string">&#x27;hero&#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">cursor = db.cursor()</span><br><span class="line"><span class="comment"># 执行SQL语句</span></span><br><span class="line">cursor.execute(<span class="string">&quot;SELECT VERSION()&quot;</span>)</span><br><span class="line"><span class="comment"># 获取一条数据</span></span><br><span class="line">data = cursor.fetchone()</span><br><span class="line">print(<span class="string">&quot;MySQL版本: %s &quot;</span> % data)</span><br><span class="line"><span class="comment"># 关闭游标&amp;数据库连接</span></span><br><span class="line">cursor.close()</span><br><span class="line">db.close()</span><br></pre></td></tr></table></figure>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
+<p><img src="https://img-blog.csdnimg.cn/20201110132328417.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>通过指定 host、user、passwd 和 port 等参数来创建数据库连接，这些参数分别对应着数据库 IP 地址、用户名、密码和端口号；<br>使用 db.close() 关闭数据库连接；<br>使用 db.cursor() 创建游标，操作数据库中的数据；<br>使用 db.begin() 开启事务；<br>使用 db.commit() 和 db.rollback()，对事务进行提交以及回滚。<br>当我们通过cursor = db.cursor()创建游标后，就可以通过面向过程的编程方式对数据库中的数据进行操作：<br>使用cursor.execute(query_sql)，执行数据库查询；<br>使用cursor.fetchone()，读取数据集中的一条数据；<br>使用cursor.fetchall()，取出数据集中的所有行，返回一个元组 tuples 类型；<br>使用cursor.fetchmany(n)，取出数据集中的多条数据，同样返回一个元组 tuples；<br>使用cursor.rowcount，返回查询结果集中的行数。如果没有查询到数据或者还没有查询，则结果为 -1，否则会返回查询得到的数据行数；<br>使用cursor.close()，关闭游标。<br><strong>对数据表进行增删改查</strong><br>查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">&#x27;SELECT player_id, player_name, height FROM player WHERE height&gt;=2.08&#x27;</span></span><br><span class="line">cursor.execute(sql)</span><br><span class="line">data = cursor.fetchall()</span><br><span class="line"><span class="keyword">for</span> each_player <span class="keyword">in</span> data:</span><br><span class="line">  print(each_player)</span><br></pre></td></tr></table></figure>
+<p>更新</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改球员&quot;约翰-科林斯&quot;的数据</span></span><br><span class="line">sql =<span class="string">&#x27;UPDATE player SET height =%s where  player_name =%s&#x27;</span></span><br><span class="line">val=(<span class="number">2.09</span>,<span class="string">&quot;约翰—科林斯&quot;</span>) <span class="comment">#传值</span></span><br><span class="line">cursor.execute(sql,val)</span><br><span class="line">db.commit()</span><br><span class="line">print(cursor.rowcount,<span class="string">&quot;记录被修改&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201110151948210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sql =<span class="string">&#x27;DELETE FROM player WHERE player_name = %s&#x27;</span></span><br><span class="line">val =(<span class="string">&quot;约翰—科林斯&quot;</span>,)</span><br><span class="line">cursor.execute(sql,val)</span><br><span class="line">db.commit()</span><br><span class="line">print(cursor.rowcount,<span class="string">&quot;记录删除成功。&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201110152407934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>对于上面的CRUD操作，有几点需要注意<br>1.打开数据连接后，如果不在使用，就关掉<br>2.在执行操作时，可能会产生异常，这时就需要try…except捕获异常信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> mysql.connector</span><br><span class="line"><span class="keyword">import</span> traceback</span><br><span class="line"></span><br><span class="line">db= mysql.connector.connect(</span><br><span class="line">    host=<span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">    user =<span class="string">&quot;root&quot;</span>,</span><br><span class="line">    passwd =<span class="string">&quot;&quot;</span>,</span><br><span class="line">    database =<span class="string">&#x27;player&#x27;</span>,</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">cursor = db.cursor()</span><br><span class="line"><span class="comment"># 执行SQL语句</span></span><br><span class="line">cursor.execute(<span class="string">&quot;SELECT VERSION()&quot;</span>)</span><br><span class="line"><span class="comment"># 获取一条数据</span></span><br><span class="line">data = cursor.fetchone()</span><br><span class="line">print(<span class="string">&quot;MySQL版本: %s &quot;</span> % data)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line"> sql =<span class="string">&quot;INSERT INTO player (team_id,player_name,height)values (%s,%s,%s)&quot;</span></span><br><span class="line"> val =(<span class="number">1003</span>,<span class="string">&quot;约翰—科林斯&quot;</span>,<span class="number">2.08</span>)</span><br><span class="line"> cursor.execute(sql,val)</span><br><span class="line"> db.commit()</span><br><span class="line"> print(cursor.rowcount,<span class="string">&quot;插入成功。&quot;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="comment">#打印异常信息</span></span><br><span class="line">    traceback.print_exc()</span><br><span class="line">    <span class="comment">#回滚</span></span><br><span class="line">    db.rollback()</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line"><span class="comment"># 关闭游标&amp;数据库连接</span></span><br><span class="line">    cursor.close()</span><br><span class="line">    db.close()</span><br></pre></td></tr></table></figure>
 
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-**1.**
-总共1200个数据，那1188个数据就是99%的响应时间。每次用这个方法查询的时候都要排序，效率是非常低的。
-如果用堆，两个堆就可以非常高效的解决这个问题
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/#more">more >></a>
-        
+
+<p>那么，mysql-connector驱动的方式只是其中一种<br>我们也可以引入ORM框架，使用这种模式可以将数据库中各种数据表之间的关系映射到程序中的对象</p>
+<p>如果针对少量的对象管理，那么我们完全可以用mysql-connector驱动的方式，引入一个框架学习成本太高，代码膨胀也很厉害<br><img src="https://img-blog.csdnimg.cn/20201110104937888.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -197,16 +237,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/10/python%E6%8E%A7%E5%88%B6SQL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/11/10/%E9%A1%B9%E7%9B%AE%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8python%20ORM%E6%A1%86%E6%9E%B6%E6%9D%A5%E6%93%8D%E4%BD%9CMYSQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日深耕，勤练不缀之项目比较大时，使用python ORM框架来操作MYSQL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/09/%E6%B8%B8%E6%A0%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之游标</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -226,560 +334,14 @@
 
 
 
-
-  
-    <article id="post-继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">每日深耕，勤练不缀之继承篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:56.487Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-
-
-<h1 id="一、继承！！！重视"><a href="#一、继承！！！重视" class="headerlink" title="一、继承！！！重视"></a>一、继承！！！重视</h1><p>继承是展现父类有明确的共同方法和属性对于某一个物品而言<br>子类除了继承父类的共同方法和属性之外，还有些自己独有的方法和属性。<br>继承表现的是“is-a”的关系！！</p>
-        
-          <a class="article-more-a" href="/2020/11/01/%E7%BB%A7%E6%89%BF/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E7%BB%A7%E6%89%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谈谈final、finally、 finalize有什么不同？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">每日深耕，勤练不缀之final,finally,finalize篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:53.142Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-**谈谈final、finally、 finalize有什么不同？**
-**final**是用来修饰类，方法，变量，并具有不同的涵义
-修饰类：   代表此类不可以继承扩展
-修饰方法：代表此方法不可以重写
-修饰变量：变量不可以修改
-**fianlly**则是保证Java代码必须被执行的一种机制
-我们使用try-finally或者try-catch-finally来进行类似1.关闭JDBC连接，2.保证unlock锁等动作
-**finalize**则是java.lang.Object的一个方法，保证对象在被垃圾收集前完成特定资源的回收，所以称为java GC的阻碍，成为了特等公民，其次，finalize还可以吞掉Throwable,导致程序检查不出错误也无法运行，现在已经被定义为Old方法，
-        
-          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E8%B0%88%E8%B0%88final%E3%80%81finally%E3%80%81%20finalize%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E5%BC%82%E5%B8%B8/">每日深耕，勤练不缀之异常（续）篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E5%BC%82%E5%B8%B8/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:53.065Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-
-
-<h1 id="一、error-与exception的区别？"><a href="#一、error-与exception的区别？" class="headerlink" title="一、error 与exception的区别？"></a>一、error 与exception的区别？</h1>
-        
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E5%BC%82%E5%B8%B8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的第一篇文章 " class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/">关于HEXO博客的开通</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:52.851Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-1、 搭建 Java 开发环境
-2、 掌握 Java 基本语法
-3、 掌握条件语句
-4、 掌握循环语句
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-css
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/">每日深耕，勤练不缀之泛型篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:52.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-generics
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%B3%9B%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-枚举" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/">每日深耕，勤练不缀之枚举篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E6%9E%9A%E4%B8%BE/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:51.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-# java枚举  enum
-        
-          <a class="article-more-a" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E6%9E%9A%E4%B8%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-String全家桶及前身今世" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/String%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8F%8A%E5%89%8D%E8%BA%AB%E4%BB%8A%E4%B8%96/">每日深耕，勤练不缀之Spring篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/String%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8F%8A%E5%89%8D%E8%BA%AB%E4%BB%8A%E4%B8%96/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:51.277Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<h1 id="本节的内容是String全家桶"><a href="#本节的内容是String全家桶" class="headerlink" title="本节的内容是String全家桶"></a>本节的内容是String全家桶</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<font color=#999AAA >
-
-
-<h1 id="一、1-谈谈你对构造方法的理解？"><a href="#一、1-谈谈你对构造方法的理解？" class="headerlink" title="一、1.谈谈你对构造方法的理解？"></a>一、1.谈谈你对构造方法的理解？</h1><p>如果在一个类中，你没有定义构造方法，那么java将会默认给你加载无参构造函数供另一个类使用。<br>而如果你定义了构造方法，并且在里面加了参数，那么在另一个类中调用你的类时括号中也必须添加相应的实参，这样才能体现java传值的效果。<br>ps:只有在本类中可以调用构造函数，且用的方法时this ,内嵌方法是 init<br>继承类中，采用super才能调用父类的构造方法</p>
-        
-          <a class="article-more-a" href="/2020/11/01/String%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8F%8A%E5%89%8D%E8%BA%AB%E4%BB%8A%E4%B8%96/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/String%E5%85%A8%E5%AE%B6%E6%A1%B6%E5%8F%8A%E5%89%8D%E8%BA%AB%E4%BB%8A%E4%B8%96/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -802,8 +364,8 @@ generics
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
