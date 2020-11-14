@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>每日深耕，勤练不缀之接口和抽象类有什么不同？ | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/page/3/index.html">
+  <meta name="description" content="接口和抽象类有什么不同?接口是对行为的抽象，里面1.静态方法2.抽象方法，达到成为API的目的。接口，不能实例化。不能含有任何非常量成员，任何filed都隐藏着public  static final.java标准类库里，有着很多定义的接口：java.util.List 抽象类是不能实例化的类，用abstract修饰，主要目的在于代码重用，没有太多意义上的行为严格规范，除了不能实例化外，与其他ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之接口和抽象类有什么不同？">
+<meta property="og:url" content="http://example.com/2020/11/14/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="接口和抽象类有什么不同?接口是对行为的抽象，里面1.静态方法2.抽象方法，达到成为API的目的。接口，不能实例化。不能含有任何非常量成员，任何filed都隐藏着public  static final.java标准类库里，有着很多定义的接口：java.util.List 抽象类是不能实例化的类，用abstract修饰，主要目的在于代码重用，没有太多意义上的行为严格规范，除了不能实例化外，与其他ja">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-14T05:35:56.329Z">
+<meta property="article:modified_time" content="2020-11-14T05:35:56.329Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,177 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-接口和抽象类有什么不同？" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之接口和抽象类有什么不同？
+    </h1>
+  
+
+        
+        <a href="/2020/11/14/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
+  	<time datetime="2020-11-14T05:35:56.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>接口和抽象类有什么不同?</strong><br>接口是对行为的抽象，里面1.静态方法2.抽象方法，达到成为API的目的。接口，不能实例化。不能含有任何非常量成员，任何filed都隐藏着public  static final.java标准类库里，有着很多定义的接口：java.util.List</p>
+<p>抽象类是不能实例化的类，用abstract修饰，主要目的在于代码重用，没有太多意义上的<strong>行为严格规范</strong>，除了不能实例化外，与其他java类没有任何差别，可以有多个抽象方法，只是代码共同方法的抽象集合堆砌而已。<br>比如：collection框架中，很多通用部分被抽取为抽象类，java.util.AbstractList</p>
+<p>实现用interface ，继承抽象接口（extends）</p>
+<a id="more"></a>
+<p>java可以实现多个接口<br>某些场景下，我们需要抽象出某些与具体实现，实例化无关的通用逻辑，但是形成抽象方法会陷入单继承的窘境。所以我们这时可以变通一下，形成工具接口类，实现它。java.utuil.collections就是这样</p>
+<p>对于抽象类，我们可以在其中展现非抽象方法，其子类不会报错，只会扩展性能</p>
+<p>有一类没有任何方法的接口，叫做Marker interface,为了声明某些东西，比如我们熟知的 Cloneable、Serializable</p>
+<p>java8又增加了一类接口，那便是functional interface<br><a target="_blank" rel="noopener" href="https://www.oreilly.com/content/java-8-functional-interfaces/">https://www.oreilly.com/content/java-8-functional-interfaces/</a></p>
+<p>java8以后我们给接口添加一系列的default method</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span> <span class="keyword">extends</span> <span class="title">Iterable</span> </span>&#123; <span class="comment">/** * Returns a sequential Stream with this collection as its source * ... **/</span> <span class="function"><span class="keyword">default</span> Stream <span class="title">stream</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> StreamSupport.stream(spliterator(), <span class="keyword">false</span>); &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>封装：<br>我们将一些内部逻辑封装起来，为了安全性和易用性，只释放接口出来，避免外部调用者接触到内部的细节<br>继承:<br>子类父类的关系，一种深耦合<br>多态：<br>重写和重载<br>重写是父子之间，方法名参数一致<br>实现方法不同<br>重载是方法名一致，参数和返回值类型不一致<br><strong>遵循原则</strong><br>S.O.L.I.D<br>single：某个类只能承担一种业务<br>开关原则（Open-Close, Open for extension, close for modification）：对扩展开放，对修改关闭<br>里式替换（Liskov Substitution）：继承关系抽象时，凡是能用父类和基类，都可以用其子类去替换<br>接口分离：进行类和接口设计时，对其实现类造成了两难，只有部分方法对其有意义，可以拆分成功能单一的多个接口，在未来修改接口时，不会对其他不相干的子类造成影响<br>依赖反转：<br>实体应该依赖于<strong>抽象</strong>而不是实现。也就是说高层次模块，不应该依赖于低层次模块，<strong>而是应该基于抽象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VIPCenter</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Map&lt;User.TYPE, ServiceProvider&gt; providers;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">serviceVIP</span><span class="params">(T extend User user） &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      providers.get(user.getType()</span>).<span class="title">service</span><span class="params">(user)</span></span>;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">interface</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span> </span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">SlumDogVIPServiceProvider</span> <span class="keyword">implements</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span></span>&#123;</span><br><span class="line">     <span class="comment">// do somthing</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">RealVIPServiceProvider</span> <span class="keyword">implements</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// do something</span></span><br><span class="line">   &#125;</span><br><span class="line"> &#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:01.416Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/">RUOYI项目初级涉猎篇</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/14/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:01.159Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/14/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日深耕，勤练不缀之java设计模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之java拷贝文件(copy)及buffer的基础使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/java%E4%B8%AD%E7%9A%84%E5%8F%8D%E5%B0%84/">每日深耕，勤练不缀之反射篇</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.379Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/Iterator%E6%8E%A5%E5%8F%A3/">每日深耕，勤练不缀之Iterator篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.347Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/java%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B/">每日深耕，勤练不缀之java9大基础类型</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/jrejdk%20gc/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.300Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/jrejdk%20gc/">每日深耕，勤练不缀之jdk和GC篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:00.262Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">MYSQL MAP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/HashMap/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.128Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/HashMap/">每日深耕，勤练不缀之HashMap篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/hashCode%E5%92%8Cequals/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.807Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/hashCode%E5%92%8Cequals/">每日深耕，勤练不缀之Hashcode和equals篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:58.484Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/CURD%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B/">在springmvc项目中CURD测试集分享</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
