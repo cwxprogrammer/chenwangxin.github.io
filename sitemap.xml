@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2020/11/14/IO%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%8ANIO%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2020-11-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/11/14/NIO%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2020-11-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2020/11/14/java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2020-11-14</lastmod>
@@ -17,13 +31,6 @@
   
   <url>
     <loc>http://example.com/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/</loc>
-    
-    <lastmod>2020-11-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/2020/11/13/java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F?NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/</loc>
     
     <lastmod>2020-11-13</lastmod>
     

@@ -152,6 +152,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IO方式，及NIO简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/14/IO%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%8ANIO%E7%AE%80%E4%BB%8B/">每日深耕，勤练不缀之IO方式，及NIO简介</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/14/IO%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%8ANIO%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2020-11-14T14:01:15.445Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>可以构建高扩展性应用的能力<br>JAVA  IO 有很多种，基于不同的IO抽象模型和交互方式<br>可以进行简单区分<br>1.传统的java.io包（BIO），基于流模型实现，提供了我们最熟知的一些IO性能,如:File抽象，输入输出流等<br>交互方式是同步，堵塞的方式，在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序<br>java.io包的好处是代码比较简单，直观，缺点是IO效率和扩展性存在局限，成为性能瓶颈。<br>java.net下面提供的部分网络API，比如Socket、ServerSocket、HttpURLConnection也归类到同步阻塞IO类库。<br>2.java1.4引入了NIO框架（java.io包），提供了Channel,Selector,Buffer等新的抽象，可以构建多路复用的、同步非阻塞IO程序，，提供了更接近操作系统底层的高性能数据操作方式<br>3.java7中，NIO有了进一步的改进，也就是NIO2，引入了异步非阻塞IO方式，也有很多人叫它AIO(Asynchronous IO)。异步IO操作基于事件和回调机制，可以理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作</p>
+        
+          <a class="article-more-a" href="/2020/11/14/IO%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%8ANIO%E7%AE%80%E4%BB%8B/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/IO%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8F%8ANIO%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NIO要解决的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/14/NIO%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">每日深耕，勤练不缀之NIO要解决的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/14/NIO%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2020-11-14T13:57:28.665Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>NIO解决的问题<br>为什么需要NIO，为什么需要多路复用？<br>场景：我们需要实现一个服务器应用，简单要求能够同时服务多个客户端请求</p>
+        
+          <a class="article-more-a" href="/2020/11/14/NIO%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/NIO%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -326,71 +456,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java提供了哪些IO方式?NIO如何实现多路复用？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/13/java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F?NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/">每日深耕，勤练不缀之java提供了哪些IO方式?NIO如何实现多路复用？</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/13/java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F?NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-13T07:42:32.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>可以构建高扩展性应用的能力<br>JAVA  IO 有很多种，基于不同的IO抽象模型和交互方式<br>可以进行简单区分<br>1.传统的java.io包（BIO），基于流模型实现，提供了我们最熟知的一些IO性能,如:File抽象，输入输出流等<br>交互方式是同步，堵塞的方式，在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序<br>java.io包的好处是代码比较简单，直观，缺点是IO效率和扩展性存在局限，成为性能瓶颈。<br>java.net下面提供的部分网络API，比如Socket、ServerSocket、HttpURLConnection也归类到同步阻塞IO类库。<br>2.java1.4引入了NIO框架（java.io包），提供了Channel,Selector,Buffer等新的抽象，可以构建多路复用的、同步非阻塞IO程序，，提供了更接近操作系统底层的高性能数据操作方式<br>3.java7中，NIO有了进一步的改进，也就是NIO2，引入了异步非阻塞IO方式，也有很多人叫它AIO(Asynchronous IO)。异步IO操作基于事件和回调机制，可以理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作</p>
-        
-          <a class="article-more-a" href="/2020/11/13/java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F?NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/13/java%E6%8F%90%E4%BE%9B%E4%BA%86%E5%93%AA%E4%BA%9BIO%E6%96%B9%E5%BC%8F?NIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/">展开全文 >></a>
         </p>
       
 
@@ -718,71 +783,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SQL中存储过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">每日深耕，勤练不缀之SQL存储过程</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-11-08T09:08:35.663Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>SQL存储过程</strong><br>本次应用数据库<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_heros_data.git">https://github.com/cystanford/sql_heros_data.git</a><br>就是面向过程的编程语句<br> 里面加入了流语句<br> 有 begin end<br> 赋值 封装<br>
-        
-          <a class="article-more-a" href="/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
