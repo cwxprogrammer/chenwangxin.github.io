@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-14T14:01:15.445Z</updated>
+  <updated>2020-11-15T07:53:24.676Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之java线程两次调用start()会出现什么？？</title>
+    <link href="http://example.com/2020/11/15/java%E7%BA%BF%E7%A8%8B%E4%B8%A4%E6%AC%A1%E8%B0%83%E7%94%A8start()%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E7%8A%B6%E5%86%B5%EF%BC%9F/"/>
+    <id>http://example.com/2020/11/15/java%E7%BA%BF%E7%A8%8B%E4%B8%A4%E6%AC%A1%E8%B0%83%E7%94%A8start()%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BB%80%E4%B9%88%E7%8A%B6%E5%86%B5%EF%BC%9F/</id>
+    <published>2020-11-15T07:53:24.676Z</published>
+    <updated>2020-11-15T07:53:24.676Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java的线程是不允许启动两次的，第二次调用必然会抛出illegalThreadStateException<br>这是一种运行时异常，多次调用start被认为是编程错误</p><a id="more"></a><p>在线程生命周期的不同状态，已被明确定义在公布内部类型java.lang.Thread.State,分别是：<br>1.新建（new），表示被创建出来还没真正启动的状态，java内部状态<br>2.就绪、（RUNNABLE）表示该线程已经在JVM中执行，可能正在运行，等待系统CPU给其片段，在就绪队列里面排队<br>3.阻塞（Blocked），与前面的同步非常相关，阻塞表示线程在等待Monitor lock.线程视图通过synchronized去获取某个锁，却发现其他线程已经独占了，那么当前线程就会处于阻塞状态<br>4.等待（waiting）表示等待其他线程采取某些操作。类似于以前打过代码的生产者消费者模式，发现生产者线程还没被生产出来，消费者就会等待，生产者线程准备任务数据，通过类似notify等动作，通知消费线程可以继续工作。<br>Thread.join（）也会令线程进入等待状态<br>5.计时等待（TIMED_WAIT）与等待状态类似，但调用的是存在超时条件的方法，比如wait或者join等方法的指定超时版本</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">wait</span><span class="params">(<span class="keyword">long</span> timeout)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br></pre></td></tr></table></figure><p>6.终止（TERMINATED），不管是意外退出还是正常执行结束，线程已经完成使命，终止运行。</p><p><strong>线程是什么？</strong><br>一个进程可以分为多个线程，作为任务的真正运作着，有自己的栈（Stack）、寄存器（Register）、本地存储（Thread Local）,但是会和其他线程共享文件描述符，虚拟地址空间</p><p>在具体实现中，线程还分为内核线程，用户线程，java线程实现其实与虚拟机相关，现在的模型是一对一映射到操作系统内核线程。<br>源码中，基本操作逻辑是以JNI形式调用的本地代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">start0</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">setPriority0</span><span class="params">(<span class="keyword">int</span> newPriority)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">interrupt0</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure><p>创建线程</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runnable task =()-&gt;&#123;System.out.ptintln(<span class="string">&quot;Hello world&quot;</span>);&#125;;</span><br><span class="line">Thread myThread =<span class="keyword">new</span> Thread(task);</span><br><span class="line">myThread.start();</span><br><span class="line">myThread.join();<span class="comment">//等待结束</span></span><br></pre></td></tr></table></figure><p>实现一个Runnable,将代码逻辑放入Runnable中，然后构建Thread并启动（start）</p><p>Runnable的好处就是，不会受“java不能多继承”的限制，重用代码实现，需要重复执行相应逻辑时效率明显</p><p>另外还能更好地与并发库中的Executor之类框架结合使用：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Future future =Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">.submit(task)</span><br><span class="line">.get();</span><br></pre></td></tr></table></figure><p>守护线程（Daemon Thread）：应用需要一个长期驻留的服务程序，但不希望影响应用退出，如果jvm发现只有守护线程存在时，将结束进程。注：必须在线程启动之前设置.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread daemonThread =<span class="keyword">new</span> Thread();</span><br><span class="line">deamonThread.setDeamon(<span class="keyword">true</span>);</span><br><span class="line">deamonThread.start();</span><br></pre></td></tr></table></figure><p>在多核CPU的系统中，线程等待存在一种可能，就是没有任何线程广播或者信号，线程就会被唤醒，处理不当就会产生并发问题<br>//推荐</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (isCondition())&#123;</span><br><span class="line">waitForAConfition(...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>慎用ThreadLocal,保存线程私有信息的机制，可以方便的在一个线程关联的不同业务之间传递信息，比如事务ID，Cookie等上下文信息，数据存储于ThreadLocalMap，其内部条目是弱引用<br>代码为：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalMap</span></span>&#123;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt;</span>&#123;</span><br><span class="line">   Object value;</span><br><span class="line">   Entry(ThreadLocal&lt;?&gt; k,Object v)&#123;</span><br><span class="line">    <span class="keyword">super</span>(k);</span><br><span class="line">    value =v;</span><br><span class="line">   &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当key为null时，该条目变为了废弃条目，value回收需要<br>“set 、remove、rehash”</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(ThreadLocal&lt;?&gt; key, Object value)</span> </span>&#123;</span><br><span class="line">  Entry[] tab = table;</span><br><span class="line">  <span class="keyword">int</span> len = tab.length;</span><br><span class="line">  <span class="keyword">int</span> i = key.threadLocalHashCode &amp; (len-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (Entry e = tab[i];; …) &#123;</span><br><span class="line">      <span class="comment">//…</span></span><br><span class="line">      <span class="keyword">if</span> (k == <span class="keyword">null</span>) &#123;</span><br><span class="line"><span class="comment">// 替换废弃条目</span></span><br><span class="line">          replaceStaleEntry(key, value, i);</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">  tab[i] = <span class="keyword">new</span> Entry(key, value);</span><br><span class="line">  <span class="keyword">int</span> sz = ++size;</span><br><span class="line"><span class="comment">//  扫描并清理发现的废弃条目，并检查容量是否超限</span></span><br><span class="line">  <span class="keyword">if</span> (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold)</span><br><span class="line">      rehash();<span class="comment">// 清理废弃条目，如果仍然超限，则扩容（加倍）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>ThreadLocal虽然是弱引用，但是垃圾处理机制对其例外，所以其回收应该依赖于显式的触发，否则就要等待线程结束，所以一定要提防OOM，<strong>自己创建的应用自己负责remove</strong></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Java的线程是不允许启动两次的，第二次调用必然会抛出illegalThreadStateException&lt;br&gt;这是一种运行时异常，多次调用start被认为是编程错误&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之IO方式，及NIO简介</title>
@@ -352,33 +369,6 @@
     
     
     <summary type="html">&lt;p&gt;本文应用sql数据均从github上下载&lt;br&gt;需要的小伙伴自取&lt;a href=&quot;https://github.com/cystanford/sql_nba_data.git&quot;&gt;https://github.com/cystanford/sql_nba_data.git&lt;/a&gt;&lt;br&gt;查询结果集&lt;br&gt;&lt;strong&gt;关联子查询:&lt;/strong&gt; 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之动态代理篇</title>
-    <link href="http://example.com/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/"/>
-    <id>http://example.com/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/</id>
-    <published>2020-11-01T08:31:21.555Z</published>
-    <updated>2020-11-01T08:54:58.791Z</updated>
-    
-    <content type="html"><![CDATA[<font color=#999AAA ><p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA ><p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p></font>编程语言分类角度：1.动态类型和静态类型2.强类型和弱类型<a id="more"></a>在这里我们复习一下JAVA的反射机制反射机制是赋予程序运行时自省（introspect）的能力能通过反射直接操作类和对象1.获取某个对象的类定义2.获取类声明的属性和方法，调用方法和构造方法运行时修改类定义<p>动态代理是一种方便运行时动态构建代理，动态处理代理方法调用的机制，很多场景都是利用类似机制机制做到的<br>用来包装RPC调用，面向切面的编程。</p><p>实现动态代理的方式：<br>1.JDK自身提供的动态代理，反射机制<br>2.更高性能的字节码操作机制，ASM,cglib,javassist</p><p>反射赋予了java语言活力，通过运行时操作元数据或对象，java可以灵活地操作运行时才能确定的信息。</p><p><strong>1.考察你对反射机制的了解及掌握程度？</strong><br>Class 、Field、Method、Constructor 就是操作类和对象的元数据对应，官方API文档：<a href="https://docs.oracle.com/javase/tutorial/reflect/index.html">https://docs.oracle.com/javase/tutorial/reflect/index.html</a><br>对于反射，AccessibleObject.setAccessible(boolean flag)<br>其子类也大多重写了这个方法，这个accessible可以修饰成员访问限制，这意味着程序运行时我们照样可以修改成员访问限制。<br>java9以后，加入一个open机制，只有当被反射操作的模块和指定的包对反射调用者Open，才能用setAccessible<br>比如：开发 、测试、依赖注入<br>O/R Mapping框架中，为java实体自动生成getter setter 方法<br>框架可以利用反射做这个事情，而不需要开发者手动写重复代码。<br>使用反射绕开限制，我们日常开发调用内部API去做事情，<br>例如： 自定义的高性能NIO框架显式地释放DirectBuffer<br><strong>2.动态代理解决了什么问题，你在业务系统中的应用场景是什么？</strong><br>代理是对调用目标的一个包装，这样我们对目标代码的调用不是直接发生的，而是通过代理完成<br>通过代理可以让调用者和实现者之间解耦，如：RPC调用，框架内部的寻址，序列化，反序列化</p><p><strong>3.JDK动态代理在设计和实现上与cglib等方式有什么不同？如何取舍？</strong><br>ciglib采用的时<strong>创建目标类的子类</strong>的方式，近似使用被调用者本身的效果，在Spring编程中，框架通常会处理这种情况</p><p><strong>JDK Proxy的优势</strong><br>最小化依赖关系<br>平滑进行JDK版本升级，而字节码类库通常还需进行更新<br>代码</p>]]></content>
-    
-    
-    <summary type="html">&lt;font color=#999AAA &gt;
-
-&lt;p&gt;有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。&lt;br&gt;&lt;/font&gt;&lt;/p&gt;
-&lt;hr style=&quot; border:solid; width:100px; height:1px;&quot; color=#000000 size=1&quot;&gt;
-
-&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;font color=#999AAA &gt;
-
-&lt;p&gt;每个java小白都会遇到的阵痛，我写下来。&lt;br&gt;一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。&lt;/p&gt;
-&lt;/font&gt;
-编程语言分类角度：1.动态类型和静态类型
-2.强类型和弱类型</summary>
     
     
     
