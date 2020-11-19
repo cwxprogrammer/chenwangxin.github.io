@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-17T07:47:02.075Z</updated>
+  <updated>2020-11-18T03:28:11.845Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之java Docker</title>
+    <link href="http://example.com/2020/11/18/Java%20Docker/"/>
+    <id>http://example.com/2020/11/18/Java%20Docker/</id>
+    <published>2020-11-18T03:28:11.845Z</published>
+    <updated>2020-11-18T03:28:11.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于java来说，Docker毕竟是一个比较新的环境。例如，其内存、cpu等资源限制是通过CGroup实现的，早期的jdk版本并不能识别这些限制，进而会导致一些问题：</p><a id="more"></a><ul><li>如果未配置合适的JVM堆和元数据区，直接内存等参数；java有可能试图使用超过容器限制的内存，最终被容器OOM kill ，或者自身发生OOM</li><li>错误的判断了可获取的CPU资源。如：Docker限制了CPU的核数，JVM就可能设置不合适的GC并行线程</li></ul><p>与虚拟机及其相似，但是也有不同，并不是虚拟化技术，而是一种轻量级的隔离技术。轻量级的开销必然也就在成了许多微妙差异。<br><strong>这就是所谓的Ergonomics机制，例如</strong>：<br>JVM 会大概根据检测到的内存大小，设置最初启动时的堆大小为系统内存的 1/64；并将堆最大值，设置为系统内存的 1/4。<br>而 JVM 检测到系统的 CPU 核数，则直接影响到了 Parallel GC 的并行线程数目和 JIT complier 线程数目，甚至是我们应用中 ForkJoinPool 等机制的并行等级。<br>这些默认参数，是根据通用场景选择的初始值。但是由于容器环境的差异，Java 的判断很可能是基于错误信息而做出的。这就类似，我以为我住的是整栋别墅，实际上却只有一个房间是给我住的。<br><img src="https://img-blog.csdnimg.cn/20201118112227927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>解决办法：升级到JDK8最新的更新</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;对于java来说，Docker毕竟是一个比较新的环境。例如，其内存、cpu等资源限制是通过CGroup实现的，早期的jdk版本并不能识别这些限制，进而会导致一些问题：&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之java并发包中的队列比较</title>
@@ -347,24 +364,6 @@
     
     <summary type="html">&lt;p&gt;本文应用sql数据均从github上下载&lt;br&gt;需要的小伙伴自取&lt;a href=&quot;https://github.com/cystanford/sql_nba_data.git&quot;&gt;https://github.com/cystanford/sql_nba_data.git&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;虚拟表，本身是不具备数据的&lt;br&gt;只是为了体现安全性，封装性，以及权限性&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之sql99连接查询</title>
-    <link href="http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/"/>
-    <id>http://example.com/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/</id>
-    <published>2020-11-04T12:37:47.709Z</published>
-    <updated>2020-11-04T12:40:48.423Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p><p><strong>交叉连接</strong>（92中的笛卡尔积）<br>在这里我们使用的是CROSS JOIN<br>代码如下</p><a id="more"></a><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure><p>三张表的交叉连接</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> player <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> team_score</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201104190150569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p><strong>自然连接</strong>（相当于92的等值连接）<br>在92中我们得自己判定两张表相同的属性是什么，而在99中利用 NATURAL JOIN 替代了 WHERE player.team_id=team.team_id<br>会帮你自动查询两张表中所有相同的字段，然后进行等值连接</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id, team_id ,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player </span><br><span class="line"><span class="keyword">NATURAL</span> <span class="keyword">JOIN</span> team</span><br></pre></td></tr></table></figure><p><strong>ON连接</strong>（用来指定我们想要的连接条件）<br>进行等值连接</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,player.team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team</span><br><span class="line"><span class="keyword">ON</span> player.team_id =team.team_id</span><br></pre></td></tr></table></figure><p>进行非等值连接<br>想要查询球员的身高等级</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> a.player_id,a.player_name,a.height,b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">AS</span> a <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> a.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br></pre></td></tr></table></figure><p><strong>using连接</strong><br>因为自然连接会自动查询相同字段进行连接，我们我们想指定相同字段连接时就得用using</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> player_id,team_id,player_name,height,team_name</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">JOIN</span> team <span class="keyword">USING</span>(team_id)</span><br></pre></td></tr></table></figure><p><strong>外连接</strong></p><p>左外链接<br>右外连接<br>全外连接在mysql中不支持</p><p>内连接：等值连接（自然连接，using连接，ON连接），非等值连接（ON连接）<br>外连接：会返回一个表中的所有记录，以及另一个表中匹配的行，左外连接，右外连接</p><p><strong>SQL99与SQL92的区别</strong><br>SQL92会在from后面放所有表<br>SQL99会放在join后面，每次连接一张表，可以多次使用join连接</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ...</span><br><span class="line"><span class="keyword">FROM</span> table1</span><br><span class="line">    <span class="keyword">JOIN</span> table2 <span class="keyword">ON</span> table1和table2的连接条件</span><br><span class="line">        <span class="keyword">JOIN</span> table3 <span class="keyword">ON</span> table2和table3的连接条件</span><br></pre></td></tr></table></figure><p>查询不同身高级别（对应height_grades）对应的球员数量（对应player表）</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(player.player_id),b.height_level</span><br><span class="line"><span class="keyword">FROM</span> player <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> height_grades <span class="keyword">AS</span> b</span><br><span class="line"><span class="keyword">ON</span> player.height <span class="keyword">BETWEEN</span> b.height_lowest <span class="keyword">AND</span> b.height_highest</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> b.height_level</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201104203514926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;本文应用sql数据均从github上下载&lt;br&gt;需要的小伙伴自取&lt;a href=&quot;https://github.com/cystanford/sql_nba_data.git&quot;&gt;https://github.com/cystanford/sql_nba_data.git&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;交叉连接&lt;/strong&gt;（92中的笛卡尔积）&lt;br&gt;在这里我们使用的是CROSS JOIN&lt;br&gt;代码如下&lt;/p&gt;</summary>
     
     
     
