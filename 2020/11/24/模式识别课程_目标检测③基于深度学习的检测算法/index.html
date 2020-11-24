@@ -6,19 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hello World | Hexo</title>
+  <title>目标检测③基于深度学习的检测算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="目标检测实验报告检测所用软硬件+云服务器：硬件：macOS或者windows电脑软件：pycharm+生成的测试集云服务器：滴滴云(https:&#x2F;&#x2F;www.didiyun.com)输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型 在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2020/11/01/hello-world/index.html">
+<meta property="og:title" content="目标检测③基于深度学习的检测算法">
+<meta property="og:url" content="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="目标检测实验报告检测所用软硬件+云服务器：硬件：macOS或者windows电脑软件：pycharm+生成的测试集云服务器：滴滴云(https:&#x2F;&#x2F;www.didiyun.com)输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型 在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-01T07:28:59.214Z">
-<meta property="article:modified_time" content="2020-11-01T07:28:59.215Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124121158625.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124121259121.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124121342496.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124121743750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124123639607.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124123710547.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124124149243.gif#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124125105797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-24T05:48:46.164Z">
+<meta property="article:modified_time" content="2020-11-24T05:58:51.582Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,38 +164,57 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模式识别课程_目标检测③基于深度学习的检测算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      目标检测③基于深度学习的检测算法
     </h1>
   
 
         
-        <a href="/2020/11/01/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:59.214Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+        <a href="/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-11-24T05:48:46.164Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>css<a id="more"></a><br>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a target="_blank" rel="noopener" href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型<br><img src="https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度学习下的暴力美学。在深度学习下，目标检测的效果比传统手工特征效果好太多。直至今日，基于深度学习的检测算法依然是目标检测的主流。<br> <a id="more"></a><br>物体检测的两个步骤可以概括为：<br>步骤一：检测目标位置（生成矩形框）<br>步骤二：对目标物体进行分类<br>物体检测主流的算法框架大致分为one-stage与two-stage。two-stage算法代表有R-CNN系列，one-stage算法代表有Yolo系列。可以说，two-stage算法将步骤一与步骤二分开执行，输入图像先经过候选框生成网络（例如faster rcnn中的RPN网络），再经过分类网络；one-stage算法将步骤一与步骤二同时执行，输入图像只经过一个网络，生成的结果中同时包含位置与类别信息。two-stage与one-stage相比，精度高，但是计算量更大，所以运算较慢。</p>
+<p>我们这里介绍的两种深度学习算法，都是one-stage算法。<br>基于回归方法的深度学习目标检测算法，他们一步到位，其基本步骤是: 给定一张图像, 通过设定合理的输出向量，使用回归的方式输出这个目标的边框和类别，一步到位。这种算法的优点是速度快，但是对于密集的小样本来说检测比较困难。比如 YOLO、SSD 等。</p>
+<p>2.3.1 YOLO</p>
+<p>2.3.1.1YOLO介绍<br>YOLO系列论文提出了一个新的物体检测的方法：You Only Look Once（YOLO）</p>
+<p>YOLO 的核心思想就是把目标检测转变成一个回归问题，利用整张图作为网络的输入，仅仅经过一个神经网络，得到bounding box（边界框） 的位置及其所属的类别。</p>
+<p>2.3.1.2 YOLOv1<br>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1506.02640.pdf">https://arxiv.org/pdf/1506.02640.pdf</a><br>YOLOv1是最早版本的YOLO，以下从概念上简单介绍v1的原理<br>1）网络结构<br><img src="https://img-blog.csdnimg.cn/20201124121158625.gif#pic_center" alt="在这里插入图片描述"></p>
+<p>输入：448<em>448</em>3的彩色图片<br>中间层：若干卷积层和最大池化层<br>全连接层：2个全连接层，用来预测位置和类别概率值</p>
+<p>2）实现细节<br>分类器的输出是一个one-hot vector，而检测器的输出是一个框(Bounding Box)。框，该怎么表示？<br><img src="https://img-blog.csdnimg.cn/20201124121259121.gif#pic_center" alt="在这里插入图片描述"></p>
+<p>bounding box<br>总的来说，S×S 个网格，每个网格要预测 B个bounding box ，还要预测 C 个类。网络输出就是一个 S × S × (5×B+C) 的张量。<br><img src="https://img-blog.csdnimg.cn/20201124121342496.gif#pic_center" alt="在这里插入图片描述"></p>
+<p>在实际过程中，YOLOv1把一张图片划分为了7×7个网格，并且每个网格预测2个Box（Box1和Box2），20个类别。所以实际上，S=7，B=2，C=20。那么网络输出的shape也就是：7×7×30。</p>
+<p>3）损失函数和优化器<br>神经网络结构确定之后，训练效果好坏，由Loss函数和优化器决定。Yolo v1使用普通的梯度下降法作为优化器。这里重点解读一下Yolo v1使用的Loss函数：<br><img src="https://img-blog.csdnimg.cn/20201124121743750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>损失是三部分：坐标预测损失、置信度预测损失、类别预测损失的加和</p>
+<p>思考：对于x和y用差平方，而对于宽和高为什么进行开根处理？<br>——假设宽和高使用与x，y相同处理方式（直接差平方），当预测值与真实值图像偏移相同大小时，我们依此法计算出的误差是固定的，然而这与实际不符。实际对于图像框尺度大小不同的区域，相同偏移量下，小尺度图像效果是很差的，而较大尺度图像则效果不错。因此，此损失函数的设计细节是作者为使实验结果更加准确而设计的。<br>置信度预测损失：是正负样本求平方加和<br>类别预测损失：预测值减去真实值求平方</p>
+<p>4）优缺点</p>
+<p>优点：更快更准迁移能力强<br>缺点：对相互靠近的物体，以及很小的群体检测效果不好；对不常见的角度的目标泛化性能偏弱</p>
+<p>升级版 YOLOv2<br>YOLOv2论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1612.08242">https://arxiv.org/abs/1612.08242</a></p>
+<p>为提高物体定位精准性和召回率，YOLO作者提出了 “YOLO9000: Better, Faster, Stronger” (Joseph Redmon, Ali Farhadi, CVPR 2017, Best Paper Honorable Mention)，相比YOLOv1 提高了训练图像的分辨率；引入了faster rcnn中anchor box的思想，对网络结构的设计进行了改进，输出层使用卷积层替代YOLO的全连接层，联合使用coco物体检测标注数据和imagenet物体分类标注数据训练物体检测模型。相比YOLO，YOLO9000在识别种类、精度、速度、和定位准确性等方面都有大大提升。</p>
+<p>2.3.2 SSD<br>YOlO和SSD算法作为“一步到位”算法的代表，他们的主要区别就是yolo只利用了末端特征图的信息，而SSD利用了最后几层特征图的信息，所以，从理论上说，SSD算法较yolo（起码是yolov1）来说，精确度必然更高。</p>
+<p>卷积神经网络各层特征信息主要有如下区别：<br>1、低层卷积可以捕捉到更多的细节信息，高层卷积可以捕捉到更多的抽象信息。<br>2、低层特性更关心“在哪里”，但分类准确度不高，而高层特性更关心“是什么”，但丢失了物体的位置信息。<br>——《Visualizing and Understanding Convolutional Networks》.（可视化理解卷积神经网络）2014</p>
+<p>SSD正是利用不同尺度检测图片中不同大小和类别的目标物体，获得了很好的效果。<br><img src="https://img-blog.csdnimg.cn/20201124123639607.gif#pic_center" alt="在这里插入图片描述"></p>
+<p>VGG-16网络</p>
+<p>对于每个特征图来说，SSD引入初始框的概念。对于不同的特征图，SSD总的尺度设计原则就是：随着网络层数加深（特征图的变小），初始框的尺度线性增加。最小的初始框尺度为0.2，最大的初始框尺度为0.9。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201124123710547.gif#pic_center" alt="在这里插入图片描述"></p>
+<p>3.实例解析<br>3.1YOLO实例说明<br>以下对YOLOv3进行介绍，代码部分来自<br>tf2.0yolov3——malin9402,yunyang1994<br><a target="_blank" rel="noopener" href="https://github.com/malin9402/tf20/tree/master/4-Object_Detection/YOLOV3">https://github.com/malin9402/tf20/tree/master/4-Object_Detection/YOLOV3</a></p>
+<p>pytorch :<br><a target="_blank" rel="noopener" href="https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch">https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch</a></p>
+<p>3.1.1网络结构<br>随着CNN的发展和大量研究人员的努力，产生了数篇影响深远的论文，解决了在实际应用的诸多问题。yolov3借鉴了许多论文和思路，完善了yolo网络架构。<br>本节从原理和代码上介绍yolov3的网络架构，并深入探讨其网络架构上的进步和优点。</p>
+<p>yolov3用darknet53作为基础网络架构</p>
+<p><img src="https://img-blog.csdnimg.cn/20201124124149243.gif#pic_center" alt="Darknet53"></p>
+<p>命名来源于它有53层卷积层=  2 + 1<em>2+1 +2</em>2+1 +8<em>2+1 +8</em>2+1 +4*2+1</p>
+<p>未完待续——下一篇我会说一下YOLOV3相对于之前的网络架构的提升，相比之下，算力要求也会随之提升，所以我们需要借助滴滴云DAI平台来跑我们的代码项目<br><img src="https://img-blog.csdnimg.cn/20201124125105797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="输入我的AI大师码：8996，享受⑨折优惠，让自己的算法检测像扫码一样简单"></p>
 
       
 
@@ -275,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/01/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,18 +318,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/01/mySQL%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MYSQL MAP
+          目标检测③基于深度学习的检测算法（续）
         
       </div>
     </a>
   
   
-    <a href="/2020/11/01/HashMap/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">每日深耕，勤练不缀之HashMap篇</div>
+    <a href="/2020/11/18/Java%20Docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之java Docker</div>
       <i class="icon-circle-right"></i>
     </a>
   

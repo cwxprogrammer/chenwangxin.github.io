@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>关于HEXO博客的开通 | Hexo</title>
+  <title>目标检测①创建数据集 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、 搭建 Java 开发环境 2、 掌握 Java 基本语法 3、 掌握条件语句 4、 掌握循环语句">
+  <meta name="description" content="目标检测实验报告检测所用软硬件+云服务器：硬件：macOS或者windows电脑软件：pycharm+生成的测试集云服务器：滴滴云(https:&#x2F;&#x2F;www.didiyun.com)输入博主的大师码：8996 ，可以和博主一样9折享受服务一、研究问题目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于HEXO博客的开通">
-<meta property="og:url" content="http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/index.html">
+<meta property="og:title" content="目标检测①创建数据集">
+<meta property="og:url" content="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A0%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、 搭建 Java 开发环境 2、 掌握 Java 基本语法 3、 掌握条件语句 4、 掌握循环语句">
+<meta property="og:description" content="目标检测实验报告检测所用软硬件+云服务器：硬件：macOS或者windows电脑软件：pycharm+生成的测试集云服务器：滴滴云(https:&#x2F;&#x2F;www.didiyun.com)输入博主的大师码：8996 ，可以和博主一样9折享受服务一、研究问题目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-01T07:28:52.851Z">
-<meta property="article:modified_time" content="2020-11-01T07:28:52.851Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020112316015579.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201123191037131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201123190056211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-24T05:49:37.858Z">
+<meta property="article:modified_time" content="2020-11-24T05:57:49.491Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020112316015579.png#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,54 +158,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-我的第一篇文章 " class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-模式识别课程：目标检测①创建数据集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于HEXO博客的开通
+      目标检测①创建数据集
     </h1>
   
 
         
-        <a href="/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:28:52.851Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
+        <a href="/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A0%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/" class="archive-article-date">
+  	<time datetime="2020-11-24T05:49:37.858Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font color=#999AAA >
-1、 搭建 Java 开发环境
-2、 掌握 Java 基本语法
-3、 掌握条件语句
-4、 掌握循环语句
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-css<a id="more"></a>
-# 学习时间：
-
-<font color=#999AAA >
-1、 周一至周五晚上 7 点—晚上9点
-2、 周六上午 9 点-上午 11 点
-3、 周日下午 3 点-下午 6 点
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="学习产出："><a href="#学习产出：" class="headerlink" title="学习产出："></a>学习产出：</h1><font color=#999AAA >
-1、 技术笔记 2 遍
-2、CSDN 技术博客 3 篇
-3、 学习的 vlog 视频 1 个
-你们好呀，我是一个见习程序员
-接下来我会解释一下Spring Ioc   Spring MVC 的类比解释
-Spring IOC 控制反转，在潜意识里，我们总是会以为我们创建了对象并在整个项目里和其数据链接，但是现在我们实现了控制反转，就相当于你想要什么对象，不用你自己创建，都可以通过spring创建出来。
-spring MVC   M代表数据层
- V代表VIEW ,视觉层。
- 而C呢，就是controller层，简要来说就是将M层的数据动态的显示到视觉层，中间涉及处理，并发，以及一系列协议，锁的问题。都是在处理决策，创建智能化，模块化。
-
-
-<hr>
+        <p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a target="_blank" rel="noopener" href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，可以和博主一样9折享受服务<br>一、研究问题<br>目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景中，需要对多个目标进行实时处理时，目标自动提取和识别就显得特别重要。</p>
+<a id="more"></a>
+<p>目标检测的任务是找出图像中所有感兴趣的目标，确定它们的位置和类别。<br>图像识别有四大类任务：<br>分类（Classification）： 解决”what”。<br>定位（Location）：解决”where“。<br>检测（Detection）：解决”what &amp; where“。<br>分割（Segmentation）：分为 实例分割（Instance-level）和 语义分割（semantic segmentation）。解决“每一个像素属于哪个实例或哪一类”。</p>
+<p><img src="https://img-blog.csdnimg.cn/2020112316015579.png#pic_center" alt="在这里插入图片描述"></p>
+<p>1.2 问题特性<br>由于各类物体有不同的外观、形状、姿态，加上成像时光照，遮挡等因素的干扰，目标检测一直是计算机视觉领域最具有挑战的问题。<br>除了图像分类以外，目标检测要解决的核心问题是：<br>1、目标可能出现在图像的任何位置。<br>2、目标有各种不同的大小。<br>3、目标有各种不同的形状。<br>则如果用矩形框来定义目标，则矩形框需要有不同的宽高比。由于目标的宽高比不同，因此采用传统的滑动窗口+图像缩放的方案解决通用目标检测问题的成本太高。</p>
+<p>二、算法分析<br>2.1 目标检测数据集<br>Pascal Voc和COCO是目标检测任务最常用的数据集</p>
+<p>2.1.1 PASCAL VOC<br>Pascal 的全程是 Pattern Analysis, Statical Modeling and Computational Learning。<br>PASCAL VOC 挑战赛是视觉对象的分类识别和检测的一个基准测试，提供了检测算法和学习性能的标准图像注释数据集和标准的评估系统。<br><a target="_blank" rel="noopener" href="https://pjreddie.com/media/files/VOC2012_doc.pdf">https://pjreddie.com/media/files/VOC2012_doc.pdf</a><br>2.1.1.1Pascal Voc数据集格式分析<br>1）文件结构<br><img src="https://img-blog.csdnimg.cn/20201123191037131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>数据集下载后解压得到一个名为VOCdevkit的文件夹，该文件夹结构如下：<br>Annotations //xml文件，该文件是对图片的解释，每张图片都对应一个同名的xml文件。<br>ImageSets //txt文件，txt文件中每行都包含图片的名称，末尾会加上±1表示正负样本<br>针对目标检测主要看Main<br>——Action<br>——Layout<br>——Main<br>——Segmentation<br>JPEGImages //数据集的原图片<br>SegmentationClass //图片，语义分割相关<br>SegmentationObject //图片，实例分割相关</p>
+<p> 2.1.1.2 创建自己的pascal voc数据集<br> 下载图像标记软件<br>  git clone  <a target="_blank" rel="noopener" href="https://github.com/tzutalin/labelimg">https://github.com/tzutalin/labelimg</a><br>  步骤：<br>  anaconda+pip install labelImg<br>  注：在这里我要说一句：python是Python，anaconda是anaconda,你选择环境时候可以二选一，个人建议anaconda,确实省力。<br>如下截图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20201123190056211.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>修改标注类别信息—&gt;设置图像文件所在目录以及标注文件保存目录-&gt;标注图像并保存-&gt;打开labelImg<br>利用create/nRectBox截取并生成xml<br>具体代码：<br>1）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BatchRename</span>():</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    批量重命名文件夹中的图片文件</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 我的图片文件夹路径</span></span><br><span class="line">        self.path = <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rename</span>(<span class="params">self</span>):</span></span><br><span class="line">        filelist = os.listdir(self.path)</span><br><span class="line">        total_num = <span class="built_in">len</span>(filelist)</span><br><span class="line">        i = <span class="number">1</span>       <span class="comment"># 设置第一个文件名</span></span><br><span class="line">        n = <span class="number">6</span>       <span class="comment"># 设置文件名长度，如000001，长度为6</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> filelist:</span><br><span class="line">            <span class="comment"># 这里修改的是jpg文件，如果要修改其他类型的文件，请手动将下面两个&#x27;.jpg&#x27;修改为对应的文件后缀</span></span><br><span class="line">            <span class="keyword">if</span> item.endswith(<span class="string">&#x27;.jpg&#x27;</span>):</span><br><span class="line">                n = <span class="number">6</span> - <span class="built_in">len</span>(<span class="built_in">str</span>(i))</span><br><span class="line">                src = os.path.join(os.path.abspath(self.path), item)</span><br><span class="line">                dst = os.path.join(os.path.abspath(self.path), <span class="built_in">str</span>(<span class="number">0</span>) * n + <span class="built_in">str</span>(i) + <span class="string">&#x27;.jpg&#x27;</span>)</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    os.rename(src, dst)</span><br><span class="line">                    print(<span class="string">&#x27;converting %s to %s ...&#x27;</span> % (src, dst))</span><br><span class="line">                    i = i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">        print(<span class="string">&#x27;total %d to rename &amp; converted %d jpgs&#x27;</span> % (total_num, i))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    demo = BatchRename()</span><br><span class="line">    demo.rename()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>若之后想加图片，只需要把i改了<br>2）<br>labelImg打标签，把图片保存到Annotations文件夹<br>3)<br>生成Main文件夹下面的txt文件<br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">trainval_percent = <span class="number">0.7</span>      <span class="comment"># 训练集和验证集 占 数据集 的比例</span></span><br><span class="line">train_percent = <span class="number">0.6</span>         <span class="comment"># 训练集 占 训练集和验证集 的比例</span></span><br><span class="line"><span class="comment"># 把xml路径修改为自己的Annotations文件夹路径</span></span><br><span class="line">xmlfilepath = <span class="string">&#x27;E:/xxx/VOC/Annotations&#x27;</span></span><br><span class="line"><span class="comment"># 把保存路径修改为自己的Main文件夹路径</span></span><br><span class="line">savepath = <span class="string">&#x27;E:/xxx/VOC/ImageSets/Main&#x27;</span></span><br><span class="line">total_xml = os.listdir(xmlfilepath)</span><br><span class="line"></span><br><span class="line">num = <span class="built_in">len</span>(total_xml)</span><br><span class="line"><span class="built_in">list</span> = <span class="built_in">range</span>(num)</span><br><span class="line">tv = <span class="built_in">int</span>(num * trainval_percent)</span><br><span class="line">tr = <span class="built_in">int</span>(tv * train_percent)</span><br><span class="line">trainval = random.sample(<span class="built_in">list</span>, tv)</span><br><span class="line">train = random.sample(trainval, tr)</span><br><span class="line"></span><br><span class="line">ftrainval = <span class="built_in">open</span>(savepath + <span class="string">&#x27;/trainval.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">ftest = <span class="built_in">open</span>(savepath + <span class="string">&#x27;/test.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">ftrain = <span class="built_in">open</span>(savepath + <span class="string">&#x27;/train.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">fval = <span class="built_in">open</span>(savepath + <span class="string">&#x27;/val.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">list</span>:</span><br><span class="line">    name = total_xml[i][:<span class="number">-4</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> trainval:</span><br><span class="line">        ftrainval.write(name)</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> train:</span><br><span class="line">            ftrain.write(name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            fval.write(name)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ftest.write(name)</span><br><span class="line"></span><br><span class="line">ftrainval.close()</span><br><span class="line">ftrain.close()</span><br><span class="line">fval.close()</span><br><span class="line">ftest.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>至此，我们理解了Pascal voc的格式，并且可以创造属于自己的数据集进行对图片进行目标检测任务的实现。</p>
+<p>2.1.2 COCO<br>这里简单说一下coco<br>MS COCO的全称是Microsoft Common Objects in Context，起源于微软于2014年出资标注的Microsoft COCO数据集，与ImageNet竞赛一样，被视为是计算机视觉领域最受关注和最权威的比赛之一。<br>COCO数据集是一个大型的、丰富的物体检测，分割和字幕数据集。这个数据集以scene understanding为目标，主要从复杂的日常场景中截取，图像中的目标通过精确的segmentation进行位置的标定。图像包括91类目标，328,000影像和2,500,000个label。目前为止有语义分割的最大数据集，提供的类别有80 类，有超过33 万张图片，其中20 万张有标注，整个数据集中个体的数目超过150 万个。</p>
+<p>总的来说,无论数据集以什么格式存储在txt，xml甚至是工作表中。我们需要在算法的实现代码中实现能定位并使用这些各类数据的表达式。</p>
 
       
 
@@ -291,7 +284,7 @@ spring MVC   M代表数据层
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%20/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A0%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +298,18 @@ spring MVC   M代表数据层
   
 <nav id="article-nav">
   
-    <a href="/2020/11/01/%E5%BC%82%E5%B8%B8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A1%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          每日深耕，勤练不缀之异常（续）篇
+          目标检测②传统检测算法
         
       </div>
     </a>
   
   
-    <a href="/2020/11/01/%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">每日深耕，勤练不缀之泛型篇</div>
+    <a href="/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">目标检测③基于深度学习的检测算法（续）</div>
       <i class="icon-circle-right"></i>
     </a>
   
