@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-24T05:58:14.207Z</updated>
+  <updated>2020-11-24T05:57:49.491Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,24 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>目标检测②传统检测算法</title>
-    <link href="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A1%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/"/>
-    <id>http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A1%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</id>
-    <published>2020-11-24T05:49:55.278Z</published>
-    <updated>2020-11-24T05:58:14.207Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，可以和博主一样9折享受服务</p><p><strong>什么是传统目标检测？</strong><br>首先我们先来了解一下什么是目标检测？简单来说就是把存在的目标从图片中找到并识别出来。我们发现这对于我们人来说十分简单，但对于计算机而言，它是怎么做到的呢？<br>传统目标检测方法分为三部分：区域选择 → 特征提取 → 分类器</p><a id="more"></a><p>即首先在给定的图像上选择一些候选的区域，然后对这些区域提取特征，最后使用训练的分类器进行分类。下面我们对这三个阶段分别进行介绍</p><p>2.2.1区域选取<br>这一步是为了对目标的位置进行定位。由于目标可能出现在图像的任何位置，而且目标的大小、长宽比例也不确定，所以最初采用滑动窗口的策略对整幅图像进行遍历，而且需要设置不同的尺度，不同的长宽比。这种穷举的策略虽然包含了目标所有可能出现的位置，但是缺点也是显而易见的：时间复杂度太高，产生冗余窗口太多，这也严重影响后续特征提取和分类的速度和性能。（实际上由于受到时间复杂度的问题，滑动窗口的长宽比一般都是固定的设置几个，所以对于长宽比浮动较大的多类别目标检测，即便是滑动窗口遍历也不能得到很好的区域）</p><p>2.2.2特征的设计<br>传统检测方法的特征提取算法主要有两种:HOG特征和lbp算法<br>HOG：方向梯度直方图（Histogram of Oriented Gradient, HOG）。使用梯度直方图来描述的形状特征。主要在行人检测方面。从名字可知，主要将图像中的pixel的方向变化作为特征。因为梯度变化主要是发生在物体边缘，这样就可以知道物体的大致形状。可以进行物体分类或者检测。经典的特征提取一般需要一些超参，比如窗口大小等。<br>提取方法：讲一个image灰度化—&gt;颜色空间的标准化—&gt;计算图像每个像素的梯度        —&gt;将图像划分成小cells—&gt;统计每个cell的梯度直方图    —&gt; 将每几个cell组成一个block—&gt;将图像image内的所有block的HOG特征descriptor串联起来。                                                                                       Lbp算法：LBP（Local Binary Pattern，局部二值模式），反映了局部的纹理特征，跟一个像素的邻域有关。对每个像素的邻域做减法，大于用1表示，否则用0表示则产生了一个二进制数来表示这个像素的局部纹理。这个邻域其实也相当于一个window，window的形状也是可以改变的。</p><p>2.2.3分类器的设计<br>一、利用AdaBoost算法进行训练<br>并不是所有特征都是有用的，AdaBoost特征分类器具有特征选择的能力。<br>AdaBoost 将一系列的弱分类器通过线性组合，构成一个强分类器，<br>如下所示：</p><p><img src="https://img-blog.csdnimg.cn/20201124101332709.gif#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201124101404821.gif#pic_center" alt="在这里插入图片描述"><br>是一个强分类器。</p><p><img src="https://img-blog.csdnimg.cn/2020112410144766.gif#pic_center" alt="在这里插入图片描述">是一个弱分类器，其为一个简单的阈值函数<br><img src="https://img-blog.csdnimg.cn/20201124101601130.gif#pic_center" alt="在这里插入图片描述">为阈值，<br><img src="https://img-blog.csdnimg.cn/20201124101640957.gif#pic_center" alt="在这里插入图片描述">，<br><img src="https://img-blog.csdnimg.cn/20201124101705301.gif#pic_center" alt="在这里插入图片描述">为系数。</p><p>二、训练弱分类器<br>计算所有训练样本的特征值，并将其从小到大排序，随机选取一个特征值作为阈值，把所有元素分为两部分，小于阈值的一部分分类为人脸，大于阈值的一部分分类为非人脸。如下图所示，红色表示人脸，蓝色表示非人脸。</p><p>假如有5个样本，前两个为人脸，后三个为非人脸，用11000表示。如果阈值在第一个之前，通过弱分类器判定为：00000，有两个误差，如果阈值在第一个和第二个之间，通过弱分类器判定为：10000，有1个误差，如果阈值在第二个和第三个之间，通过弱分类器判定为：11000，有0个误差，依次类推，这样共有6个误差，然后从中找到一个误差最小的当成阈值，这样就训练好了一个最优的弱分类器。</p><p><img src="https://img-blog.csdnimg.cn/20201124101841712.gif#pic_center" alt="在这里插入图片描述"><br>三、训练强分类器<br>假设有N个训练样本</p><p><img src="https://img-blog.csdnimg.cn/20201124101922423.gif#pic_center" alt="在这里插入图片描述"><br>,其中有M个正样本，L个负样本，如果<img src="https://img-blog.csdnimg.cn/20201124102024949.gif#pic_center" alt="在这里插入图片描述"></p><p>是人脸图像，则<img src="https://img-blog.csdnimg.cn/20201124102039875.gif#pic_center" alt="在这里插入图片描述"></p><p>, 否则<img src="https://img-blog.csdnimg.cn/20201124102051958.gif#pic_center" alt="在这里插入图片描述"></p><p>其步骤如下：<img src="https://img-blog.csdnimg.cn/20201124102108830.gif#pic_center" alt="在这里插入图片描述"></p><p>每一级分类器使用的训练集中的负样本，都是上一级被错分的，即false positive，误检率或假阳性。这使得下一级分类器更加关注那些更难的（容易被错分的）样本。</p><p>2、2、4 总结：<br>传统检测历史久远，然而一直以来存在着两个主要问题：<br>1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余<br>2）手工设计的特征对于多样性的变化没有很好的鲁棒性</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，可以和博主一样9折享受服务&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;什么是传统目标检测？&lt;/strong&gt;&lt;br&gt;首先我们先来了解一下什么是目标检测？简单来说就是把存在的目标从图片中找到并识别出来。我们发现这对于我们人来说十分简单，但对于计算机而言，它是怎么做到的呢？&lt;br&gt;传统目标检测方法分为三部分：区域选择 → 特征提取 → 分类器&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>目标检测①创建数据集</title>
@@ -45,43 +27,6 @@
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，可以和博主一样9折享受服务&lt;br&gt;一、研究问题&lt;br&gt;目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景中，需要对多个目标进行实时处理时，目标自动提取和识别就显得特别重要。&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>目标检测③基于深度学习的检测算法（续）</title>
-    <link href="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/"/>
-    <id>http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/</id>
-    <published>2020-11-24T05:49:20.680Z</published>
-    <updated>2020-11-24T05:59:05.379Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型</p><p><img src="https://img-blog.csdnimg.cn/20201124125839974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>相比于之前的网络架构，Yolov3有两点提升：<br> <a id="more"></a><br>1)残差结构<br>神经网络训练的过程就是调整参数的过程，可以调整的参数越多，意味着调整的自由度越大，从而逼近效果越好。因此层次越深，可以表示的特征抽象程度越高，可以做出很多只有人类才能做到的需要高度抽象理解能力的事情，在某些特定任务上“效果越好”。<br>然而随着网络深度增加，准确度增加，神经网络会产生梯度消失/梯度爆炸的问题。<br>梯度消失/梯度爆炸指本质上因为梯度反向传播中的连乘效应，造成网络权值更新不稳定，从而使此深层网络的学习几乎等价于只有后几层的浅层网络的学习了，造成网络退化问题。</p><p>Darknet的残差结构(在resnet论文提出的概念)解决了这个问题<br><img src="https://img-blog.csdnimg.cn/20201124125953185.gif#pic_center" alt="在这里插入图片描述"></p><p>在上图的残差网络结构图中，通过 “shortcut connections (捷径连接)” 的方式，直接把输入 x 传到输出作为初始结果，输出结果为 H(x)=F(x)+x，当 F(x)=0 时，那么 H(x)=x，也就是上面所提到的恒等映射。于是，残差结构相当于将学习目标改变了，不再是学习一个完整的输出，而是目标值H(X) 和 x 的差值，也就是所谓的残差 F(x) = H(x)-x，因此，后面的训练目标就是要将残差结果逼近于 0，使到随着网络加深，准确率不下降。<br>resnet论文：<a href="https://arxiv.org/pdf/1512.03385v1.pdf">https://arxiv.org/pdf/1512.03385v1.pdf</a><br>《Deep Residual Learning》——何恺明2016cvpr<br><img src="https://img-blog.csdnimg.cn/20201124130034244.gif#pic_center" alt="在这里插入图片描述"></p><p>feature map 通过 Residual 残差模块前后其 shape 不变。并且，在输入的参数中，要保证 input_channel = filter_num2，否则相加的操作会因为 shape 不同而无法进行。<br>2)多尺度预测<br>同时，yolov3也在多尺度预测上做出改进(类似于FPN)<br>多尺度预测实现了从基础网络输出多个不同尺度作为输入，解决图像中待检测物体大小不同的问题。<br>利用网络对物体进行检测时，浅层网络分辨率高，学到的是图片的细节特征，深层网络，分辨率低，学到的更多的是语义特征，如报告2、3、2提到。<br>因此我们选择利用图像的各个尺度进行训练和测试。可以通过缩放图片提取多组特征图预测，但是想必这样及其消耗时间——因此直接使用卷积网络中产生的各层特征图分别进行预测<br><img src="https://img-blog.csdnimg.cn/20201124130119618.gif#pic_center" alt="在这里插入图片描述"></p><p>《Feature Pyramid Networks for Object Detection》——2017CVPR<br>如上页图Darknet53，以scale2为例，从尺度1中的倒数第二层的卷积层上采样（× 2），再与最后一个 16 × 16 大小的特征图相加，再次通过多个卷积后输出box信息，相比尺度1变大两倍。</p><p>上采样的作用是在后面 YOLOv3 网络中进行相加操作时保证两个 feature map 的宽和高相同，其具体操作为：将输入的 feature map 的宽高都乘 2，得到新的 feature map。如下图代码</p><p>可以看到，route_1，route_2，input_data三个不同尺度的输出到后续网络</p><p><img src="https://img-blog.csdnimg.cn/20201124130202892.gif#pic_center" alt="在这里插入图片描述"></p><p>3.2.2输出定义<br>先来看yolov3的整体结构，随后具体介绍yolov3输出各个维度定义<br>在结构中，我们设置用的数据集类别为80种。<br>下图中左半部分虚线框内即为Darknet-53网络机构，可以看到该网络结构的输入为 416×416×3，之后通过一个3×3的卷积层来扩增通道数。接下来通过堆叠一系列Residual Block来构建网络，其具体个数为[1, 2, 8, 8, 4]，最终主干网络输出大小为13×13、26×26、52×52三个大小的特征图，目的是可以检测到图像中更小的物体。特征图分割越密集，则每一个特征点相对于原图中的区域越小，从而可以监测到更小的物体。这部分即是上一节提到的“多分类预测”<br><img src="https://img-blog.csdnimg.cn/20201124130336823.gif#pic_center" alt="在这里插入图片描述"></p><p>网络结构的右半部分包括将主干网络Darknet-53的输出进行生成特征金字塔。具体做法为首先将13×13×1024的特征层进行上采样变为26×26×256，再与26×26×512的特征层进行堆叠，其结果为26×26×768大小的特征；同理，大小为52×52×256的特征层与下一层网络堆叠后的结果为52×52×384。<br>     对于这三个堆叠后的结果，分别再进行5次卷积操作，最后接上一个3×3的卷积和1×1的卷积，用于输出预测结果，三个层对应的输出结果大小分别为13×13×255、26×26×255、52×52×255。<br>这里结合下图我们可以看到，前两个维度很明显代表了图像被分网格的行/列数，255是我们根据不同类型的数据集，在yolov3中得到的通道数channel</p><p><img src="https://img-blog.csdnimg.cn/20201124130409593.gif#pic_center" alt="在这里插入图片描述"></p><p>这里的每个输出的通道数都是 3x(80+5)，这是因为 YOLOv3 设定的是每个网格单元预测3个检测框，而且每个检测框需要有 (x, y, w, h, confidence) 五个基本参数，然后还要有80个类别的概率。<br>其中255 = (4+1+80)×3，4表示一个边界框对应的调整参数x, y, w, h，1表示置信度，比如我们用COCO数据集，80表示COCO数据集分为80个类，3表示特征图上的每一个点对应有3个anchor。</p><p>代码中的predict_transform函数获取了前级的输入，并进行处理。<br><img src="https://img-blog.csdnimg.cn/20201124130433634.gif#pic_center" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20201124130447497.gif#pic_center" alt="在这里插入图片描述"></p><p>在class darknet()的yolo模块代码后部分，对于每个yolo层的输出先用predict_transform()变成每行为一个anchor对应的预测值的形式(不看batch_size这个维度，x剩下的维度可以看成一个二维tensor)，这样3个yolo层的预测值按照每个方框对应的行的维度进行连接。得到了这张图处所有anchor的预测值，使后面的NMS等操作可以一次完成<br><img src="https://img-blog.csdnimg.cn/2020112413051535.gif#pic_center" alt="在这里插入图片描述"></p><p>这是由北工大模式识别二组共同创作！！！<br>转载请注明出处，谢谢！！<br>下一章（续2）会简单理解一下我最近研究损失函数所遇到的问题</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201124125839974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;相比于之前的网络架构，Yolov3有两点提升：&lt;br&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>目标检测③基于深度学习的检测算法</title>
-    <link href="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/"/>
-    <id>http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</id>
-    <published>2020-11-24T05:48:46.164Z</published>
-    <updated>2020-11-24T05:58:51.582Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型<br><img src="https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度学习下的暴力美学。在深度学习下，目标检测的效果比传统手工特征效果好太多。直至今日，基于深度学习的检测算法依然是目标检测的主流。<br> <a id="more"></a><br>物体检测的两个步骤可以概括为：<br>步骤一：检测目标位置（生成矩形框）<br>步骤二：对目标物体进行分类<br>物体检测主流的算法框架大致分为one-stage与two-stage。two-stage算法代表有R-CNN系列，one-stage算法代表有Yolo系列。可以说，two-stage算法将步骤一与步骤二分开执行，输入图像先经过候选框生成网络（例如faster rcnn中的RPN网络），再经过分类网络；one-stage算法将步骤一与步骤二同时执行，输入图像只经过一个网络，生成的结果中同时包含位置与类别信息。two-stage与one-stage相比，精度高，但是计算量更大，所以运算较慢。</p><p>我们这里介绍的两种深度学习算法，都是one-stage算法。<br>基于回归方法的深度学习目标检测算法，他们一步到位，其基本步骤是: 给定一张图像, 通过设定合理的输出向量，使用回归的方式输出这个目标的边框和类别，一步到位。这种算法的优点是速度快，但是对于密集的小样本来说检测比较困难。比如 YOLO、SSD 等。</p><p>2.3.1 YOLO</p><p>2.3.1.1YOLO介绍<br>YOLO系列论文提出了一个新的物体检测的方法：You Only Look Once（YOLO）</p><p>YOLO 的核心思想就是把目标检测转变成一个回归问题，利用整张图作为网络的输入，仅仅经过一个神经网络，得到bounding box（边界框） 的位置及其所属的类别。</p><p>2.3.1.2 YOLOv1<br>论文：<a href="https://arxiv.org/pdf/1506.02640.pdf">https://arxiv.org/pdf/1506.02640.pdf</a><br>YOLOv1是最早版本的YOLO，以下从概念上简单介绍v1的原理<br>1）网络结构<br><img src="https://img-blog.csdnimg.cn/20201124121158625.gif#pic_center" alt="在这里插入图片描述"></p><p>输入：448<em>448</em>3的彩色图片<br>中间层：若干卷积层和最大池化层<br>全连接层：2个全连接层，用来预测位置和类别概率值</p><p>2）实现细节<br>分类器的输出是一个one-hot vector，而检测器的输出是一个框(Bounding Box)。框，该怎么表示？<br><img src="https://img-blog.csdnimg.cn/20201124121259121.gif#pic_center" alt="在这里插入图片描述"></p><p>bounding box<br>总的来说，S×S 个网格，每个网格要预测 B个bounding box ，还要预测 C 个类。网络输出就是一个 S × S × (5×B+C) 的张量。<br><img src="https://img-blog.csdnimg.cn/20201124121342496.gif#pic_center" alt="在这里插入图片描述"></p><p>在实际过程中，YOLOv1把一张图片划分为了7×7个网格，并且每个网格预测2个Box（Box1和Box2），20个类别。所以实际上，S=7，B=2，C=20。那么网络输出的shape也就是：7×7×30。</p><p>3）损失函数和优化器<br>神经网络结构确定之后，训练效果好坏，由Loss函数和优化器决定。Yolo v1使用普通的梯度下降法作为优化器。这里重点解读一下Yolo v1使用的Loss函数：<br><img src="https://img-blog.csdnimg.cn/20201124121743750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>损失是三部分：坐标预测损失、置信度预测损失、类别预测损失的加和</p><p>思考：对于x和y用差平方，而对于宽和高为什么进行开根处理？<br>——假设宽和高使用与x，y相同处理方式（直接差平方），当预测值与真实值图像偏移相同大小时，我们依此法计算出的误差是固定的，然而这与实际不符。实际对于图像框尺度大小不同的区域，相同偏移量下，小尺度图像效果是很差的，而较大尺度图像则效果不错。因此，此损失函数的设计细节是作者为使实验结果更加准确而设计的。<br>置信度预测损失：是正负样本求平方加和<br>类别预测损失：预测值减去真实值求平方</p><p>4）优缺点</p><p>优点：更快更准迁移能力强<br>缺点：对相互靠近的物体，以及很小的群体检测效果不好；对不常见的角度的目标泛化性能偏弱</p><p>升级版 YOLOv2<br>YOLOv2论文：<a href="https://arxiv.org/abs/1612.08242">https://arxiv.org/abs/1612.08242</a></p><p>为提高物体定位精准性和召回率，YOLO作者提出了 “YOLO9000: Better, Faster, Stronger” (Joseph Redmon, Ali Farhadi, CVPR 2017, Best Paper Honorable Mention)，相比YOLOv1 提高了训练图像的分辨率；引入了faster rcnn中anchor box的思想，对网络结构的设计进行了改进，输出层使用卷积层替代YOLO的全连接层，联合使用coco物体检测标注数据和imagenet物体分类标注数据训练物体检测模型。相比YOLO，YOLO9000在识别种类、精度、速度、和定位准确性等方面都有大大提升。</p><p>2.3.2 SSD<br>YOlO和SSD算法作为“一步到位”算法的代表，他们的主要区别就是yolo只利用了末端特征图的信息，而SSD利用了最后几层特征图的信息，所以，从理论上说，SSD算法较yolo（起码是yolov1）来说，精确度必然更高。</p><p>卷积神经网络各层特征信息主要有如下区别：<br>1、低层卷积可以捕捉到更多的细节信息，高层卷积可以捕捉到更多的抽象信息。<br>2、低层特性更关心“在哪里”，但分类准确度不高，而高层特性更关心“是什么”，但丢失了物体的位置信息。<br>——《Visualizing and Understanding Convolutional Networks》.（可视化理解卷积神经网络）2014</p><p>SSD正是利用不同尺度检测图片中不同大小和类别的目标物体，获得了很好的效果。<br><img src="https://img-blog.csdnimg.cn/20201124123639607.gif#pic_center" alt="在这里插入图片描述"></p><p>VGG-16网络</p><p>对于每个特征图来说，SSD引入初始框的概念。对于不同的特征图，SSD总的尺度设计原则就是：随着网络层数加深（特征图的变小），初始框的尺度线性增加。最小的初始框尺度为0.2，最大的初始框尺度为0.9。</p><p><img src="https://img-blog.csdnimg.cn/20201124123710547.gif#pic_center" alt="在这里插入图片描述"></p><p>3.实例解析<br>3.1YOLO实例说明<br>以下对YOLOv3进行介绍，代码部分来自<br>tf2.0yolov3——malin9402,yunyang1994<br><a href="https://github.com/malin9402/tf20/tree/master/4-Object_Detection/YOLOV3">https://github.com/malin9402/tf20/tree/master/4-Object_Detection/YOLOV3</a></p><p>pytorch :<br><a href="https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch">https://github.com/ayooshkathuria/YOLO_v3_tutorial_from_scratch</a></p><p>3.1.1网络结构<br>随着CNN的发展和大量研究人员的努力，产生了数篇影响深远的论文，解决了在实际应用的诸多问题。yolov3借鉴了许多论文和思路，完善了yolo网络架构。<br>本节从原理和代码上介绍yolov3的网络架构，并深入探讨其网络架构上的进步和优点。</p><p>yolov3用darknet53作为基础网络架构</p><p><img src="https://img-blog.csdnimg.cn/20201124124149243.gif#pic_center" alt="Darknet53"></p><p>命名来源于它有53层卷积层=  2 + 1<em>2+1 +2</em>2+1 +8<em>2+1 +8</em>2+1 +4*2+1</p><p>未完待续——下一篇我会说一下YOLOV3相对于之前的网络架构的提升，相比之下，算力要求也会随之提升，所以我们需要借助滴滴云DAI平台来跑我们的代码项目<br><img src="https://img-blog.csdnimg.cn/20201124125105797.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="输入我的AI大师码：8996，享受⑨折优惠，让自己的算法检测像扫码一样简单"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度学习下的暴力美学。在深度学习下，目标检测的效果比传统手工特征效果好太多。直至今日，基于深度学习的检测算法依然是目标检测的主流。&lt;br&gt;</summary>
     
     
     
@@ -367,6 +312,57 @@
     
     
     <summary type="html">&lt;p&gt;面向集合&lt;br&gt;集合思维更像是从整体的角度来考虑&lt;br&gt;然后把整个数据集不同的树形进行划分，形成不同的子集合&lt;br&gt;&lt;strong&gt;游标&lt;/strong&gt;&lt;br&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之深入讲解SQL事务隔离级别</title>
+    <link href="http://example.com/2020/11/09/%E6%B7%B1%E5%85%A5%E8%AE%B2%E8%A7%A3SQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"/>
+    <id>http://example.com/2020/11/09/%E6%B7%B1%E5%85%A5%E8%AE%B2%E8%A7%A3SQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</id>
+    <published>2020-11-09T08:37:16.844Z</published>
+    <updated>2020-11-09T08:37:16.845Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为需要并发能力<br>所以我们不能用上一节的串行化的方式<br>来满足并发<br>需要降低数据库的隔离级别，来换取事务的并发能力<br><strong>三种异常问题</strong></p><a id="more"></a><p>脏读：事务还没提交，小李已经读到了数据<br>不可重复读：在事务操作中间时修改记录，另一个人两次的查询结果不一样<br>幻读：某人先查询了N条数据，正好同时某人提交了增加数据，下一次查询后产生了N+1条数据<br><strong>四种隔离级别</strong><br><img src="https://img-blog.csdnimg.cn/20201109161303678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>可重复读:就是相当于你写入数据的时候对于输出封闭<br>（查询时获得结果一致）<br>需要模拟脏读，不可重复读，幻读</p><p>MYSQL:默认是可重复读隔离级别<br><img src="https://img-blog.csdnimg.cn/20201109163133730.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;因为需要并发能力&lt;br&gt;所以我们不能用上一节的串行化的方式&lt;br&gt;来满足并发&lt;br&gt;需要降低数据库的隔离级别，来换取事务的并发能力&lt;br&gt;&lt;strong&gt;三种异常问题&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之InnoDB事务处理</title>
+    <link href="http://example.com/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    <id>http://example.com/2020/11/09/InnoDB%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/</id>
+    <published>2020-11-09T07:04:55.420Z</published>
+    <updated>2020-11-09T08:36:05.165Z</updated>
+    
+    <content type="html"><![CDATA[<p>InnoDB支持事务，取代MyISAM<br>事务英文名称：transaction<br><strong>进行一次处理的基本单元，要么完全执行，要么都不执行</strong><br>保证了数据处理的完整性，保证了数据库的数据一致性<br>高级处理数据方式<br>允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）</p><a id="more"></a><p><strong>事务特性</strong><br>ACID<br>A：原子性（Atomicity）<br>不可分割，进行数据处理的基本单位<br>C：一致性(Consistency)<br>数据库进行事务操作时，会有原来一直的状态变为另一种一致的状态，也就是说当事务提交后，回滚也不会破坏数据库的完整性约束<br>I：隔离性(Isolation)<br>每个事务都是彼此独立的，不会受到其他事务的执行影响<br>一个事务在提交之前，对其他事务是不可见的<br>D：持久性(Durability)<br>事务提交之后对数据的修改时持久性的，即使在系统出故障的情况下，数据修改依旧有效。当事务完成，这时可以通过日志，让系统恢复到最后一次成功的更新状态</p><p>原子性是基础，隔离性是手段，一致性是约束条件，持久性是我们的目的<br>补充：约束性条件：DDL全称：Data Definition Language<br>数据定义语言。定义了数据库的结构和数据表的结构<br>在DDL中，我们使用对应的命令：<br>CREATE DROP ALTER<br>不需要COMMIT,就可以完成执行任务</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> nba;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> nba;</span><br><span class="line"><span class="comment">#对数据表进行定义</span></span><br><span class="line">CTEATE TABLE [table_name](字段名 数据类型，....)</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> player(</span><br><span class="line">  player_id <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  player_name <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure><p>需要注意逗号，和分号的位置<br>其实我们可以通过可视化工具将其创建出来</p><p><img src="https://img-blog.csdnimg.cn/20201109140442348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>一致性的七大约束<br>1.主键约束<br>主键唯一标识一条记录，不能重复，不能为空<br>一个数据表的主键只能有一个。主键可以是一个字段，也可以由多个字段复合而成。我们将player_id 设置成了主键<br>2.外键约束<br>外键确保了表和表之间引用的完整性。一个表中的外键对应另一张表的主键。<br>外键可以是重复的，也可以为空<br>例如：球员比分表player_score的外键就是player_id,关联到player表中<br>3.字段约束<br>4.唯一性约束<br>我们已经设置了主键，但是有时也需要在其他字段中进行唯一性约束，比如给player_name设置唯一性约束，就保证了每个球员的名字不能相同<br>5.NOT NULL约束<br>6.DEFAULT<br>字段默认值约束，字段没有取值，就设置为默认值，DEFAULT  0.00<br>7.CHECK约束<br>我们可以实行检查约束。对身高height的数值进行CHECK约束，必须&gt;=0且&lt;3。<br><strong>设计数据表的原则</strong><br>三少一多<br>1.数据表的个数越少越好<br>2.数据表中的字段越少越好<br>3.数据表中联合主键的字段个数越少越好<br>4.使用主键和外键越多越好<br><strong>事务的控制</strong><br>事务常用控制语句<br>1.START TRANSCTION或者BEGIN：显式开启一个事务<br>2.COMMIT:提交事务。当提交事务后，对数据库的修改是永久性的<br>3.ROLLBACK或者ROLLBACK TO [SAVEPOINT],意为回滚事务<br>4.SAVEPOINT:在事务中创建保存点，方便后续对保存点进行回滚<br>5.SET TRANSACTION:设置事务的隔离级别</p><p>需要注意的是：隐式事务实际上在MYSQL中是自动提交</p><p>一个BEGIN 一个显式事务，回滚全覆盖</p><p>completion_type参数作用<br>0：默认情况，执行commit会提交事务，执行下一个显式事务时，还需要使用START TRANSACTION或者BEGIN来开启，不然就是隐式事务<br>1：开启一个链式任务，commit提交任务后，下一阶段会开启一个相同级别的事务<br>2：提交后，会自动与服务器断开</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;InnoDB支持事务，取代MyISAM&lt;br&gt;事务英文名称：transaction&lt;br&gt;&lt;strong&gt;进行一次处理的基本单元，要么完全执行，要么都不执行&lt;/strong&gt;&lt;br&gt;保证了数据处理的完整性，保证了数据库的数据一致性&lt;br&gt;高级处理数据方式&lt;br&gt;允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之SQL存储过程</title>
+    <link href="http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"/>
+    <id>http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-11-08T09:08:35.663Z</published>
+    <updated>2020-11-08T09:08:35.664Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>SQL存储过程</strong><br>本次应用数据库<a href="https://github.com/cystanford/sql_heros_data.git">https://github.com/cystanford/sql_heros_data.git</a><br>就是面向过程的编程语句<br> 里面加入了流语句<br> 有 begin end<br> 赋值 封装<br> <a id="more"></a><br> 但是因为可移植性太差的原因，所以国内很少有人指出存储过程<br> 开发维护，版本迭代太困难<br>更重要的是不符合高并发的数据库管理，高并发要减轻数据库的压力，采用分库分表的形式，而且对可扩展性要求很高。<br><strong>练习</strong><br>针对王者荣耀的英雄数据表heros表，请编写存储过程<br>get_sum_score,用来得到某一类型英雄的最大生命值的总和</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="string">`get_sum_score`</span>(</span><br><span class="line">  <span class="keyword">OUT</span> sum_max_hp <span class="built_in">FLOAT</span>,</span><br><span class="line">  <span class="keyword">IN</span> s <span class="built_in">VARCHAR</span>(<span class="number">255</span>)</span><br><span class="line">   )</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">SUM</span>(hp_max)</span><br><span class="line"><span class="keyword">FROM</span> heros </span><br><span class="line">  <span class="keyword">WHERE</span> role_main =s</span><br><span class="line">  <span class="keyword">INTO</span> sum_max_hp;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108165502261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>查询代码</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#记得加分号</span></span><br><span class="line"><span class="keyword">CALL</span> get_sum_score(@sum_max_hp,<span class="string">&#x27;战士&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> @sum_max_hp;</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108170655498.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20201108160702910.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;SQL存储过程&lt;/strong&gt;&lt;br&gt;本次应用数据库&lt;a href=&quot;https://github.com/cystanford/sql_heros_data.git&quot;&gt;https://github.com/cystanford/sql_heros_data.git&lt;/a&gt;&lt;br&gt;就是面向过程的编程语句&lt;br&gt; 里面加入了流语句&lt;br&gt; 有 begin end&lt;br&gt; 赋值 封装&lt;br&gt;</summary>
     
     
     
