@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-24T05:57:49.491Z</updated>
+  <updated>2020-11-24T05:58:14.207Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>目标检测②传统检测算法</title>
+    <link href="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A1%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/"/>
+    <id>http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A1%E4%BC%A0%E7%BB%9F%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95/</id>
+    <published>2020-11-24T05:49:55.278Z</published>
+    <updated>2020-11-24T05:58:14.207Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，可以和博主一样9折享受服务</p><p><strong>什么是传统目标检测？</strong><br>首先我们先来了解一下什么是目标检测？简单来说就是把存在的目标从图片中找到并识别出来。我们发现这对于我们人来说十分简单，但对于计算机而言，它是怎么做到的呢？<br>传统目标检测方法分为三部分：区域选择 → 特征提取 → 分类器</p><a id="more"></a><p>即首先在给定的图像上选择一些候选的区域，然后对这些区域提取特征，最后使用训练的分类器进行分类。下面我们对这三个阶段分别进行介绍</p><p>2.2.1区域选取<br>这一步是为了对目标的位置进行定位。由于目标可能出现在图像的任何位置，而且目标的大小、长宽比例也不确定，所以最初采用滑动窗口的策略对整幅图像进行遍历，而且需要设置不同的尺度，不同的长宽比。这种穷举的策略虽然包含了目标所有可能出现的位置，但是缺点也是显而易见的：时间复杂度太高，产生冗余窗口太多，这也严重影响后续特征提取和分类的速度和性能。（实际上由于受到时间复杂度的问题，滑动窗口的长宽比一般都是固定的设置几个，所以对于长宽比浮动较大的多类别目标检测，即便是滑动窗口遍历也不能得到很好的区域）</p><p>2.2.2特征的设计<br>传统检测方法的特征提取算法主要有两种:HOG特征和lbp算法<br>HOG：方向梯度直方图（Histogram of Oriented Gradient, HOG）。使用梯度直方图来描述的形状特征。主要在行人检测方面。从名字可知，主要将图像中的pixel的方向变化作为特征。因为梯度变化主要是发生在物体边缘，这样就可以知道物体的大致形状。可以进行物体分类或者检测。经典的特征提取一般需要一些超参，比如窗口大小等。<br>提取方法：讲一个image灰度化—&gt;颜色空间的标准化—&gt;计算图像每个像素的梯度        —&gt;将图像划分成小cells—&gt;统计每个cell的梯度直方图    —&gt; 将每几个cell组成一个block—&gt;将图像image内的所有block的HOG特征descriptor串联起来。                                                                                       Lbp算法：LBP（Local Binary Pattern，局部二值模式），反映了局部的纹理特征，跟一个像素的邻域有关。对每个像素的邻域做减法，大于用1表示，否则用0表示则产生了一个二进制数来表示这个像素的局部纹理。这个邻域其实也相当于一个window，window的形状也是可以改变的。</p><p>2.2.3分类器的设计<br>一、利用AdaBoost算法进行训练<br>并不是所有特征都是有用的，AdaBoost特征分类器具有特征选择的能力。<br>AdaBoost 将一系列的弱分类器通过线性组合，构成一个强分类器，<br>如下所示：</p><p><img src="https://img-blog.csdnimg.cn/20201124101332709.gif#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201124101404821.gif#pic_center" alt="在这里插入图片描述"><br>是一个强分类器。</p><p><img src="https://img-blog.csdnimg.cn/2020112410144766.gif#pic_center" alt="在这里插入图片描述">是一个弱分类器，其为一个简单的阈值函数<br><img src="https://img-blog.csdnimg.cn/20201124101601130.gif#pic_center" alt="在这里插入图片描述">为阈值，<br><img src="https://img-blog.csdnimg.cn/20201124101640957.gif#pic_center" alt="在这里插入图片描述">，<br><img src="https://img-blog.csdnimg.cn/20201124101705301.gif#pic_center" alt="在这里插入图片描述">为系数。</p><p>二、训练弱分类器<br>计算所有训练样本的特征值，并将其从小到大排序，随机选取一个特征值作为阈值，把所有元素分为两部分，小于阈值的一部分分类为人脸，大于阈值的一部分分类为非人脸。如下图所示，红色表示人脸，蓝色表示非人脸。</p><p>假如有5个样本，前两个为人脸，后三个为非人脸，用11000表示。如果阈值在第一个之前，通过弱分类器判定为：00000，有两个误差，如果阈值在第一个和第二个之间，通过弱分类器判定为：10000，有1个误差，如果阈值在第二个和第三个之间，通过弱分类器判定为：11000，有0个误差，依次类推，这样共有6个误差，然后从中找到一个误差最小的当成阈值，这样就训练好了一个最优的弱分类器。</p><p><img src="https://img-blog.csdnimg.cn/20201124101841712.gif#pic_center" alt="在这里插入图片描述"><br>三、训练强分类器<br>假设有N个训练样本</p><p><img src="https://img-blog.csdnimg.cn/20201124101922423.gif#pic_center" alt="在这里插入图片描述"><br>,其中有M个正样本，L个负样本，如果<img src="https://img-blog.csdnimg.cn/20201124102024949.gif#pic_center" alt="在这里插入图片描述"></p><p>是人脸图像，则<img src="https://img-blog.csdnimg.cn/20201124102039875.gif#pic_center" alt="在这里插入图片描述"></p><p>, 否则<img src="https://img-blog.csdnimg.cn/20201124102051958.gif#pic_center" alt="在这里插入图片描述"></p><p>其步骤如下：<img src="https://img-blog.csdnimg.cn/20201124102108830.gif#pic_center" alt="在这里插入图片描述"></p><p>每一级分类器使用的训练集中的负样本，都是上一级被错分的，即false positive，误检率或假阳性。这使得下一级分类器更加关注那些更难的（容易被错分的）样本。</p><p>2、2、4 总结：<br>传统检测历史久远，然而一直以来存在着两个主要问题：<br>1）基于滑动窗口的区域选择策略没有针对性，时间复杂度高，窗口冗余<br>2）手工设计的特征对于多样性的变化没有很好的鲁棒性</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，可以和博主一样9折享受服务&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;什么是传统目标检测？&lt;/strong&gt;&lt;br&gt;首先我们先来了解一下什么是目标检测？简单来说就是把存在的目标从图片中找到并识别出来。我们发现这对于我们人来说十分简单，但对于计算机而言，它是怎么做到的呢？&lt;br&gt;传统目标检测方法分为三部分：区域选择 → 特征提取 → 分类器&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>目标检测①创建数据集</title>
@@ -346,23 +364,6 @@
     
     
     <summary type="html">&lt;p&gt;InnoDB支持事务，取代MyISAM&lt;br&gt;事务英文名称：transaction&lt;br&gt;&lt;strong&gt;进行一次处理的基本单元，要么完全执行，要么都不执行&lt;/strong&gt;&lt;br&gt;保证了数据处理的完整性，保证了数据库的数据一致性&lt;br&gt;高级处理数据方式&lt;br&gt;允许我们回滚还原（你买了商品，小卖铺老板忘记你付过款，让你重新付，如果这时候掌握了事务的特性，就不出产生这种问题了）&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之SQL存储过程</title>
-    <link href="http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"/>
-    <id>http://example.com/2020/11/08/SQL%E4%B8%AD%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</id>
-    <published>2020-11-08T09:08:35.663Z</published>
-    <updated>2020-11-08T09:08:35.664Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>SQL存储过程</strong><br>本次应用数据库<a href="https://github.com/cystanford/sql_heros_data.git">https://github.com/cystanford/sql_heros_data.git</a><br>就是面向过程的编程语句<br> 里面加入了流语句<br> 有 begin end<br> 赋值 封装<br> <a id="more"></a><br> 但是因为可移植性太差的原因，所以国内很少有人指出存储过程<br> 开发维护，版本迭代太困难<br>更重要的是不符合高并发的数据库管理，高并发要减轻数据库的压力，采用分库分表的形式，而且对可扩展性要求很高。<br><strong>练习</strong><br>针对王者荣耀的英雄数据表heros表，请编写存储过程<br>get_sum_score,用来得到某一类型英雄的最大生命值的总和</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> <span class="string">`get_sum_score`</span>(</span><br><span class="line">  <span class="keyword">OUT</span> sum_max_hp <span class="built_in">FLOAT</span>,</span><br><span class="line">  <span class="keyword">IN</span> s <span class="built_in">VARCHAR</span>(<span class="number">255</span>)</span><br><span class="line">   )</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  <span class="keyword">SELECT</span> <span class="keyword">SUM</span>(hp_max)</span><br><span class="line"><span class="keyword">FROM</span> heros </span><br><span class="line">  <span class="keyword">WHERE</span> role_main =s</span><br><span class="line">  <span class="keyword">INTO</span> sum_max_hp;</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108165502261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>查询代码</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#记得加分号</span></span><br><span class="line"><span class="keyword">CALL</span> get_sum_score(@sum_max_hp,<span class="string">&#x27;战士&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> @sum_max_hp;</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/20201108170655498.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20201108160702910.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;SQL存储过程&lt;/strong&gt;&lt;br&gt;本次应用数据库&lt;a href=&quot;https://github.com/cystanford/sql_heros_data.git&quot;&gt;https://github.com/cystanford/sql_heros_data.git&lt;/a&gt;&lt;br&gt;就是面向过程的编程语句&lt;br&gt; 里面加入了流语句&lt;br&gt; 有 begin end&lt;br&gt; 赋值 封装&lt;br&gt;</summary>
     
     
     
