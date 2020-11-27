@@ -152,6 +152,140 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java拷贝文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/">每日深耕，勤练不缀之java拷贝文件(copy)及buffer的基础使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-11-13T12:54:03.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>拷贝实现方式：<br>1.java.io类库，为源文件构建一个FileputStream读取，为目标文件构建FileOutputStream，完成写入工作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">copyFileByStream</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source,File dest)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(InputStream is  = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">            OutputStream os = <span class="keyword">new</span>  FileOutputStream(dest);)&#123;</span><br><span class="line">            <span class="keyword">byte</span>[] buffer =<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> length;</span><br><span class="line">            <span class="keyword">while</span>((length =is.read(buffer))&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                os.write(buffer,<span class="number">0</span>,length);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 利用NIO实现</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.java.nio类库提供的transferTo或者transferFrom方法实现</p>
+        
+          <a class="article-more-a" href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/13/java%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-项目比较大时，使用python ORM框架来操作MYSQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/10/%E9%A1%B9%E7%9B%AE%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8python%20ORM%E6%A1%86%E6%9E%B6%E6%9D%A5%E6%93%8D%E4%BD%9CMYSQL/">每日深耕，勤练不缀之项目比较大时，使用python ORM框架来操作MYSQL</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/10/%E9%A1%B9%E7%9B%AE%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8python%20ORM%E6%A1%86%E6%9E%B6%E6%9D%A5%E6%93%8D%E4%BD%9CMYSQL/" class="archive-article-date">
+  	<time datetime="2020-11-10T11:37:22.725Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://img-blog.csdnimg.cn/20201110155109230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>相当于持久化层<br>从数据库的涉及层面转化为面向对象的处理方式<br>三个ORM主流框架</p>
+        
+          <a class="article-more-a" href="/2020/11/10/%E9%A1%B9%E7%9B%AE%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8python%20ORM%E6%A1%86%E6%9E%B6%E6%9D%A5%E6%93%8D%E4%BD%9CMYSQL/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/10/%E9%A1%B9%E7%9B%AE%E6%AF%94%E8%BE%83%E5%A4%A7%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8python%20ORM%E6%A1%86%E6%9E%B6%E6%9D%A5%E6%93%8D%E4%BD%9CMYSQL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python控制SQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -648,140 +782,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ArrayList,LinkedList,Vector区别？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/">每日深耕，勤练不缀之ArrayList,LinkedList,Vector的区别?</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-04T06:17:04.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ArrayList,LinkedList,Vector的区别?<br>高效的管理和操作数据</p>
-<ul>
-<li>三者都是集合框架里的list，即所谓的有序集合。</li>
-<li>  按照位置进行定位，添加和删除的操作  </li>
-<li>都提供<strong>迭代器</strong>以遍历其内容
-        
-          <a class="article-more-a" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SQL连接表的操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">每日深耕，勤练不缀之SQL连接表的操作</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-11-03T14:02:24.260Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SQL92<br>很强大的功能就是在各个数据表之间连接查询<br>JOIN在SQL中的作用<br>五种连接<br><strong>1.笛卡尔积</strong><br>笛卡尔积是个数学运算。假设我有两个集合X和Y ，那么X和Y的笛卡尔积就是X和Y的所有可能组合，也就是第一个对象来自于X，第二个对象来自于Y的所有可能<br>我们假定player表的数据是集合X，先进行SQL查询</p>
-        
-          <a class="article-more-a" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">展开全文 >></a>
         </p>
       
 
