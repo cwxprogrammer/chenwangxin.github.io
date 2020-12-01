@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>每日深耕，勤练不缀之JQUERY实现AJAX | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/page/4/index.html">
+  <meta name="description" content="JQUERY实现AJAX: AJAX :ASynchronous JavaScript And XML 异步的JavaScript 和 XML1.异步和同步  客户端和服务器端同步通信的基础上2.在异步的条件下，在无需加载整个网页的情况下，更新部分网页的技术提升用户的体验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之JQUERY实现AJAX">
+<meta property="og:url" content="http://example.com/2020/12/01/AJAX%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JQUERY实现AJAX: AJAX :ASynchronous JavaScript And XML 异步的JavaScript 和 XML1.异步和同步  客户端和服务器端同步通信的基础上2.在异步的条件下，在无需加载整个网页的情况下，更新部分网页的技术提升用户的体验">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-01T10:11:57.504Z">
+<meta property="article:modified_time" content="2020-12-01T10:22:36.994Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,35 +154,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-SQL对视图的查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-AJAX异步方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之SQL对视图的查询及应用</a>
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之JQUERY实现AJAX
     </h1>
   
 
         
-        <a href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-05T10:47:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-05</time>
+        <a href="/2020/12/01/AJAX%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-12-01T10:11:57.504Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p>
-<p>虚拟表，本身是不具备数据的<br>只是为了体现安全性，封装性，以及权限性</p>
-        
-          <a class="article-more-a" href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/#more">more >></a>
-        
+        <p>JQUERY实现AJAX:</p>
+<p>AJAX :ASynchronous JavaScript And XML 异步的JavaScript 和 XML<br>1.异步和同步  客户端和服务器端同步通信的基础上<br>2.在异步的条件下，在无需加载整个网页的情况下，更新部分网页的技术<br>提升用户的体验</p>
+<a id="more"></a>
+<p>实现方式：<br>JQuery实现方式<br>1.$.ajax()</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//定义方法</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//使用$.ajax()发送异步请求</span></span></span><br><span class="line"><span class="javascript">            $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">                url:<span class="string">&quot;ajaxServlet&quot;</span>,<span class="comment">//请求路径</span></span></span><br><span class="line"><span class="javascript">                type:<span class="string">&quot;POST&quot;</span>,</span></span><br><span class="line"><span class="javascript">                data:&#123;<span class="string">&quot;username&quot;</span>:<span class="string">&quot;jack&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">23</span>&#125;,</span></span><br><span class="line"><span class="javascript">                success:<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">                    alert(data)</span><br><span class="line"><span class="javascript">                &#125;,<span class="comment">//响应成功后的回调函数</span></span></span><br><span class="line"><span class="javascript">                error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;出错啦。。&quot;</span>)</span></span><br><span class="line"><span class="javascript">                &#125;,<span class="comment">//请求响应失败会执行回调函数</span></span></span><br><span class="line"><span class="javascript">                dataType:<span class="string">&quot;text&quot;</span><span class="comment">//设置接受到的响应数据的格式</span></span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>2.$.get()：发送get请求<br>    参数：<br>    url:请求路径<br>    data:请求参数<br>    callback:回调函数<br>    type：响应结果的类型</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      <span class="comment">//定义方法</span></span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">         $.get(<span class="string">&quot;ajaxServlet&quot;</span>,&#123;<span class="attr">username</span>:<span class="string">&quot;rose&quot;</span>&#125;,<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line">             alert(data);</span><br><span class="line"><span class="javascript">         &#125;,<span class="string">&quot;text&quot;</span>);</span></span><br><span class="line">      &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.$.post()：发送post请求</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixinpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -187,16 +227,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/05/SQL%E5%AF%B9%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/01/AJAX%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/12/01/JSON%E5%B0%8F%E5%B7%A7%E8%BD%BB%E4%BE%BF%E7%9A%84%E4%BA%A4%E6%8D%A2%E6%96%87%E6%9C%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日深耕，勤练不缀之JSON
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/01/JQUERY%E7%AE%80%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之Jquery</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -216,629 +324,14 @@
 
 
 
-
-  
-    <article id="post-sql99连接查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之sql99连接查询</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-04T12:37:47.709Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a></p>
-<p><strong>交叉连接</strong>（92中的笛卡尔积）<br>在这里我们使用的是CROSS JOIN<br>代码如下</p>
-        
-          <a class="article-more-a" href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-如何保证集合是线程安全的？ConcurrentHashMap如何实现高效的线程安全？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/">每日深耕，勤练不缀之如何保证集合是线程安全的？</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-04T09:55:45.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>java基本容器工具<br>前面两篇说的是Java容器类，大部分都不是线程安全的</p>
-<p>如何保证集合是线程安全的、？<br>java提供了不同层面的线程安全支持。在传统集合框架内部，除了Hashtable等内容容器，还提供了所谓的同步包装器（Synchronnized Wrapper),我们可以调用Collections工具类提供的包装方法，来获取一个同步的包装容器（如 Collections.synchronizedMap）,但是他们都利用的粗粒度的同步方式，在高并发情况下，性能比较低下</p>
-<p>更加普遍的选择是利用并发包提供的线程安全容器类，</p>
-        
-          <a class="article-more-a" href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ArrayList,LinkedList,Vector区别？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/">每日深耕，勤练不缀之ArrayList,LinkedList,Vector的区别?</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-04T06:17:04.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ArrayList,LinkedList,Vector的区别?<br>高效的管理和操作数据</p>
-<ul>
-<li>三者都是集合框架里的list，即所谓的有序集合。</li>
-<li>  按照位置进行定位，添加和删除的操作  </li>
-<li>都提供<strong>迭代器</strong>以遍历其内容
-        
-          <a class="article-more-a" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SQL连接表的操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">每日深耕，勤练不缀之SQL连接表的操作</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-11-03T14:02:24.260Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>SQL92<br>很强大的功能就是在各个数据表之间连接查询<br>JOIN在SQL中的作用<br>五种连接<br><strong>1.笛卡尔积</strong><br>笛卡尔积是个数学运算。假设我有两个集合X和Y ，那么X和Y的笛卡尔积就是X和Y的所有可能组合，也就是第一个对象来自于X，第二个对象来自于Y的所有可能<br>我们假定player表的数据是集合X，先进行SQL查询</p>
-        
-          <a class="article-more-a" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-equals的基本特性，及自己对wait,notify的理解、join的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/">每日深耕，勤练不缀之equals的基本特性，及自己对wait,notify的理解、join的理解</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-03T10:53:25.158Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自反性：对于任何非空引用值x,x.equals(x)都应返回true<br>对称性：对于任何非空引用值x和y,当且仅当y.equals(x)返回true时，x.equals（y）才应返回true<br>传递性：对于任何非空引用值x,y和z,如果x.equals(y)返回true,,并且y.equals(z)返回true,那么x.equals(z)应返回true.<br>一致性：对于任何非空引用值x和y,多次调用x.equals(y)或者y.equals(x)都返回同一逻辑值</p>
-        
-          <a class="article-more-a" href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hashtable、HashMap、TreeMap有什么不同？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">每日深耕，勤练不缀之Hashtable、HashMap、TreeMap</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-03T05:50:17.860Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>map我们都知道来源于key-value的认识。以键值对的形式存储和操作数据的容器类型。而上面的这些都是Map的常见实现</p>
-<p>Hashtable 是早期java类库类库提供的一个哈希表实现，本身是同步的，不支持null键和值，由于同步导致的性能开销，不推荐使用。</p>
-        
-          <a class="article-more-a" href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-sql子查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之sql子查询</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-02T11:40:50.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文应用sql数据均从github上下载<br>需要的小伙伴自取<a target="_blank" rel="noopener" href="https://github.com/cystanford/sql_nba_data.git">https://github.com/cystanford/sql_nba_data.git</a><br>查询结果集<br><strong>关联子查询:</strong> 子查询需要执行多次，采用循环的方式，先从外部查询开始，每次传入子查询进行查询，再将结果反馈给外部</p>
-        
-          <a class="article-more-a" href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-动态代理是基于什么原理？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/">每日深耕，勤练不缀之动态代理篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:31:21.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-编程语言分类角度：1.动态类型和静态类型
-2.强类型和弱类型
-        
-          <a class="article-more-a" href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-int和interger的区别（续）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/">每日深耕，勤练不缀之int和interger的区别（续）篇</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:29:13.202Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <font color=#999AAA >
-
-<p>有一个想法，就是将自己每天对技术的感悟写下来，有时候我们弄通一个小技术，感觉太丢人了，这么小的东西怎么写。但是我就要写，因为我以后会用到，大家以后也会用到。<br></font></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><font color=#999AAA >
-
-<p>每个java小白都会遇到的阵痛，我写下来。<br>一句古语：秦人不暇自哀而后人哀之，后人哀之而不鉴之，亦使后人复哀后人也。</p>
-</font>
-原始数据类型为八大类
-我们先复习一下我们学过的
-int ：基本数据类型，不用声明直接使用
-interger：是int的封装类。需要声明，但是JAVA给其自动装箱开箱（抽象为类，new 一个对象）的功能，让其可以自由像int一样自由赋值
-interger的值缓存，java5提供了静态工厂方法valueof
-但是有valueof的限制，调用一个缓存机制，interger取值范围在-128—127之间，且只能在这个范围内比较
-        
-          <a class="article-more-a" href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -861,8 +354,8 @@ interger的值缓存，java5提供了静态工厂方法valueof
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
