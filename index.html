@@ -152,6 +152,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring整合junit的配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/13/Spring%E6%95%B4%E5%90%88junit%E7%9A%84%E9%85%8D%E7%BD%AE/">每日深耕，勤练不缀之Spring整合junit的配置</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/13/Spring%E6%95%B4%E5%90%88junit%E7%9A%84%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2020-12-13T08:24:00.869Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.应用程序的入口<br>    main方法<br>2.junit单元测试中，没有main方法也能执行<br>    junit就会判断当前测试类中哪些方法有@Test注解<br>    junit就让有注解的方法执行<br>3.junit不会管我们是否使用了spring框架<br>4.当测试方法执行时，没有IOC容器，就算写@Autowried注解，也会产生空指针异常</p>
+        
+          <a class="article-more-a" href="/2020/12/13/Spring%E6%95%B4%E5%90%88junit%E7%9A%84%E9%85%8D%E7%BD%AE/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/13/Spring%E6%95%B4%E5%90%88junit%E7%9A%84%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基于Spring的常用注解IOC以及IOC的案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -709,72 +774,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/27/JDBC%E5%BF%AB%E9%80%9F%E6%8A%BD%E5%8F%96%E5%B7%A5%E5%85%B7%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解决小伙伴们使用YOLOv3训练时的硬件问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/25/%E8%A7%A3%E5%86%B3%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E4%BD%BF%E7%94%A8YOLOv3%E8%AE%AD%E7%BB%83%E6%97%B6%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%97%AE%E9%A2%98/">解决小伙伴们深度学习时模型训练的硬件问题</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/25/%E8%A7%A3%E5%86%B3%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E4%BD%BF%E7%94%A8YOLOv3%E8%AE%AD%E7%BB%83%E6%97%B6%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-11-25T09:01:35.461Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在学习YOLOv3来训练voc模型<br>可想而知一个15年的mac或者老版本的Windows电脑难堪重负。<br>在学完理论准备操刀开始部署训练时，才发现GPU是个大难题，而本人是个穷学生，哪有那么多钱买那么贵的显卡！！！<br><img src="https://img-blog.csdnimg.cn/20201125163104563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-<p>所以我决定启用带GPU的服务器，将我的所有东西都通过云端来搞定训练。<br>几番抉择后，选择了滴滴云服务器,因为价格！！！<br><a target="_blank" rel="noopener" href="https://www.didiyun.com/">https://www.didiyun.com</a></p>
-        
-          <a class="article-more-a" href="/2020/11/25/%E8%A7%A3%E5%86%B3%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E4%BD%BF%E7%94%A8YOLOv3%E8%AE%AD%E7%BB%83%E6%97%B6%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%97%AE%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/25/%E8%A7%A3%E5%86%B3%E5%B0%8F%E4%BC%99%E4%BC%B4%E4%BB%AC%E4%BD%BF%E7%94%A8YOLOv3%E8%AE%AD%E7%BB%83%E6%97%B6%E7%9A%84%E7%A1%AC%E4%BB%B6%E9%97%AE%E9%A2%98/">展开全文 >></a>
         </p>
       
 
