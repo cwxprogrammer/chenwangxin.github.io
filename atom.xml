@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-08T13:20:34.927Z</updated>
+  <updated>2020-12-13T08:04:38.489Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之基于Spring的常用注解IOC以及IOC的案例</title>
+    <link href="http://example.com/2020/12/13/%E5%9F%BA%E4%BA%8ESpring%E7%9A%84%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3IOC%E4%BB%A5%E5%8F%8AIOC%E7%9A%84%E6%A1%88%E4%BE%8B/"/>
+    <id>http://example.com/2020/12/13/%E5%9F%BA%E4%BA%8ESpring%E7%9A%84%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3IOC%E4%BB%A5%E5%8F%8AIOC%E7%9A%84%E6%A1%88%E4%BE%8B/</id>
+    <published>2020-12-13T08:02:17.748Z</published>
+    <updated>2020-12-13T08:04:38.489Z</updated>
+    
+    <content type="html"><![CDATA[<p> 基于Spring的常用注解IOC以及IOC的案例<br>     1.SpringIOC的常用注解<br>     2.案例使用xml方式和注解方式实现单表的CRUD操作<br>         持久层技术选择：dbutils<br>     3.改造基于注解的IOC案例，使用纯注解的方式实现<br>         Spring的一些新注解</p><a id="more"></a><p>xml配置与IOC注解配置：<br>    注解分为四类：<br>        1.用于创建对象的<br>        2.用于注入数据的<br>        3.用于改变作用范围的<br>        4.和生命周期相关<br>        @component<br>    注解必须用context的 component-scan base-package=”com.itheima.xxx”<br>    开始扫描所有类上和接口上的注解<br>        xmlns:context=”<a href="http://www.springframework.org/schema/context&quot;">http://www.springframework.org/schema/context&quot;</a><br>    告知spring在创建容器式要扫描的包，配置需要的标签不是在beans标签的约束中，而是在一个名称为context的名称空间和约束中。<br>这些注解是生成实例的：<br>    @controller一般用于表现层<br>    @service 一般用于业务层<br>    @Repository一般用于持久层</p><p>依赖反转+依赖注入</p><p>用于注入数据的：<br>@Autowired（方法）<br>自动按照类型注入，找到数据类型就可以注入（只有唯一一个符合的bean时）。<br>@Qualifier不能独立用，与@Autowired一起使用<br>    但是有一种特殊情况，就是给方法注入时可以单独使用@Qualifier，比如使用不同的数据库源头时。</p><p>@Resource:直接按照bean的id注入，可以独立使用</p><p>以上三个只能进行其他bean类型的数据.<br>基本类型和String类型怎么注入？<br>    用value，有个属性value可以指定数据的值，可以使用spring的spEL表达式<br>        sPEL的写法：${表达式}<br>    用于改变作用范围的Scope<br>    value=singleton  or prototype</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt; 基于Spring的常用注解IOC以及IOC的案例&lt;br&gt;     1.SpringIOC的常用注解&lt;br&gt;     2.案例使用xml方式和注解方式实现单表的CRUD操作&lt;br&gt;         持久层技术选择：dbutils&lt;br&gt;     3.改造基于注解的IOC案例，使用纯注解的方式实现&lt;br&gt;         Spring的一些新注解&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之mybatis中的一对多（多表）查询</title>
@@ -341,24 +358,6 @@
     
     <summary type="html">&lt;p&gt;模拟定位问题，就选取常见的jstack,可以使用jps或者系统的ps命令、任务管理器等工具，确定进程ID&lt;br&gt;其次，调用jstack获取线程栈：&lt;/p&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$&amp;#123;JAVA_HOME&amp;#125;\bin\jstack your_pid&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之ReentrantLock锁的用法，特性，注意事项</title>
-    <link href="http://example.com/2020/11/16/ReentrantLock%E9%94%81%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%8C%E7%89%B9%E6%80%A7%EF%BC%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
-    <id>http://example.com/2020/11/16/ReentrantLock%E9%94%81%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%8C%E7%89%B9%E6%80%A7%EF%BC%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</id>
-    <published>2020-11-16T04:29:20.119Z</published>
-    <updated>2020-11-16T04:29:20.119Z</updated>
-    
-    <content type="html"><![CDATA[<p>ReentrantLock是Lock的实现类，是一个互斥的同步器，在多线程高竞争条件下，ReentrantLock比synchronized有更加优异的性能表现。</p><p>1 用法比较<br>Lock使用起来比较灵活，但是必须有释放锁的配合动作<br>Lock必须手动获取与释放锁，而synchronized不需要手动释放和开启锁<br>Lock只适用于代码块锁，而synchronized可用于修饰方法、代码块等</p><a id="more"></a><p>2 特性比较<br>ReentrantLock的优势体现在：<br>具备尝试非阻塞地获取锁的特性：当前线程尝试获取锁，如果这一时刻锁没有被其他线程获取到，则成功获取并持有锁<br>能被中断地获取锁的特性：与synchronized不同，获取到锁的线程能够响应中断，当获取到锁的线程被中断时，中断异常将会被抛出，同时锁会被释放<br>超时获取锁的特性：在指定的时间范围内获取锁；如果截止时间到了仍然无法获取锁，则返回</p><p>3 注意事项<br>在使用ReentrantLock类的时，一定要注意三点：<br>在finally中释放锁，目的是保证在获取锁之后，最终能够被释放<br>不要将获取锁的过程写在try块内，因为如果在获取锁时发生了异常，异常抛出的同时，也会导致锁无故被释放。<br>ReentrantLock提供了一个newCondition的方法，以便用户在同一锁的情况下可以根据不同的情况执行等待或唤醒的动作。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;ReentrantLock是Lock的实现类，是一个互斥的同步器，在多线程高竞争条件下，ReentrantLock比synchronized有更加优异的性能表现。&lt;/p&gt;
-&lt;p&gt;1 用法比较&lt;br&gt;Lock使用起来比较灵活，但是必须有释放锁的配合动作&lt;br&gt;Lock必须手动获取与释放锁，而synchronized不需要手动释放和开启锁&lt;br&gt;Lock只适用于代码块锁，而synchronized可用于修饰方法、代码块等&lt;/p&gt;</summary>
     
     
     
