@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>每日深耕，勤练不缀之SpringMVC框架的初解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/page/5/index.html">
+  <meta name="description" content="SpringMVC是表现层框架，用于接收从持久层，业务层到页面的数据，然后将其显示于页面上。  SpringMVC流程：&#x3D;&#x3D;&gt;model:    javabean   view：jsp   contorller:servlet  （应用于前后端分离）  请求参数–&gt;到达控制器（sevlet）–&gt;封装进javaBean中–&gt;与业务层进行交互–&gt;servlet封装–&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日深耕，勤练不缀之SpringMVC框架的初解">
+<meta property="og:url" content="http://example.com/2021/01/02/SpringMVC%E7%9A%84%E5%88%9D%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SpringMVC是表现层框架，用于接收从持久层，业务层到页面的数据，然后将其显示于页面上。  SpringMVC流程：&#x3D;&#x3D;&gt;model:    javabean   view：jsp   contorller:servlet  （应用于前后端分离）  请求参数–&gt;到达控制器（sevlet）–&gt;封装进javaBean中–&gt;与业务层进行交互–&gt;servlet封装–&amp;g">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-02T08:24:32.754Z">
+<meta property="article:modified_time" content="2021-01-02T08:25:33.549Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,191 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SpringMVC的初解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日深耕，勤练不缀之SpringMVC框架的初解
+    </h1>
+  
+
+        
+        <a href="/2021/01/02/SpringMVC%E7%9A%84%E5%88%9D%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-01-02T08:24:32.754Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>SpringMVC是表现层框架，用于接收从持久层，业务层到页面的数据，然后将其显示于页面上。</p>
+</li>
+<li><p>SpringMVC流程：==&gt;model:    javabean   view：jsp   contorller:servlet<br>  （应用于前后端分离）<br>  请求参数–&gt;到达控制器（sevlet）–&gt;封装进javaBean中–&gt;与业务层进行交互–&gt;servlet封装–&gt;javaBean返回数据到view层中</p>
+</li>
+<li><p>SpringMVC是基于java的实现mvc设计模式的请求驱动类型轻量级Web框架，我们通常还需要HTTPservlet请求,而在springmvc中不太需要，只需要一个类就行（注解，resultful编程风格）</p>
+</li>
+<li><p>SpringMVC与Struts2的异同点？<br>  同：都有mvc框架，都离不开原始servletAPI，处理机制都会有核心控制器<br>  异： 1.基于方法设计的，只有一个单例；而struts2还得每次创建 </p>
+<pre><code>  2.springmvc支持异步，
+  3.struts支持OGNL表达式，执行效率不高。</code></pre>
+</li>
+<li><p>需求：入门程序<br>  请求–&gt;servlet（jsp）–&gt;处理–&gt;返回（显示）</p>
+</li>
+<li><p>前端控制器<br>  web.xml ==&gt;你发任何的请求都会经过这个servlet</p>
+<a id="more"></a>
+<p>  控制你的类调用业务层，springIOC进行类控制，注解扫描一气呵成</p>
+<p>  <context :component-scan base-package="cn.itcast"/>  ==&gt;扫到了形成对象控制</p>
+<p>  在方法上再加一个注解@RequestMapping<br>  加载springmvc.xml配置文件加载，用前端控制器加载，就可以使用注解了<br>  相当于我们执行完以后，可以跳转到自己定义的页面&lt;==（配置视图解析器对象，帮你跳转到想要的页面，需要配置两个属性,1.目录路径 name=”prefix” value =”/WEB-INF/pages/“2.后缀名 name=”suffix”,value=”.jsp”）</p>
+<ol start="7">
+<li>   最后开启MVC框架注解的支持<br><a href="mvc:annotation-driven/">mvc:annotation-driven/</a></li>
+<li>   启动服务器，RequestMapping是基于controller层的，请求项目名/hello</li>
+<li>流程总结：<br> 1.启动服务器，加在一些配置文件<pre><code> web.xml中配置&lt;load-on-startup&gt;&lt;/oad-on-startup&gt;这个标签，加载DispatcherServlet，这个servlet执行springmvc.xml文件==&gt;注解扫描==&gt;将controller这个类加载成对象（单例）==&gt;视图解析器bean标签，也会变成对象，直接可以工作，跳转页面==&gt;开启SpringMVC注解RequestMapping后，发请求直接找到对象调用方法</code></pre>
+ 2.发送请求，后台处理这个请求<pre><code> 写了一个超链接，帮助我们发送请求（项目名称/hello），第一个执行的就是web.xml里面的ispatcherServlet（因为不管是任何请求都要经过前端控制器&lt;指挥中心&gt;）==&gt;（1）（对应）根据controller里面的注解path ==&gt;目的是：让这个方法去执行，return &quot;success&quot;（2）加载视图解析器,因为配置，帮助咱们跳转success.jsp（总结：springmvc.xml里面只加载注解，形成放对象的容器；而前端控制器则是既支持自动加载，又支持加载springMVC.xml,还加载视图加载器）</code></pre>
+ 3.前端控制器将响应后的结果显示到view层</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpeg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixinpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-04T12:37:47.709Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/04/sql99%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之sql99连接查询</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/01/02/SpringMVC%E7%9A%84%E5%88%9D%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-04T09:55:45.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/16/spring%E7%9A%84aop%E4%B8%8E%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86API%EF%BC%8C%E4%BB%A3%E6%9B%BF%E4%B9%8B%E5%89%8D%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日深耕，勤练不缀之Spring事务处理API</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/04/%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E9%9B%86%E5%90%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9FConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F/">每日深耕，勤练不缀之如何保证集合是线程安全的？</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-04T06:17:04.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/04/ArrayList,LinkedList,Vector%E5%8C%BA%E5%88%AB%EF%BC%9F/">每日深耕，勤练不缀之ArrayList,LinkedList,Vector的区别?</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-11-03T14:02:24.260Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/03/SQL%E8%BF%9E%E6%8E%A5%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">每日深耕，勤练不缀之SQL连接表的操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-11-03T10:53:25.158Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/03/equals%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%EF%BC%8C%E5%8F%8A%E8%87%AA%E5%B7%B1%E5%AF%B9wait,notify%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81join%E7%9A%84%E7%90%86%E8%A7%A3/">每日深耕，勤练不缀之equals的基本特性，及自己对wait,notify的理解、join的理解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-03T05:50:17.860Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/03/Hashtable%E3%80%81HashMap%E3%80%81TreeMap%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F/">每日深耕，勤练不缀之Hashtable、HashMap、TreeMap</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
-  	<time datetime="2020-11-02T11:40:50.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/02/sql%E5%AD%90%E6%9F%A5%E8%AF%A2/">每日深耕，勤练不缀之sql子查询</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:31:21.555Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%98%AF%E5%9F%BA%E4%BA%8E%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F/">每日深耕，勤练不缀之动态代理篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-01T08:29:13.202Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/int%E5%92%8Cinterger%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E7%BB%AD%EF%BC%89/">每日深耕，勤练不缀之int和interger的区别（续）篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/" class="archive-article-date">
-  	<time datetime="2020-11-01T07:29:01.416Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/01/RUOYI%20Spring%20boot%E9%A1%B9%E7%9B%AE%E6%89%93%E6%80%AA%E5%8D%87%E7%BA%A7%201/">RUOYI项目初级涉猎篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/6/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +362,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

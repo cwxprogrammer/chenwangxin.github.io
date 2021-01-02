@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-16T10:49:11.895Z</updated>
+  <updated>2021-01-02T08:25:33.549Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每日深耕，勤练不缀之SpringMVC框架的初解</title>
+    <link href="http://example.com/2021/01/02/SpringMVC%E7%9A%84%E5%88%9D%E8%A7%A3/"/>
+    <id>http://example.com/2021/01/02/SpringMVC%E7%9A%84%E5%88%9D%E8%A7%A3/</id>
+    <published>2021-01-02T08:24:32.754Z</published>
+    <updated>2021-01-02T08:25:33.549Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>SpringMVC是表现层框架，用于接收从持久层，业务层到页面的数据，然后将其显示于页面上。</p></li><li><p>SpringMVC流程：==&gt;model:    javabean   view：jsp   contorller:servlet<br>  （应用于前后端分离）<br>  请求参数–&gt;到达控制器（sevlet）–&gt;封装进javaBean中–&gt;与业务层进行交互–&gt;servlet封装–&gt;javaBean返回数据到view层中</p></li><li><p>SpringMVC是基于java的实现mvc设计模式的请求驱动类型轻量级Web框架，我们通常还需要HTTPservlet请求,而在springmvc中不太需要，只需要一个类就行（注解，resultful编程风格）</p></li><li><p>SpringMVC与Struts2的异同点？<br>  同：都有mvc框架，都离不开原始servletAPI，处理机制都会有核心控制器<br>  异： 1.基于方法设计的，只有一个单例；而struts2还得每次创建 </p><pre><code>  2.springmvc支持异步，  3.struts支持OGNL表达式，执行效率不高。</code></pre></li><li><p>需求：入门程序<br>  请求–&gt;servlet（jsp）–&gt;处理–&gt;返回（显示）</p></li><li><p>前端控制器<br>  web.xml ==&gt;你发任何的请求都会经过这个servlet</p><a id="more"></a><p>  控制你的类调用业务层，springIOC进行类控制，注解扫描一气呵成</p><p>  <context :component-scan base-package="cn.itcast"/>  ==&gt;扫到了形成对象控制</p><p>  在方法上再加一个注解@RequestMapping<br>  加载springmvc.xml配置文件加载，用前端控制器加载，就可以使用注解了<br>  相当于我们执行完以后，可以跳转到自己定义的页面&lt;==（配置视图解析器对象，帮你跳转到想要的页面，需要配置两个属性,1.目录路径 name=”prefix” value =”/WEB-INF/pages/“2.后缀名 name=”suffix”,value=”.jsp”）</p><ol start="7"><li>   最后开启MVC框架注解的支持<br><a href="mvc:annotation-driven/">mvc:annotation-driven/</a></li><li>   启动服务器，RequestMapping是基于controller层的，请求项目名/hello</li><li>流程总结：<br> 1.启动服务器，加在一些配置文件<pre><code> web.xml中配置&lt;load-on-startup&gt;&lt;/oad-on-startup&gt;这个标签，加载DispatcherServlet，这个servlet执行springmvc.xml文件==&gt;注解扫描==&gt;将controller这个类加载成对象（单例）==&gt;视图解析器bean标签，也会变成对象，直接可以工作，跳转页面==&gt;开启SpringMVC注解RequestMapping后，发请求直接找到对象调用方法</code></pre> 2.发送请求，后台处理这个请求<pre><code> 写了一个超链接，帮助我们发送请求（项目名称/hello），第一个执行的就是web.xml里面的ispatcherServlet（因为不管是任何请求都要经过前端控制器&lt;指挥中心&gt;）==&gt;（1）（对应）根据controller里面的注解path ==&gt;目的是：让这个方法去执行，return &quot;success&quot;（2）加载视图解析器,因为配置，帮助咱们跳转success.jsp（总结：springmvc.xml里面只加载注解，形成放对象的容器；而前端控制器则是既支持自动加载，又支持加载springMVC.xml,还加载视图加载器）</code></pre> 3.前端控制器将响应后的结果显示到view层</li></ol></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;SpringMVC是表现层框架，用于接收从持久层，业务层到页面的数据，然后将其显示于页面上。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SpringMVC流程：==&amp;gt;model:    javabean   view：jsp   contorller:servlet&lt;br&gt;  （应用于前后端分离）&lt;br&gt;  请求参数–&amp;gt;到达控制器（sevlet）–&amp;gt;封装进javaBean中–&amp;gt;与业务层进行交互–&amp;gt;servlet封装–&amp;gt;javaBean返回数据到view层中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SpringMVC是基于java的实现mvc设计模式的请求驱动类型轻量级Web框架，我们通常还需要HTTPservlet请求,而在springmvc中不太需要，只需要一个类就行（注解，resultful编程风格）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;SpringMVC与Struts2的异同点？&lt;br&gt;  同：都有mvc框架，都离不开原始servletAPI，处理机制都会有核心控制器&lt;br&gt;  异： 1.基于方法设计的，只有一个单例；而struts2还得每次创建 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  2.springmvc支持异步，
+  3.struts支持OGNL表达式，执行效率不高。&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;需求：入门程序&lt;br&gt;  请求–&amp;gt;servlet（jsp）–&amp;gt;处理–&amp;gt;返回（显示）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;前端控制器&lt;br&gt;  web.xml ==&amp;gt;你发任何的请求都会经过这个servlet&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>每日深耕，勤练不缀之Spring事务处理API</title>
@@ -350,23 +380,6 @@
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型&lt;br&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201124103816321.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在2012年之前，在目标检测领域还是以传统手工特征的检测算法为主，但是随着卷积神经网络(CNN)在2012年的兴起，目标检测开始了在深度学习下的暴力美学。在深度学习下，目标检测的效果比传统手工特征效果好太多。直至今日，基于深度学习的检测算法依然是目标检测的主流。&lt;br&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>每日深耕，勤练不缀之java Docker</title>
-    <link href="http://example.com/2020/11/18/Java%20Docker/"/>
-    <id>http://example.com/2020/11/18/Java%20Docker/</id>
-    <published>2020-11-18T03:28:11.845Z</published>
-    <updated>2020-11-18T03:28:11.845Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于java来说，Docker毕竟是一个比较新的环境。例如，其内存、cpu等资源限制是通过CGroup实现的，早期的jdk版本并不能识别这些限制，进而会导致一些问题：</p><a id="more"></a><ul><li>如果未配置合适的JVM堆和元数据区，直接内存等参数；java有可能试图使用超过容器限制的内存，最终被容器OOM kill ，或者自身发生OOM</li><li>错误的判断了可获取的CPU资源。如：Docker限制了CPU的核数，JVM就可能设置不合适的GC并行线程</li></ul><p>与虚拟机及其相似，但是也有不同，并不是虚拟化技术，而是一种轻量级的隔离技术。轻量级的开销必然也就在成了许多微妙差异。<br><strong>这就是所谓的Ergonomics机制，例如</strong>：<br>JVM 会大概根据检测到的内存大小，设置最初启动时的堆大小为系统内存的 1/64；并将堆最大值，设置为系统内存的 1/4。<br>而 JVM 检测到系统的 CPU 核数，则直接影响到了 Parallel GC 的并行线程数目和 JIT complier 线程数目，甚至是我们应用中 ForkJoinPool 等机制的并行等级。<br>这些默认参数，是根据通用场景选择的初始值。但是由于容器环境的差异，Java 的判断很可能是基于错误信息而做出的。这就类似，我以为我住的是整栋别墅，实际上却只有一个房间是给我住的。<br><img src="https://img-blog.csdnimg.cn/20201118112227927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>解决办法：升级到JDK8最新的更新</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;对于java来说，Docker毕竟是一个比较新的环境。例如，其内存、cpu等资源限制是通过CGroup实现的，早期的jdk版本并不能识别这些限制，进而会导致一些问题：&lt;/p&gt;</summary>
     
     
     
