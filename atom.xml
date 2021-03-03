@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-01-05T06:33:34.104Z</updated>
+  <updated>2021-03-03T12:06:24.837Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>寒假项目</title>
+    <link href="http://example.com/2021/03/03/netty%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    <id>http://example.com/2021/03/03/netty%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</id>
+    <published>2021-03-03T11:11:59.934Z</published>
+    <updated>2021-03-03T12:06:24.837Z</updated>
+    
+    <content type="html"><![CDATA[<p>第1章 项目介绍 超目 -信<br>第2章 netty介绍与相关基础知识<br>初识netty，学习阻塞与非阻塞，同步与异步，理解BIO、NIO、AIO以及netty的线程模型</p><p>2-1 初始netty<br>2-2 阻塞和非阻塞、同步和异步的概念<br>2-3 BIO讲解<br>2-4 NIO讲解<br>2-5 BIO NIO AIO的区别与理解<br>2-6 再看netty<br>2-7 netty的三种线程模型<br>第3章 使用netty编写第一个hello netty 服务器<br>从零开始使用netty编写服务器，在网页访问后返回hello netty，主要对服务器启动类，channel初始化器以及助手类讲解，最后会对channel的生命周期进行讲解</p><p>3-1 使用maven构建netty基础依赖<br>3-2 构建hello服务器<br>3-3 为channel设置初始化器<br>3-4 编写自定义助手类<br>3-5 hello服务器启动与讲解<br>3-6 netty生命周期<br>第4章 使用netty构建websocket服务器<br>理解实时通信，使用netty的websocket编写服务端启动类、子处理器以及助手类。 理解JS相关的websocket api，简单使用hbuilder编写通信页面与netty交互并且使用web浏览器与手机端浏览器进行测试数据交互</p><a id="more"></a><p>4-1 实时通信相关概念讲解<br>4-2 编写websocket服务端启动类<br>4-3 编写websocket子处理器initialzer<br>4-4 编写chatHandler对消息的处理<br>4-5 基于js的websocket相关api介绍<br>4-6 简单实用hbuilder工具编写前端websocket<br>4-7 测试web端携手移动端与后端netty聊天通信<br>第5章 使用MUI与H5+构建移动端app<br>零基础讲解MUI、H5+以及hbuilder开发工具，构建慕信轻聊的基本骨架</p><p>5-1 MUI,H5+，Hbuilder介绍<br>5-2 创建项目，页面基本结构讲解<br>5-3 自定义标题栏样式<br>5-4 真机调试与原生标题栏样式更改<br>5-5 首页底部tab选项卡的使用，MUI图标库讲解<br>5-6 使用阿里图标库构建自己的icon库<br>5-7 tab选项卡切换页面（上）<br>5-8 tab选项卡切换页面（下）<br>第6章 使用springboot整合netty搭建后台<br>对数据库表设计进行讲解并且使用springboot作为主要后台框架，并且整合mybatis以及netty，重构netty server并且整合</p><p>6-1 数据库表设计<br>6-2 使用mybatis逆向工具<br>6-3 搭建springboot2.0工程<br>6-4 springboot整合mybatis<br>6-5 整合netty server<br>6-6 完成netty整合springboot并且测试<br>第7章 用户注册/登录/个人信息<br>开发用户注册登录以及个人信息页面相关功能模块，其中涉及到高性能分布式文件存储服务器fastdfs的搭建，并且使用nginx发布可使用http进行web访问并且下载用户头像和二维码</p><p>7-1 注册登录页面讲解与后端接口开发1<br>7-2 注册登录页面讲解与后端接口开发2<br>7-3 登录注册页面的判断事件与js自定义util<br>7-4 登录注册前后端联调<br>7-5 首页禁止返回和用户自动登录讲解<br>7-6 开发我的个人页面<br>7-7 动态初始化个人信息<br>7-8 打开个人头像页面<br>7-9 增加可选择菜单<br>7-10 为菜单增加事件绑定<br>7-11 选择照片与裁剪插件<br>7-12 文件服务器概览<br>7-13 安装tracker服务<br>7-14 安装storage服务<br>7-15 配置client并且上传测试图片<br>7-16 nginx安装与fastdfs配置（上）<br>7-17 nginx安装与fastdfs配置（下）<br>7-18 fastdfs 整合springboot<br>7-19 后端上传图片功能开发<br>7-20 上传图片前后端联调与测试<br>7-21 头像上传后跨页面调用自定义事件刷新<br>7-22 上传头像细节部分处理与openwindow的bug处理<br>7-23 下载头像到相册<br>7-24 修改昵称页面<br>7-25 修改昵称后端接口<br>7-26 修改昵称前后端联调<br>7-27 用户二维码生成<br>7-28 我的二维码作业布置<br>7-29 我的二维码作业讲解<br>7-30 用户退出以及简单小结<br>第8章 发现页面与通讯录相关功能开发<br>用户可以通过搜索其他用户账号进行好友添加，或者通过用户的唯一二维码进行扫码添加，发送添加请求后其他用户可以拒绝或者同意好友请求</p><p>8-1 发现页面编码<br>8-2 搜索朋友账号接口（上）<br>8-3 搜索朋友账号接口（下）<br>8-4 搜索朋友前后端联调<br>8-5 搜索结果页讲解以及webview传参<br>8-6 发送添加好友请求接口编码<br>8-7 前后端连天发送好友请求<br>8-8 查询好友请求接口<br>8-9 朋友接受到请求页面联调开发<br>8-10 好友请求HTML动态渲染<br>8-11 同意或忽略事件动态绑定<br>8-12 同意或忽略controller<br>8-13 同意或忽略的service编写<br>8-14 好友请求忽略或拒绝前后台联调<br>8-15 构建扫描器<br>8-16 扫码器颜色自定义<br>8-17 扫码添加好友联调<br>8-18 延时加载预处理数据<br>8-19 mui 自带索引列表模板讲解<br>8-20 通讯录列表整合<br>8-21 图文列表和通讯录整合增加用户头像显示<br>8-22 查询用户的所有好友列表接口<br>8-23 手机端获取好友列表保存到本地<br>8-24 定义通讯录好友列表模型<br>8-25 通讯录列表渲染展现<br>8-26 好友请求接收方更新通讯录<br>第9章 聊天页面开发<br>构建手机端上的聊天页面模型，建立会话，接受发送消息，netty控制点对点消息发送，控制会话重连，聊天记录的本地保存与左滑删除，消息标记未读，消息牵手等。</p><p>9-1 聊天页面讲解与展示<br>9-2 header动态改为好友昵称，动态滚动到最新消息<br>9-3 发送按钮的颜色状态改变<br>9-4 弹出软键盘重新设置聊天窗口高度<br>9-5 发送消息前置条件网络状态判断<br>9-6 监听网络连接事件<br>9-7 发送消息html渲染<br>9-8 接收消息html渲染<br>9-9 发送消息与接收消息时的铃声播放<br>9-10 手机端websocket模型定义和发送消息<br>9-11 websocket接受消息的渲染_x264<br>9-12 服务器断开后的重连机制<br>9-13 chatHandler初步重构<br>9-14 构建聊天业务模型<br>9-15 chatHandler - 处理客户端连接<br>9-16 chatHandler - 保存聊天消息到数据库<br>9-17 chatHandler - 处理消息发送<br>9-18 chatHandler - 签收单条或多条消息<br>9-19 客户端onopen联调，初始化用户和channel关系<br>9-20 客户端发送消息与接收联调<br>9-21 接收方获得消息后重构渲染<br>9-22 客户端签收消息<br>9-23 websocket新增好友类型联调<br>9-24 保存聊天记录到本地<br>9-25 从本地获取聊天记录<br>9-26 初始化聊天记录和渲染<br>9-27 聊天快照业务简单讲解<br>9-28 保存聊天快照到本地<br>9-29 获取聊天快照<br>9-30 已读未读消息的设置与快照调用<br>9-31 展示聊天快照<br>9-32 未读消息小红点标记<br>9-33 点击快照开始聊天<br>9-34 未读消息标记已读<br>9-35 开发获取未读消息列表接口<br>9-36 前端获取未读消息列表<br>9-37 批量签收并且展示未读消息<br>9-38 聊天快照左滑删除效果<br>9-39 聊天快照右滑删除聊天记录与快照<br>第10章 使用netty编写心跳检测<br>app不会主动和服务端切断，只会有可能发生离线或者关机或者飞行模式，所以需要在后台控制心跳，检测客户端的读写请求来判断是否清除无用的channel。同时手机端也要保持一定的keepalive。未接受到的消息在用户下次打开后重新获取。    …</p><p>10-1 心跳机制的概念与飞行模式<br>10-2 心跳HeartBeatHandler编码<br>10-3 配置空闲handler与超时时间设置<br>10-4 手机端与netty的心跳测试<br>10-5 前端keepalive保持，与心跳测试<br>第11章 后端云部署与app云打包<br>本章节做为上线部分，需要购买云服务器，采用腾讯云，会对其进行讲解，然后搭建基本环境，包含JDK、tomcat、MariaDB、fastdfs、nginx，springboot打包与部署。最后对手机app进行云打包</p><p>11-1 云服务器购买推荐及安全组介绍与关联<br>11-2 文件传输工具的使用<br>11-3 命令行工具的简单使用<br>11-4 云服务器配置JDK环境<br>11-5 云服务器安装tomcat<br>11-6 云服务器离线安装MariaDB<br>11-7 云服务器MariaDB安全设置与客户端连接调试<br>11-8 云服务器安装图片服务器的注意事项以及nginx反向代理tomcat服务器<br>11-9 springboot工程打包<br>11-10 打包文件上传到云服务器并且进行tomcat部署<br>11-11 app云打包<br>第12章 课程总结<br>课程总结</p><p>12-1 课程总结</p><p>#更多资源q891377154</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;第1章 项目介绍 超目 -信&lt;br&gt;第2章 netty介绍与相关基础知识&lt;br&gt;初识netty，学习阻塞与非阻塞，同步与异步，理解BIO、NIO、AIO以及netty的线程模型&lt;/p&gt;
+&lt;p&gt;2-1 初始netty&lt;br&gt;2-2 阻塞和非阻塞、同步和异步的概念&lt;br&gt;2-3 BIO讲解&lt;br&gt;2-4 NIO讲解&lt;br&gt;2-5 BIO NIO AIO的区别与理解&lt;br&gt;2-6 再看netty&lt;br&gt;2-7 netty的三种线程模型&lt;br&gt;第3章 使用netty编写第一个hello netty 服务器&lt;br&gt;从零开始使用netty编写服务器，在网页访问后返回hello netty，主要对服务器启动类，channel初始化器以及助手类讲解，最后会对channel的生命周期进行讲解&lt;/p&gt;
+&lt;p&gt;3-1 使用maven构建netty基础依赖&lt;br&gt;3-2 构建hello服务器&lt;br&gt;3-3 为channel设置初始化器&lt;br&gt;3-4 编写自定义助手类&lt;br&gt;3-5 hello服务器启动与讲解&lt;br&gt;3-6 netty生命周期&lt;br&gt;第4章 使用netty构建websocket服务器&lt;br&gt;理解实时通信，使用netty的websocket编写服务端启动类、子处理器以及助手类。 理解JS相关的websocket api，简单使用hbuilder编写通信页面与netty交互并且使用web浏览器与手机端浏览器进行测试数据交互&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -367,25 +386,6 @@
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，可以和博主一样9折享受服务&lt;br&gt;一、研究问题&lt;br&gt;目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割，它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。尤其是在复杂场景中，需要对多个目标进行实时处理时，目标自动提取和识别就显得特别重要。&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>目标检测③基于深度学习的检测算法（续）</title>
-    <link href="http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/"/>
-    <id>http://example.com/2020/11/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E8%AF%BE%E7%A8%8B_%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E2%91%A2%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%EF%BC%88%E7%BB%AD1%EF%BC%89/</id>
-    <published>2020-11-24T05:49:20.680Z</published>
-    <updated>2020-11-24T05:59:05.379Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>目标检测实验报告</strong><br>检测所用软硬件+云服务器：<br>硬件：macOS或者windows电脑<br>软件：pycharm+生成的测试集<br>云服务器：滴滴云(<a href="https://www.didiyun.com/">https://www.didiyun.com</a>)<br>输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型</p><p><img src="https://img-blog.csdnimg.cn/20201124125839974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p><p>相比于之前的网络架构，Yolov3有两点提升：<br> <a id="more"></a><br>1)残差结构<br>神经网络训练的过程就是调整参数的过程，可以调整的参数越多，意味着调整的自由度越大，从而逼近效果越好。因此层次越深，可以表示的特征抽象程度越高，可以做出很多只有人类才能做到的需要高度抽象理解能力的事情，在某些特定任务上“效果越好”。<br>然而随着网络深度增加，准确度增加，神经网络会产生梯度消失/梯度爆炸的问题。<br>梯度消失/梯度爆炸指本质上因为梯度反向传播中的连乘效应，造成网络权值更新不稳定，从而使此深层网络的学习几乎等价于只有后几层的浅层网络的学习了，造成网络退化问题。</p><p>Darknet的残差结构(在resnet论文提出的概念)解决了这个问题<br><img src="https://img-blog.csdnimg.cn/20201124125953185.gif#pic_center" alt="在这里插入图片描述"></p><p>在上图的残差网络结构图中，通过 “shortcut connections (捷径连接)” 的方式，直接把输入 x 传到输出作为初始结果，输出结果为 H(x)=F(x)+x，当 F(x)=0 时，那么 H(x)=x，也就是上面所提到的恒等映射。于是，残差结构相当于将学习目标改变了，不再是学习一个完整的输出，而是目标值H(X) 和 x 的差值，也就是所谓的残差 F(x) = H(x)-x，因此，后面的训练目标就是要将残差结果逼近于 0，使到随着网络加深，准确率不下降。<br>resnet论文：<a href="https://arxiv.org/pdf/1512.03385v1.pdf">https://arxiv.org/pdf/1512.03385v1.pdf</a><br>《Deep Residual Learning》——何恺明2016cvpr<br><img src="https://img-blog.csdnimg.cn/20201124130034244.gif#pic_center" alt="在这里插入图片描述"></p><p>feature map 通过 Residual 残差模块前后其 shape 不变。并且，在输入的参数中，要保证 input_channel = filter_num2，否则相加的操作会因为 shape 不同而无法进行。<br>2)多尺度预测<br>同时，yolov3也在多尺度预测上做出改进(类似于FPN)<br>多尺度预测实现了从基础网络输出多个不同尺度作为输入，解决图像中待检测物体大小不同的问题。<br>利用网络对物体进行检测时，浅层网络分辨率高，学到的是图片的细节特征，深层网络，分辨率低，学到的更多的是语义特征，如报告2、3、2提到。<br>因此我们选择利用图像的各个尺度进行训练和测试。可以通过缩放图片提取多组特征图预测，但是想必这样及其消耗时间——因此直接使用卷积网络中产生的各层特征图分别进行预测<br><img src="https://img-blog.csdnimg.cn/20201124130119618.gif#pic_center" alt="在这里插入图片描述"></p><p>《Feature Pyramid Networks for Object Detection》——2017CVPR<br>如上页图Darknet53，以scale2为例，从尺度1中的倒数第二层的卷积层上采样（× 2），再与最后一个 16 × 16 大小的特征图相加，再次通过多个卷积后输出box信息，相比尺度1变大两倍。</p><p>上采样的作用是在后面 YOLOv3 网络中进行相加操作时保证两个 feature map 的宽和高相同，其具体操作为：将输入的 feature map 的宽高都乘 2，得到新的 feature map。如下图代码</p><p>可以看到，route_1，route_2，input_data三个不同尺度的输出到后续网络</p><p><img src="https://img-blog.csdnimg.cn/20201124130202892.gif#pic_center" alt="在这里插入图片描述"></p><p>3.2.2输出定义<br>先来看yolov3的整体结构，随后具体介绍yolov3输出各个维度定义<br>在结构中，我们设置用的数据集类别为80种。<br>下图中左半部分虚线框内即为Darknet-53网络机构，可以看到该网络结构的输入为 416×416×3，之后通过一个3×3的卷积层来扩增通道数。接下来通过堆叠一系列Residual Block来构建网络，其具体个数为[1, 2, 8, 8, 4]，最终主干网络输出大小为13×13、26×26、52×52三个大小的特征图，目的是可以检测到图像中更小的物体。特征图分割越密集，则每一个特征点相对于原图中的区域越小，从而可以监测到更小的物体。这部分即是上一节提到的“多分类预测”<br><img src="https://img-blog.csdnimg.cn/20201124130336823.gif#pic_center" alt="在这里插入图片描述"></p><p>网络结构的右半部分包括将主干网络Darknet-53的输出进行生成特征金字塔。具体做法为首先将13×13×1024的特征层进行上采样变为26×26×256，再与26×26×512的特征层进行堆叠，其结果为26×26×768大小的特征；同理，大小为52×52×256的特征层与下一层网络堆叠后的结果为52×52×384。<br>     对于这三个堆叠后的结果，分别再进行5次卷积操作，最后接上一个3×3的卷积和1×1的卷积，用于输出预测结果，三个层对应的输出结果大小分别为13×13×255、26×26×255、52×52×255。<br>这里结合下图我们可以看到，前两个维度很明显代表了图像被分网格的行/列数，255是我们根据不同类型的数据集，在yolov3中得到的通道数channel</p><p><img src="https://img-blog.csdnimg.cn/20201124130409593.gif#pic_center" alt="在这里插入图片描述"></p><p>这里的每个输出的通道数都是 3x(80+5)，这是因为 YOLOv3 设定的是每个网格单元预测3个检测框，而且每个检测框需要有 (x, y, w, h, confidence) 五个基本参数，然后还要有80个类别的概率。<br>其中255 = (4+1+80)×3，4表示一个边界框对应的调整参数x, y, w, h，1表示置信度，比如我们用COCO数据集，80表示COCO数据集分为80个类，3表示特征图上的每一个点对应有3个anchor。</p><p>代码中的predict_transform函数获取了前级的输入，并进行处理。<br><img src="https://img-blog.csdnimg.cn/20201124130433634.gif#pic_center" alt="在这里插入图片描述"></p><p><img src="https://img-blog.csdnimg.cn/20201124130447497.gif#pic_center" alt="在这里插入图片描述"></p><p>在class darknet()的yolo模块代码后部分，对于每个yolo层的输出先用predict_transform()变成每行为一个anchor对应的预测值的形式(不看batch_size这个维度，x剩下的维度可以看成一个二维tensor)，这样3个yolo层的预测值按照每个方框对应的行的维度进行连接。得到了这张图处所有anchor的预测值，使后面的NMS等操作可以一次完成<br><img src="https://img-blog.csdnimg.cn/2020112413051535.gif#pic_center" alt="在这里插入图片描述"></p><p>这是由北工大模式识别二组共同创作！！！<br>转载请注明出处，谢谢！！<br>下一章（续2）会简单理解一下我最近研究损失函数所遇到的问题</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;目标检测实验报告&lt;/strong&gt;&lt;br&gt;检测所用软硬件+云服务器：&lt;br&gt;硬件：macOS或者windows电脑&lt;br&gt;软件：pycharm+生成的测试集&lt;br&gt;云服务器：滴滴云(&lt;a href=&quot;https://www.didiyun.com/&quot;&gt;https://www.didiyun.com&lt;/a&gt;)&lt;br&gt;输入博主的大师码：8996 ，只需⑨折，便不用体验搭环境的痛苦，安心训练自己的模型&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20201124125839974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzYyODI0,size_16,color_FFFFFF,t_70#pic_center&quot; alt=&quot;在这里插入图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;相比于之前的网络架构，Yolov3有两点提升：&lt;br&gt;</summary>
     
     
     
